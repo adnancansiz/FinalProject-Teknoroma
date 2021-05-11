@@ -1,0 +1,35 @@
+﻿@model Issue
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div asp-validation-summary="All">
+
+            </div>
+            <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Kullanıcı Adınız</label>
+                    <select class="form-control" name="AppUserId">
+                        @foreach (AppUser appUser in ViewBag.AppUser)
+                        {
+                            <option value="@appUser.Id">@appUser.UserName</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Konu</label>
+                    <input asp-for="Subject" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Sorun</label>
+                    <textarea asp-for="Problem" type="text" class="form-control"></textarea>
+                </div>
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+            </form>
+        </div>
+    </div>
+</div>

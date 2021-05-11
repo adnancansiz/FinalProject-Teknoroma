@@ -1,0 +1,15 @@
+﻿@model Issue 
+@{
+    ViewData["Title"] = "Details";
+    Layout = "~/Areas/TechnicalService/Views/Shared/_Layout.cshtml";
+}
+
+<div class="card w-75">
+    <div class="card-body">
+        <h4>Konu</h4>
+        <h6 class="card-title">@Model.Subject</h6>
+        <h4>Sorun</h4>
+        <p class="card-text">@Model.Problem</p>
+        @Html.ActionLink("İşleme Al", "UpdateStatus", "Home", new { id = Model.Id }, new { @class = "btn btn-primary" })
+    </div>
+</div>

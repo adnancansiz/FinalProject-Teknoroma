@@ -1,0 +1,35 @@
+﻿@model SubCategory
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div asp-validation-summary="All">
+
+            </div>
+            <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Alt Kategori Adı</label>
+                    <input asp-for="SubCategoryName" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Açıklama</label>
+                    <input asp-for="Description" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <select class="form-control" name="CategoryId">
+                        @foreach (var category in ViewBag.Categories as List<Category>)
+                        {
+                            <option value="@category.Id">@category.CategoryName</option>
+                        }
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Güncelle</button>
+            </form>
+        </div>
+    </div>
+</div>
+

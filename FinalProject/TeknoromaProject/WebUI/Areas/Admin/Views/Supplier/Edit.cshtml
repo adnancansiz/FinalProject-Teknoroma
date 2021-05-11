@@ -1,0 +1,39 @@
+﻿@model Supplier
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div asp-validation-summary="All">
+
+            </div>
+            <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Şirket Adı</label>
+                    <input asp-for="CompanyName" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>İletişim Adı</label>
+                    <input asp-for="ContactName" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Email Adresi</label>
+                    <input asp-for="Email" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Adres</label>
+                    <input asp-for="Address" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Telefon Numarası</label>
+                    <input asp-for="PhoneNumber" type="text" class="form-control" />
+                </div>
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+            </form>
+        </div>
+    </div>
+</div>
+

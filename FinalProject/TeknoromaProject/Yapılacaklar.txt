@@ -1,0 +1,52 @@
+***Þube Müdürü
+-Stok Takip Raporu
+//
+-Satýþ Takip raporu
+	*Hangi çalýþan ne kadar satýþ yapmýþ ?
+	*Aylýk 10 bin üzerine çýktýysa %10 prim verilecek
+	*En çok satýlan 10 ürünü alan müþterilerin cinsiyet ve yaþý			--/Müþteri cinsiyet bilgisi eklenecek
+	(en çok satýlan ürünlerin yanýnda satýlan ürünler)
+
+-Tedarikçi hareket raporu
+	*Hangi tedarikçiden bu ay hangi ürünleri almýþýz ve toplamda ne kadar almýþýz?
+-Ürün liste raporu
+	*Kategorilere göre ürün bilgileri
+	*Þu an satmadýðýmýz eskiden sattýðýmýz ürünler ve bu ürünlerden kaç adet olduðu
+-Gider raporu
+	*Muhasebe iþlemleri
+
+
+**Kasa Satýþ temsilcisi
+-Satýþ ekranýnda müþteri bilgileri gösterilecek
+-Satýþ ekranýna döviz kuru eklenecek
+-Ürün stoðu belli bir seviyenin altýna indiðine þube müdürüne ve depocuya bilgi gidecek.
+-Prim raporunu görmek istiyor
+
+
+**Mobil Satýþ
+-Satýþ ekranýnda güncel dövüz kuru gösterilecek.
+-Prim raporu görmek istiyor
+
+
+***Muhasebe
+-Ödemeler , parasal iþlemler.
+-Aylýk olarak giriþ çýkýþlar.
+-Ekranýna döviz kuru eklenecek.
+
+
+
+	******************Eksik olanlar//////////////////////////////////
+	*Çalýþan eklerken maaþ bilgisi yok eklenecek.
+	*Satýþ yapýldýktan sonra ürünlerin stoklarýnda deðiþim yapýlmýyor yapýlacak.
+	*Ýþlemlerin çoðu controllerlarda service katmanýna taþýnacak
+	*Service katmanlarýnda ekleme güncelleme silme iþlemlerinde active,delete, statüleri yok düzenlenecek.
+	*Sipariþ ekrarnýnda sepet kýsmýnýn görseli düzenlenecek.
+	*Seed methodu doldurulacak.
+
+
+	******************GENEL OLARAK YAPILACAKLAR///////////////////////////
+	*Sipariþ iþleminde depocuya kasiyer adý gönderiliyor bunun yerine kasa adý gönderilecek.
+	*Sipariþte ve muhasebe bölmünde bulunan fiyatlar döviz olarakta gösterilecek.
+	*Ýþlemlerin çoðu controllerlarda service katmanýna taþýnacak
+	*Arka plana görsel eklenecek.
+	

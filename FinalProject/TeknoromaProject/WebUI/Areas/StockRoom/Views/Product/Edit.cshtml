@@ -1,0 +1,46 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/StockRoom/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div asp-validation-summary="All">
+
+            </div>
+            <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <label>Ürün Adı</label>
+                    <input asp-for="ProductName" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Alış Fiyatı</label>
+                    <input asp-for="PurchasePrice" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Fiyat</label>
+                    <input asp-for="UnitPrice" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Stok Miktarı</label>
+                    <input asp-for="UnıtsInStock" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Barkod Numarası</label>
+                    <input asp-for="BarcodeNumber" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <select class="form-control" name="CategoryId">
+                        @foreach (var subCategory in ViewBag.subCategories as List<SubCategory>)
+                        {
+                            <option value="@subCategory.Id">@subCategory.SubCategoryName</option>
+                        }
+                    </select>
+                </div>
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+            </form>
+        </div>
+    </div>
+</div>
