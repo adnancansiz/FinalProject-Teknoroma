@@ -58,3 +58,15 @@ C:\Users\AdnanC\Desktop\FinalProject\6\FinalProject\TeknoromaProject\Common\obj\
 C:\Users\AdnanC\Desktop\FinalProject\6\FinalProject\TeknoromaProject\Common\obj\Debug\netcoreapp3.1\Common.csproj.CopyComplete
 C:\Users\AdnanC\Desktop\FinalProject\6\FinalProject\TeknoromaProject\Common\obj\Debug\netcoreapp3.1\Common.dll
 C:\Users\AdnanC\Desktop\FinalProject\6\FinalProject\TeknoromaProject\Common\obj\Debug\netcoreapp3.1\Common.pdb
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\Common\bin\Debug\netcoreapp3.1\Common.deps.json
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\Common\bin\Debug\netcoreapp3.1\Common.dll
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\Common\bin\Debug\netcoreapp3.1\Common.pdb
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\Common\bin\Debug\netcoreapp3.1\DAL.dll
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\Common\bin\Debug\netcoreapp3.1\DAL.pdb
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\Common\obj\Debug\netcoreapp3.1\Common.csprojAssemblyReference.cache
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\Common\obj\Debug\netcoreapp3.1\Common.AssemblyInfoInputs.cache
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\Common\obj\Debug\netcoreapp3.1\Common.AssemblyInfo.cs
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\Common\obj\Debug\netcoreapp3.1\Common.csproj.CoreCompileInputs.cache
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\Common\obj\Debug\netcoreapp3.1\Common.csproj.CopyComplete
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\Common\obj\Debug\netcoreapp3.1\Common.dll
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\Common\obj\Debug\netcoreapp3.1\Common.pdb

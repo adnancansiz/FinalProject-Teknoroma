@@ -7,6 +7,6 @@ namespace BLL.Repositories.Abstract
 {
     public interface ICategoryService:IGenericService<Category>
     {
-        void EhbeAdnan();
+        
     }
 }
