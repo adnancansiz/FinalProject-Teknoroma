@@ -1,3 +1,4 @@
+----------------------------------------------------------------------------------------------------------------------
 ***Þube Müdürü
 -Stok Takip Raporu
 //
@@ -14,35 +15,50 @@
 	*Þu an satmadýðýmýz eskiden sattýðýmýz ürünler ve bu ürünlerden kaç adet olduðu
 -Gider raporu
 	*Muhasebe iþlemleri
-
+-----------------------------------------------------------------------------------------------------------------------
 
 **Kasa Satýþ temsilcisi
 -Satýþ ekranýnda müþteri bilgileri gösterilecek
 -Satýþ ekranýna döviz kuru eklenecek
+-Ýndex sayfasýndak tablolar düzenlenecek.
 -Ürün stoðu belli bir seviyenin altýna indiðine þube müdürüne ve depocuya bilgi gidecek.
 -Prim raporunu görmek istiyor
 
-
+------------------------------------------------------------------------------------------------------------------------
 **Mobil Satýþ
+-Satýþ iþlemi yapýlacak.
 -Satýþ ekranýnda güncel dövüz kuru gösterilecek.
--Prim raporu görmek istiyor
+-Prim raporu görmek istiyor.
+***********************************************************
+*Müþteri Ekleme iþlemi tamam
+-Satýþ iþlemi tamam
 
+------------------------------------------------------------------------------------------------------------------------
 
 ***Muhasebe
 -Ödemeler , parasal iþlemler.
 -Aylýk olarak giriþ çýkýþlar.
 -Ekranýna döviz kuru eklenecek.
 
+**************************************
+-Çalýþan ödemeleri oluþturma/düzenleme/silme yapýldý
+-diðer ödelemeler  oluþturma/düzenleme/silme yapýldý
 
+RAPORLAMA VE DÖVÝZ KURU ÝÞLEMÝ KALDI.
+
+------------------------------------------------------------------------------------------------------------------------
 
 	******************Eksik olanlar//////////////////////////////////
-	*Çalýþan eklerken maaþ bilgisi yok eklenecek.
+	*Çalýþan eklerken maaþ bilgisi yok eklenecek.										/*/*/*/*/*YAPILDI
 	*Satýþ yapýldýktan sonra ürünlerin stoklarýnda deðiþim yapýlmýyor yapýlacak.
 	*Ýþlemlerin çoðu controllerlarda service katmanýna taþýnacak
 	*Service katmanlarýnda ekleme güncelleme silme iþlemlerinde active,delete, statüleri yok düzenlenecek.
 	*Sipariþ ekrarnýnda sepet kýsmýnýn görseli düzenlenecek.
 	*Seed methodu doldurulacak.
+	*Admin areada çalýþan güncelleme kýsmý çalýþmýyor yapýalcak.
+	*Satýþ yaparken kasiyer kendi ýd sini girmek zorunda oraya bir ayar çekilecek.
 
+------------------------------------------------------------------------------------------------------------------------
 
 	******************GENEL OLARAK YAPILACAKLAR///////////////////////////
 	*Sipariþ iþleminde depocuya kasiyer adý gönderiliyor bunun yerine kasa adý gönderilecek.
@@ -50,3 +66,4 @@
 	*Ýþlemlerin çoðu controllerlarda service katmanýna taþýnacak
 	*Arka plana görsel eklenecek.
 	
+------------------------------------------------------------------------------------------------------------------------

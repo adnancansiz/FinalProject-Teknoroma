@@ -25,10 +25,8 @@
     <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Areas\Cashier\Data\" />
     <Folder Include="Areas\Cashier\Models\" />
-    <Folder Include="Areas\MobileSales\Controllers\" />
     <Folder Include="Areas\MobileSales\Data\" />
     <Folder Include="Areas\MobileSales\Models\" />
-    <Folder Include="Areas\MobileSales\Views\" />
     <Folder Include="Areas\StockRoom\Data\" />
     <Folder Include="Areas\StockRoom\Models\" />
     <Folder Include="Areas\TechnicalService\Data\" />

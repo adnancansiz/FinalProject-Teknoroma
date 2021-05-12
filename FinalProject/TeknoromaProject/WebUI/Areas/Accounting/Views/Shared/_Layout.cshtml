@@ -58,13 +58,14 @@
             <li class="nav-item">
                 <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#Giderislemleri"
                    aria-expanded="true" aria-controls="collapseTwo">
-                    <span>Ürün İşlemleri</span>
+                    <span>Gider İşlemleri</span>
                 </a>
                 <div id="Giderislemleri" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Gider İşlemleri</h6>
-                        <a class="collapse-item" asp-action="Index" asp-controller="Product">Giderler</a>
-                        <a class="collapse-item" asp-action="Create" asp-controller="Product">Gider Ekle</a>
+                        <a class="collapse-item" asp-action="Index" asp-controller="Expense">Giderler</a>
+                        <a class="collapse-item" asp-action="Create" asp-controller="Expense">Ödeme Gir</a>
+                        <a class="collapse-item" asp-action="CreateEmployeePayment" asp-controller="Expense">Çalışan Ödemesi Gir</a>
                     </div>
                 </div>
             </li>

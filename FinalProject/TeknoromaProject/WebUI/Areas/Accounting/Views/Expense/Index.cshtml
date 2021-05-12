@@ -5,11 +5,12 @@
 
     var employeePayment = ViewBag.EmployeePayment;
     var expense = ViewBag.Expense;
+    var appUser = ViewBag.AppUser;
 }
 <div class="container-fluid">
     <div class="card shadow mb-4">
         <div class="card-header py-3">
-            <h6 class="m-0 font-weight-bold text-primary">Ürün Listesi / İşlemleri</h6>
+            <h6 class="m-0 font-weight-bold text-primary">Genel Giderler</h6>
         </div>
         <div class="card-body">
             <div class="table-responsive">
@@ -21,6 +22,7 @@
                             <th>Tutar</th>
                             <th>Açıklama</th>
                             <th>Ödemeyi Yapan</th>
+                            <th>İşlemler</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -30,6 +32,7 @@
                             <th>Tutar</th>
                             <th>Açıklama</th>
                             <th>Ödemeyi Yapan</th>
+                            <th>İşlemler</th>
                         </tr>
                     </tfoot>
                     <tbody>
@@ -41,6 +44,69 @@
                                 <td>@expenses.Amount</td>
                                 <td>@expenses.Explanation</td>
                                 <td>@expenses.PayingUser</td>
+                                <td>
+                                    @Html.ActionLink("Güncelle", "Edit", "Expense", new { id = expenses.Id }, new { @class = "btn btn-warning" })
+                                    @Html.ActionLink("Sil", "Delete", "Expense", new { id = expenses.Id }, new { @class = "btn btn-danger" })
+                                </td>
+                            </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
+<hr />
+<hr />
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Çalışan Ödemeleri</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Ödeme Tarihi</th>
+                            <th>Ödeme Yapılan</th>
+                            <th>Tutar</th>
+                            <th>Açıklama</th>
+                            <th>Ödemeyi Yapan</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Ödeme Tarihi</th>
+                            <th>Ödeme Yapılan</th>
+                            <th>Tutar</th>
+                            <th>Açıklama</th>
+                            <th>Ödemeyi Yapan</th>
+                            <th>İşlemler</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (EmployeePayment employee in employeePayment)
+                        {
+                            <tr>
+                                <td>@employee.PaymentDate</td>
+                                @foreach (AppUser user in appUser)
+                                {
+                                    if (user.Id == employee.AppUserId)
+                                    {
+                                        <td>@user.UserName</td>
+                                    }
+                                }
+                                <td>@employee.Amount</td>
+                                <td>@employee.Explanation</td>
+                                <td>@employee.PayingUser</td>
+                                <td>
+                                    @Html.ActionLink("Güncelle", "EditEmployeePayment", "Expense", new { id = employee.Id }, new { @class = "btn btn-warning" })
+                                    @Html.ActionLink("Sil", "DeleteEmployeePayment", "Expense", new { id = employee.Id }, new { @class = "btn btn-danger" })
+                                </td>
                             </tr>
                         }
 

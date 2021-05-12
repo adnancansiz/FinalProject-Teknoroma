@@ -27,6 +27,7 @@ namespace WebUI.Areas.Accounting.Controllers
 
         public ActionResult Index()
         {
+            ViewBag.AppUser = appUserService.GetActive();
             ViewBag.EmployeePayment = employeePaymentService.GetActive();
             ViewBag.Expense = expenseService.GetActive();
             return View();
@@ -53,19 +54,20 @@ namespace WebUI.Areas.Accounting.Controllers
             }
         }
 
-        // GET: ExpenseController/Edit/5
-        public ActionResult Edit(int id)
+        public ActionResult CreateEmployeePayment()
         {
+            ViewBag.AppUser = appUserService.GetActive();
             return View();
         }
 
-        // POST: ExpenseController/Edit/5
+
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
+        public ActionResult CreateEmployeePayment(EmployeePayment employeePayment)
         {
             try
             {
+                employeePaymentService.Create(employeePayment);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -74,19 +76,21 @@ namespace WebUI.Areas.Accounting.Controllers
             }
         }
 
-        // GET: ExpenseController/Delete/5
-        public ActionResult Delete(int id)
+        
+        public ActionResult Edit(Guid id)
         {
-            return View();
+            var exp = expenseService.GetById(id);
+            return View(exp);
         }
 
-        // POST: ExpenseController/Delete/5
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Delete(int id, IFormCollection collection)
+        public ActionResult Edit(Expense expense)
         {
             try
             {
+                expenseService.Update(expense);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -94,5 +98,43 @@ namespace WebUI.Areas.Accounting.Controllers
                 return View();
             }
         }
+
+        public ActionResult EditEmployeePayment(Guid id)
+        {
+            var empPayment = employeePaymentService.GetById(id);
+            return View(empPayment);
+        }
+
+
+        [HttpPost]
+        [ValidateAntiForgeryToken]
+        public ActionResult EditEmployeePayment(EmployeePayment employeePayment)
+        {
+            try
+            {
+                employeePaymentService.Update(employeePayment);
+                return RedirectToAction(nameof(Index));
+            }
+            catch
+            {
+                return View();
+            }
+        }
+
+
+        public ActionResult DeleteEmployeePayment(Guid id)
+        {
+            var deleteEmpPayment = employeePaymentService.GetById(id);
+            employeePaymentService.Delete(deleteEmpPayment);
+            return RedirectToAction(nameof(Index));
+        }
+
+        public ActionResult Delete(Guid id)
+        {
+            var deleted = expenseService.GetById(id);
+            expenseService.Delete(deleted);
+            return RedirectToAction(nameof(Index));
+        }
+
     }
 }

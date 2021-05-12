@@ -1,0 +1,98 @@
+﻿@model OrderDetail
+@{
+    ViewData["Title"] = "Detail";
+    Layout = "~/Areas/MobileSales/Views/Shared/_Layout.cshtml";
+    var products = ViewBag.Products;
+    var orderId = ViewBag.OrderId;
+    var orderList = TempData["OrderList"];
+}
+
+
+<div class="container mt-3">
+    <div class="row">
+        <div class="col-md-4">
+            <form method="post">
+                <div class="form-group">
+                    <select id="selectedProduct" class="form-control" asp-for="ProductId">
+                        @foreach (Product product in products)
+                        {
+                            <option value="@product.Id">@product.ProductName</option>
+
+                        }
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>Adet</label><br />
+                    <input asp-for="Quantity" type="number" value="" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Order ID</label><br />
+                    <input asp-for="OrderId" type="text" value="@orderId" class="form-control" />
+                </div>
+                <button class="btn btn-primary mt-2" asp-action="Create" asp-controller="Order">Kaydet</button>
+            </form>
+        </div>
+        <div class="mx-auto">
+            @if (orderList != null)
+            {
+
+                <table class="table-dark">
+                    <thead>
+                        <tr>
+                            <th>Ürün Adı</th>
+                            <th>Ürün Birim Fiyatı</th>
+                            <th>Ürün Adeti</th>
+                            <th>Toplam</th>
+
+                        </tr>
+
+                    </thead>
+                    <tbody>
+                        @foreach (var item in orderList as List<OrderDetail>)
+                        {
+                            <tr>
+                                <td>@item.Product.ProductName</td>
+                                <td>@item.UnitPrice</td>
+                                <td>@item.Quantity</td>
+                                <td class="subTotal">@(item.UnitPrice * item.Quantity)</td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+                <div class="card mx-auto mt-4">
+                    <div class="card-header">
+                        <span>Toplam Ücret</span>
+                    </div>
+                    <div class="card-body mx-auto">
+                        <span style="font-size:x-large" id="Total"></span>
+                    </div>
+                    <div class="card-footer">
+                        @Html.ActionLink("Siparişi Tamamla", "OrderDone", "Order", new { OrderId = orderId }, new { @class = "btn btn-success btn-sm mt-2" })
+
+                    </div>
+                </div>
+            }
+
+        </div>
+    </div>
+</div>
+
+
+
+@section scripts
+{
+    <script>
+        $(document).ready(function () {
+            var sum = 0;
+            $('.subTotal').each(function () {
+                sum += parseFloat($(this).html());
+            });
+            $('#Total').text(sum.toString() + "₺");
+            console.log(sum);
+        });
+    </script>
+
+
+}
+

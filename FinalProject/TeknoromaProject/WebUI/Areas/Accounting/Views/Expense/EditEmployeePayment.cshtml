@@ -1,0 +1,40 @@
+﻿@model EmployeePayment
+@{
+    ViewData["Title"] = "EditEmployeePayment";
+    Layout = "~/Areas/Accounting/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-6 mx-auto">
+            <div asp-validation-summary="All">
+
+            </div>
+            <form asp-action="EditEmployeePayment" method="post" enctype="multipart/form-data">
+                <div class="form-group">
+                    <select class="form-control" name="AppUserId">
+                        @foreach (AppUser user in ViewBag.AppUser)
+                        {
+                            <option value="@user.Id">@user.UserName</option>
+                        }
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Tutar</label>
+                    <input asp-for="Amount" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Ödeme Açıklaması</label>
+                    <input asp-for="Explanation" type="text" class="form-control" />
+                </div>
+                <div class="form-group">
+                    <label>Ödemeyi Yapan Kullanıcı</label>
+                    <input asp-for="PayingUser" type="text" value="@User.Identity.Name" class="form-control" />
+                </div>
+
+                <button type="submit" class="btn btn-primary">Kaydet</button>
+            </form>
+        </div>
+    </div>
+</div>
+
