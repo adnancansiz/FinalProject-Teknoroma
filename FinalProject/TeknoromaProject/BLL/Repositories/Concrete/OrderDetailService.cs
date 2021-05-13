@@ -1,63 +1,81 @@
 ﻿using BLL.Repositories.Abstract;
 using DAL.Context;
 using DAL.Entities;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net;
 using System.Text;
 
 namespace BLL.Repositories.Concrete
 {
     public class OrderDetailService : IOrderDetailService
     {
-        private readonly ApplicationDbContext context;
+        private readonly ApplicationDbContext _context;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public OrderDetailService(ApplicationDbContext context)
+        public OrderDetailService(ApplicationDbContext context, SignInManager<AppUser> signInManager)
         {
-            this.context = context;
+            _context = context;
+            _signInManager = signInManager;
         }
         public void Create(OrderDetail entity)
         {
+
+            entity.CreatedBy = _signInManager.Context.User.Identity.Name;
+            entity.CreatedComputerName = Environment.MachineName;
+            entity.CreatedDate = DateTime.Now;
+            entity.CreatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString();
+
             entity.Id = Guid.NewGuid();
-            context.OrderDetails.Add(entity);
-            context.SaveChanges();
+            _context.OrderDetails.Add(entity);
+            _context.SaveChanges();
         }
 
         public void Delete(OrderDetail entity)
         {
-            var deleted = context.OrderDetails.FirstOrDefault(x => x.Id == entity.Id);
-            deleted.Status = DAL.Entities.Enum.Status.Deleted;
+
+            entity.Status = DAL.Entities.Enum.Status.Deleted;
             Update(entity);
-            context.SaveChanges();
+
+
         }
 
         public List<OrderDetail> GetActive()
         {
-            return context.OrderDetails.Where(x => x.Status == DAL.Entities.Enum.Status.Active).ToList();
+            return _context.OrderDetails.Where(x => x.Status == DAL.Entities.Enum.Status.Active || x.Status == DAL.Entities.Enum.Status.Updated).ToList();
         }
 
         public List<OrderDetail> GetByDefault(Expression<Func<OrderDetail, bool>> filter = null)
         {
             if (filter != null)
             {
-                return context.OrderDetails.Where(filter).ToList();
+                return _context.OrderDetails.Where(filter).ToList();
             }
             else
             {
-                return context.OrderDetails.ToList();
+                return _context.OrderDetails.ToList();
             }
         }
 
         public OrderDetail GetById(Guid id)
         {
-            return context.OrderDetails.FirstOrDefault(x => x.Id == id);
+            return _context.OrderDetails.FirstOrDefault(x => x.Id == id);
         }
 
         public void Update(OrderDetail entity)
         {
-            context.OrderDetails.Update(entity);
-            context.SaveChanges();
+            entity.UpdatedBy = _signInManager.Context.User.Identity.Name;
+            entity.UpdatedComputerName = Environment.MachineName;
+            entity.UpdatedDate = DateTime.Now;
+            entity.UpdatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString();
+            entity.Status = DAL.Entities.Enum.Status.Updated;
+
+
+            _context.OrderDetails.Update(entity);
+            _context.SaveChanges();
         }
     }
 }

@@ -25,6 +25,10 @@ namespace DAL.Context
                 user.FirstName = "Admin";
                 user.LastName = "Admin";
                 user.Status = DAL.Entities.Enum.Status.Active;
+                user.CreatedBy = "Test";
+                user.CreatedComputerName = "Test";
+                user.CreatedDate = DateTime.Now;
+                user.CreatedIP = "^Test";
 
                 var result = userManager.CreateAsync(user, "Test123++").Result;
                 if (result.Succeeded)

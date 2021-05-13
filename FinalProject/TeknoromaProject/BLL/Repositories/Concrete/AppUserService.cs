@@ -8,6 +8,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -15,13 +16,15 @@ namespace BLL.Repositories.Concrete
 {
     public class AppUserService : IAppUserService
     {
-        private readonly ApplicationDbContext context;
-        private readonly UserManager<AppUser> userManager;
+        private readonly ApplicationDbContext _context;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public AppUserService(ApplicationDbContext context, UserManager<AppUser> userManager)
+        public AppUserService(ApplicationDbContext context, UserManager<AppUser> userManager, SignInManager<AppUser> signInManager)
         {
-            this.context = context;
-            this.userManager = userManager;
+            _context = context;
+            _userManager = userManager;
+            _signInManager = signInManager;
         }
 
         public void Create(AppUser entity)
@@ -40,55 +43,101 @@ namespace BLL.Repositories.Concrete
             //context.SaveChanges();
         }
 
+        
+
         public void Delete(AppUser entity)
         {
-            var deleted = context.Users.FirstOrDefault(x => x.Id == entity.Id);
-            deleted.Status = DAL.Entities.Enum.Status.Deleted;
-            Update(deleted);
-            context.SaveChanges();
+            entity.Status = DAL.Entities.Enum.Status.Deleted;
+            Update(entity);
+
         }
 
         public List<AppUser> GetActive()
         {
-            return context.Users.Where(x => x.Status == DAL.Entities.Enum.Status.Active).ToList();
+            return _context.Users.Where(x => x.Status == DAL.Entities.Enum.Status.Active || x.Status == DAL.Entities.Enum.Status.Updated).ToList();
         }
 
         public List<AppUser> GetByDefault(Expression<Func<AppUser, bool>> filter = null)
         {
             if (filter != null)
             {
-                return context.Users.Where(filter).ToList();
+                return _context.Users.Where(filter).ToList();
             }
             else
             {
-                return context.Users.ToList();
+                return _context.Users.ToList();
             }
         }
 
         public AppUser GetById(Guid id)
         {
-            var user = context.Users.FirstOrDefault(x => x.Id == id);
+            var user = _context.Users.FirstOrDefault(x => x.Id == id);
             return user;
+        }
+
+        public bool Register(AppUser register)
+        {
+
+            var existEmail = _userManager.FindByEmailAsync(register.Email).Result;
+            var existUserName = _userManager.FindByNameAsync(register.UserName).Result;
+            if (existEmail != null || existUserName != null)
+            {
+                return true;
+            }
+            else
+            {
+                var createdBy = string.Empty;
+                if (_signInManager.Context.User.Identity.Name != null)
+                {
+                    createdBy = _signInManager.Context.User.Identity.Name;
+                }
+                else
+                {
+                    createdBy = register.UserName;
+                }
+                AppUser user = new AppUser
+                {
+                    UserName = register.UserName,
+                    Email = register.Email,
+                    CreatedBy = createdBy,
+                    CreatedDate = DateTime.Now,
+                    CreatedComputerName = Environment.MachineName,
+                    CreatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString()
+
+                };
+
+                var result = _userManager.CreateAsync(user, register.Password).Result;
+
+                return false;
+
+            }
         }
 
         public void Update(AppUser entity)
         {
-            context.Users.Update(entity);
-            context.SaveChanges();
+            entity.UpdatedBy = _signInManager.Context.User.Identity.Name;
+            entity.UpdatedComputerName = Environment.MachineName;
+            entity.UpdatedDate = DateTime.Now;
+            entity.UpdatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString();
+            entity.Status = DAL.Entities.Enum.Status.Updated;
+
+            _context.Users.Update(entity);
+            _context.SaveChanges();
         }
 
         public void UserAddRole(AppUser user, Guid roleid)
         {
-            var role = context.Roles.FirstOrDefault(x => x.Id == roleid);
+            var role = _context.Roles.FirstOrDefault(x => x.Id == roleid);
             var roleName = role.Name;
 
-            userManager.AddToRoleAsync(user, roleName).Wait();
-            context.SaveChanges();
+            _userManager.AddToRoleAsync(user, roleName).Wait();
+            //Todo : Riskli bir kod..
+            _context.SaveChanges();
         }
 
         public List<AppUser> UserList()
         {
-           return context.Users.ToList();
+           return _context.Users.ToList();
         }
 
         //public async Task<IActionResult> CreateUser(AppUser entity)

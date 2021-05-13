@@ -15,27 +15,27 @@ namespace WebUI.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class UserController : Controller
     {
-        private readonly IAppUserService appUserService;
-        private readonly RoleManager<AppRole> roleManager;
-        private readonly UserManager<AppUser> userManager;
+        private readonly IAppUserService _appUserService;
+        private readonly RoleManager<AppRole> _roleManager;
+        private readonly UserManager<AppUser> _userManager;
 
         public UserController(IAppUserService appUserService,RoleManager<AppRole> roleManager,UserManager<AppUser> userManager)
         {
-            this.appUserService = appUserService;
-            this.roleManager = roleManager;
-            this.userManager = userManager;
+            _appUserService = appUserService;
+           _roleManager = roleManager;
+           _userManager = userManager;
         }
 
         public ActionResult Index()
         {
-            return View(appUserService.GetActive());
+            return View(_appUserService.GetActive());
         }
 
 
         
         public ActionResult Create()
         {
-            ViewBag.Roles = roleManager.Roles.ToList();
+            ViewBag.Roles = _roleManager.Roles.ToList();
             return View();
         }
 
@@ -61,6 +61,19 @@ namespace WebUI.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
+
+               var exist = _appUserService.Register(appUser);
+
+                if (!exist)
+                {
+                    _appUserService.UserAddRole(appUser, roleid);
+
+                }
+                else
+                {
+                    TempData["Exist"] = "Kullanıcı zaten mevcut"; 
+                }
+
                 AppUser user = new AppUser
                 {
                     UserName = appUser.UserName,
@@ -73,13 +86,13 @@ namespace WebUI.Areas.Admin.Controllers
                     
                 };
                 user.Status = DAL.Entities.Enum.Status.Active;
-                var result = await userManager.CreateAsync(user, appUser.Password);
+                var result = await _userManager.CreateAsync(user, appUser.Password);
                 if (result.Succeeded)
                 {
                     //var role = roleManager.Roles.FirstOrDefault(x => x.Id == roleid);
                     //var roleName = role.Name;
                     //userManager.AddToRoleAsync(user, roleName).Wait();
-                    appUserService.UserAddRole(user, roleid);
+                    _appUserService.UserAddRole(user, roleid);
                     return RedirectToAction("Index", "Home");
                 }
                 else
@@ -103,8 +116,8 @@ namespace WebUI.Areas.Admin.Controllers
 
         public ActionResult Edit(Guid id)
         {
-            ViewBag.Roles = roleManager.Roles.ToList();
-            var update = appUserService.GetById(id);
+            ViewBag.Roles = _roleManager.Roles.ToList();
+            var update = _appUserService.GetById(id);
             return View(update);
         }
 
@@ -114,7 +127,7 @@ namespace WebUI.Areas.Admin.Controllers
         {
             try
             {
-                appUserService.Update(appUser);
+                _appUserService.Update(appUser);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -128,8 +141,8 @@ namespace WebUI.Areas.Admin.Controllers
         {
             try
             {
-                var delete = appUserService.GetById(id);
-                appUserService.Delete(delete);
+                var delete = _appUserService.GetById(id);
+                _appUserService.Delete(delete);
                 return RedirectToAction(nameof(Index));
             }
             catch

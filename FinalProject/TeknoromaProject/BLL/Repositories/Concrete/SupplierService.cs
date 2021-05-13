@@ -1,39 +1,47 @@
 ﻿using BLL.Repositories.Abstract;
 using DAL.Context;
 using DAL.Entities;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net;
 using System.Text;
 
 namespace BLL.Repositories.Concrete
 {
     public class SupplierService : ISupplierService
     {
-        private readonly ApplicationDbContext context;
+        private readonly ApplicationDbContext _context;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public SupplierService(ApplicationDbContext context)
+        public SupplierService(ApplicationDbContext context, SignInManager<AppUser> signInManager)
         {
-            this.context = context;
+            _context = context;
+            _signInManager = signInManager;
         }
         public void Create(Supplier entity)
         {
-            context.Suppliers.Add(entity);
-            context.SaveChanges();
+            entity.CreatedBy = _signInManager.Context.User.Identity.Name;
+            entity.CreatedComputerName = Environment.MachineName;
+            entity.CreatedDate = DateTime.Now;
+            entity.CreatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString();
+            
+            _context.Suppliers.Add(entity);
+            _context.SaveChanges();
         }
 
         public void Delete(Supplier entity)
         {
-            var deleted = context.Suppliers.FirstOrDefault(x => x.Id == entity.Id);
-            deleted.Status = DAL.Entities.Enum.Status.Deleted;
+            entity.Status = DAL.Entities.Enum.Status.Deleted;
             Update(entity);
-            context.SaveChanges();
+
         }
 
         public List<Supplier> GetActive()
         {
-            return context.Suppliers.Where(x => x.Status == DAL.Entities.Enum.Status.Active).ToList();
+            return _context.Suppliers.Where(x => x.Status == DAL.Entities.Enum.Status.Active || x.Status == DAL.Entities.Enum.Status.Updated).ToList();
 
         }
 
@@ -41,24 +49,31 @@ namespace BLL.Repositories.Concrete
         {
             if (filter != null)
             {
-                return context.Suppliers.Where(filter).ToList();
+                return _context.Suppliers.Where(filter).ToList();
             }
             else
             {
-                return context.Suppliers.ToList();
+                return _context.Suppliers.ToList();
             }
         }
 
         public Supplier GetById(Guid id)
         {
-            return context.Suppliers.FirstOrDefault(x => x.Id == id);
+            return _context.Suppliers.FirstOrDefault(x => x.Id == id);
 
         }
 
         public void Update(Supplier entity)
         {
-            context.Suppliers.Update(entity);
-            context.SaveChanges();
+            entity.UpdatedBy = _signInManager.Context.User.Identity.Name;
+            entity.UpdatedComputerName = Environment.MachineName;
+            entity.UpdatedDate = DateTime.Now;
+            entity.UpdatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString();
+            entity.Status = DAL.Entities.Enum.Status.Updated;
+
+
+            _context.Suppliers.Update(entity);
+            _context.SaveChanges();
         }
     }
 }

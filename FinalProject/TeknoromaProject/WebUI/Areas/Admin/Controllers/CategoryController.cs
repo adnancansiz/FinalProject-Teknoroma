@@ -15,19 +15,19 @@ namespace WebUI.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class CategoryController : Controller
     {
-        private readonly ICategoryService categoryService;
-        private readonly ISubCategoryService subCategoryService;
+        private readonly ICategoryService _categoryService;
+        private readonly ISubCategoryService _subCategoryService;
 
         public CategoryController(ICategoryService categoryService,ISubCategoryService subCategoryService)
         {
-            this.categoryService = categoryService;
-            this.subCategoryService = subCategoryService;
+           _categoryService = categoryService;
+           _subCategoryService = subCategoryService;
         }
 
         public ActionResult Index()
         {
-            ViewBag.subCategory = subCategoryService.GetActive();
-            return View(categoryService.GetActive());
+            ViewBag.subCategory = _subCategoryService.GetActive();
+            return View(_categoryService.GetActive());
         }
 
 
@@ -42,14 +42,14 @@ namespace WebUI.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Create(Category category)
         {
-            categoryService.Create(category);
+            _categoryService.Create(category);
             return RedirectToAction("Index");
         }
 
         
         public ActionResult Edit(Guid id)
         {
-            var update = categoryService.GetById(id);
+            var update = _categoryService.GetById(id);
             return View(update);
         }
 
@@ -59,11 +59,12 @@ namespace WebUI.Areas.Admin.Controllers
         public ActionResult Edit(Category category)
         {
             try
-            {
-                categoryService.Update(category);
+            {                
+                _categoryService.Update(category);
+
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception ex)
             {
                 return View();
             }
@@ -73,8 +74,8 @@ namespace WebUI.Areas.Admin.Controllers
         {
             try
             {
-                var delete = categoryService.GetById(id);
-                categoryService.Delete(delete);
+                var delete = _categoryService.GetById(id);
+                _categoryService.Delete(delete);
                 return RedirectToAction(nameof(Index));
             }
             catch

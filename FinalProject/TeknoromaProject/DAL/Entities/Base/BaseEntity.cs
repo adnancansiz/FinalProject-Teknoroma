@@ -17,5 +17,19 @@ namespace DAL.Entities
         [Display(Name = "Durum")]
         public Status Status { get; set; } = Status.Active;
 
+
+        [Display(Name = "Oluşturulma Tarihi")]
+        public DateTime CreatedDate { get; set; }
+        public string CreatedComputerName { get; set; }
+        public string CreatedIP { get; set; }
+        public string CreatedBy { get; set; }
+
+
+        [Display(Name = "Güncelleme Tarihi")]
+        public DateTime? UpdatedDate { get; set; }
+        public string UpdatedComputerName { get; set; }
+        public string UpdatedIP { get; set; }
+        public string UpdatedBy { get; set; }
+
     }
 }

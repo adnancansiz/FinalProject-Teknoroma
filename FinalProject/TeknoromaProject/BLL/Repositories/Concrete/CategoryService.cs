@@ -1,65 +1,85 @@
 ﻿using BLL.Repositories.Abstract;
 using DAL.Context;
 using DAL.Entities;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net;
 using System.Text;
 
 namespace BLL.Repositories.Concrete
 {
     public class CategoryService : ICategoryService
     {
-        private readonly ApplicationDbContext context;
+        private readonly ApplicationDbContext _context;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public CategoryService(ApplicationDbContext context)
+        public CategoryService(ApplicationDbContext context, SignInManager<AppUser> signInManager)
         {
-            this.context = context;
+            _context = context;
+            _signInManager = signInManager;
         }
 
         public void Create(Category entity)
         {
-            context.Categories.Add(entity);
-            context.SaveChanges();
+            entity.CreatedBy = _signInManager.Context.User.Identity.Name;
+            entity.CreatedComputerName = Environment.MachineName;
+            entity.CreatedDate = DateTime.Now;
+            entity.CreatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString();
+
+
+            _context.Categories.Add(entity);
+            _context.SaveChanges();
         }
 
         public void Delete(Category entity)
         {
-            var deleted = context.Categories.FirstOrDefault(x => x.Id == entity.Id);
-            deleted.Status = DAL.Entities.Enum.Status.Deleted;
-            Update(deleted);
-            context.SaveChanges();
+            var category = GetById(entity.Id);
+            category.Status = DAL.Entities.Enum.Status.Deleted;
+            Update(category);
+
 
         }
 
         public List<Category> GetActive()
         {
-            return context.Categories.Where(x => x.Status == DAL.Entities.Enum.Status.Active).ToList();
+            return _context.Categories.Where(x => x.Status == DAL.Entities.Enum.Status.Active || x.Status == DAL.Entities.Enum.Status.Updated).ToList();
         }
 
         public List<Category> GetByDefault(Expression<Func<Category, bool>> filter = null)
         {
             if (filter != null)
             {
-                return context.Categories.Where(filter).ToList();
+                return _context.Categories.Where(filter).ToList();
             }
             else
             {
-                return context.Categories.ToList();
+                return _context.Categories.ToList();
             }
         }
 
         public Category GetById(Guid id)
         {
-            var category = context.Categories.FirstOrDefault(x => x.Id == id);
+            var category = _context.Categories.FirstOrDefault(x => x.Id == id);
             return category;
         }
 
         public void Update(Category entity)
         {
-            context.Categories.Update(entity);
-            context.SaveChanges();
+           
+
+            entity.UpdatedBy = _signInManager.Context.User.Identity.Name;
+            entity.UpdatedComputerName = Environment.MachineName;
+            entity.UpdatedDate = DateTime.Now;
+            entity.UpdatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString();
+            entity.Status = DAL.Entities.Enum.Status.Updated;
+
+
+
+            _context.Categories.Update(entity);
+            _context.SaveChanges();
         }
     }
 }

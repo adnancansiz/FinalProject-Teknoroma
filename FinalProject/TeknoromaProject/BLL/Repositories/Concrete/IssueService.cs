@@ -1,65 +1,83 @@
 ﻿using BLL.Repositories.Abstract;
 using DAL.Context;
 using DAL.Entities;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net;
 using System.Text;
 
 namespace BLL.Repositories.Concrete
 {
     public class IssueService : IIssueService
     {
-        private readonly ApplicationDbContext context;
+        private readonly ApplicationDbContext _context;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public IssueService(ApplicationDbContext context)
+        public IssueService(ApplicationDbContext context, SignInManager<AppUser> signInManager)
         {
-            this.context = context;
+           _context = context;
+           _signInManager = signInManager;
         }
 
         public void Create(Issue entity)
         {
+
+            entity.CreatedBy = _signInManager.Context.User.Identity.Name;
+            entity.CreatedComputerName = Environment.MachineName;
+            entity.CreatedDate = DateTime.Now;
+            entity.CreatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString();
+
+
             entity.IssueStatus = DAL.Entities.Enum.IssueStatus.Open;
-            context.Issues.Add(entity);
-            context.SaveChanges();
+            _context.Issues.Add(entity);
+            _context.SaveChanges();
         }
 
         public void Delete(Issue entity)
         {
-            var deleted = context.Issues.FirstOrDefault(x => x.Id == entity.Id);
-            deleted.Status = DAL.Entities.Enum.Status.Deleted;
-            deleted.IssueStatus = DAL.Entities.Enum.IssueStatus.Closed;
-            context.Update(entity);
-            context.SaveChanges();
+            entity.Status = DAL.Entities.Enum.Status.Deleted;       
+            
+            //Todo : silinen bir ticket kapanmış olmak zorunda değil. Gözden kaçabilir.
+            entity.IssueStatus = DAL.Entities.Enum.IssueStatus.Closed;
+            Update(entity);
         }
 
         public List<Issue> GetActive()
         {
-            return context.Issues.Where(x => x.IssueStatus == DAL.Entities.Enum.IssueStatus.Open).ToList();
+            return _context.Issues.Where(x => x.Status == DAL.Entities.Enum.Status.Active || x.Status == DAL.Entities.Enum.Status.Updated).ToList();
         }
 
         public List<Issue> GetByDefault(Expression<Func<Issue, bool>> filter = null)
         {
             if (filter != null)
             {
-                return context.Issues.Where(filter).ToList();
+                return _context.Issues.Where(filter).ToList();
             }
             else
             {
-                return context.Issues.ToList();
+                return _context.Issues.ToList();
             }
         }
 
         public Issue GetById(Guid id)
         {
-            return context.Issues.FirstOrDefault(x => x.Id == id);
+            return _context.Issues.FirstOrDefault(x => x.Id == id);
         }
 
         public void Update(Issue entity)
         {
-            context.Issues.Update(entity);
-            context.SaveChanges();
+
+            entity.UpdatedBy = _signInManager.Context.User.Identity.Name;
+            entity.UpdatedComputerName = Environment.MachineName;
+            entity.UpdatedDate = DateTime.Now;
+            entity.UpdatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString();
+            entity.Status = DAL.Entities.Enum.Status.Updated;
+
+            _context.Issues.Update(entity);
+            _context.SaveChanges();
         }
     }
 }

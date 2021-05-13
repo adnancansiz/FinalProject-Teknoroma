@@ -14,34 +14,34 @@ namespace WebUI.Areas.Cashier.Controllers
     [Authorize(Roles = "Cashier")]
     public class OrderController : Controller
     {
-        private readonly IOrderService orderService;
-        private readonly IOrderDetailService orderDetailService;
-        private readonly ICustomerService customerService;
-        private readonly IProductService productService;
-        private readonly IAppUserService appUserService;
+        private readonly IOrderService _orderService;
+        private readonly IOrderDetailService _orderDetailService;
+        private readonly ICustomerService _customerService;
+        private readonly IProductService _productService;
+        private readonly IAppUserService _appUserService;
 
         public OrderController(IOrderService orderService, IOrderDetailService orderDetailService, ICustomerService customerService, IProductService productService, IAppUserService appUserService)
         {
-            this.orderService = orderService;
-            this.orderDetailService = orderDetailService;
-            this.customerService = customerService;
-            this.productService = productService;
-            this.appUserService = appUserService;
+            _orderService = orderService;
+           _orderDetailService = orderDetailService;
+            _customerService = customerService;
+            _productService = productService;
+            _appUserService = appUserService;
         }
 
         public ActionResult Index()
         {
-            ViewBag.Created = orderService.GetByDefault(x => x.OrderStatus == DAL.Entities.Enum.OrderStatus.Created);
-            ViewBag.ProductWaiting = orderService.GetByDefault(x => x.OrderStatus == DAL.Entities.Enum.OrderStatus.ProductWaiting);
-            ViewBag.Completed = orderService.GetByDefault(x => x.OrderStatus == DAL.Entities.Enum.OrderStatus.Completed);
-            ViewBag.Customer = customerService.GetActive();
-            ViewBag.AppUser = appUserService.UserList();
+            ViewBag.Created = _orderService.GetByDefault(x => x.OrderStatus == DAL.Entities.Enum.OrderStatus.Created);
+            ViewBag.ProductWaiting = _orderService.GetByDefault(x => x.OrderStatus == DAL.Entities.Enum.OrderStatus.ProductWaiting);
+            ViewBag.Completed = _orderService.GetByDefault(x => x.OrderStatus == DAL.Entities.Enum.OrderStatus.Completed);
+            ViewBag.Customer = _customerService.GetActive();
+            ViewBag.AppUser = _appUserService.UserList();
             return View();
         }
 
         public ActionResult CreateOrder()
         {
-            ViewBag.Customer = customerService.GetActive();
+            ViewBag.Customer = _customerService.GetActive();
             return View();
         }
 
@@ -49,7 +49,7 @@ namespace WebUI.Areas.Cashier.Controllers
         {
             if (order.CustomerId == Guid.Empty)
             {
-                var customer = customerService.FindByTC(order.Customer.TC);
+                var customer = _customerService.FindByTC(order.Customer.TC);
                 if (customer == null)
                 {
                     return RedirectToAction("CreateOrder");
@@ -60,18 +60,18 @@ namespace WebUI.Areas.Cashier.Controllers
 
             if (order.Id == Guid.Empty)
             {
-                orderService.Create(order);
+                _orderService.Create(order);
                 order.OrderStatus = DAL.Entities.Enum.OrderStatus.Created;
-                orderService.Update(order);
+                _orderService.Update(order);
             }
             else
             {
-                var orderList = orderDetailService.GetByDefault(x => x.OrderId == order.Id);
+                var orderList = _orderDetailService.GetByDefault(x => x.OrderId == order.Id);
 
                 TempData["OrderList"] = orderList;
             }
 
-            var products = productService.GetActive();
+            var products = _productService.GetActive();
 
             ViewBag.Products = products;
             ViewBag.OrderId = order.Id;
@@ -85,37 +85,41 @@ namespace WebUI.Areas.Cashier.Controllers
         {
             try
             {
-                var orders = orderDetailService.GetByDefault(x => x.OrderId == orderDetail.OrderId);
-                var detail = orders.FirstOrDefault(x => x.ProductId == orderDetail.ProductId);
-                var product = productService.GetById(orderDetail.ProductId);
+                var order = _orderService.AddOrderDetailInOrder(orderDetail);
 
-                var order = orderService.GetById(orderDetail.OrderId);
-                if (orders != null)
-                {
-                    if (detail == null)
-                    {
-                        orderDetail.UnitPrice = product.UnitPrice;
-                        orderDetailService.Create(orderDetail);
+                return RedirectToAction("Create", order);
 
+                //var orders = _orderDetailService.GetByDefault(x => x.OrderId == orderDetail.OrderId);
+                //var detail = orders.FirstOrDefault(x => x.ProductId == orderDetail.ProductId);
+                //var product = productService.GetById(orderDetail.ProductId);
 
-                        return RedirectToAction("Create", order);
-                    }
-                    else
-                    {
-                        var qua = orderDetail.Quantity;
-                        detail.Quantity += qua;
-                        orderDetailService.Update(detail);
-                        return RedirectToAction("Create", order);
-                    }
-                }
-                else
-                {
-                    orderDetail.UnitPrice = product.UnitPrice;
-                    orderDetailService.Create(orderDetail);
+                //var order = _orderService.GetById(orderDetail.OrderId);
+                //if (orders != null)
+                //{
+                //    if (detail == null)
+                //    {
+                //        orderDetail.UnitPrice = product.UnitPrice;
+                //        _orderDetailService.Create(orderDetail);
 
 
-                    return RedirectToAction("Create", order);
-                }
+                //        return RedirectToAction("Create", order);
+                //    }
+                //    else
+                //    {
+                //        var qua = orderDetail.Quantity;
+                //        detail.Quantity += qua;
+                //        _orderDetailService.Update(detail);
+                //        return RedirectToAction("Create", order);
+                //    }
+                //}
+                //else
+                //{
+                //    orderDetail.UnitPrice = product.UnitPrice;
+                //    _orderDetailService.Create(orderDetail);
+
+
+                //    return RedirectToAction("Create", order);
+                //}
 
 
             }
@@ -128,10 +132,10 @@ namespace WebUI.Areas.Cashier.Controllers
 
         public ActionResult OrderDone(Guid OrderId)
         {
-            var order = orderService.GetById(OrderId);
+            var order = _orderService.GetById(OrderId);
             order.Status = DAL.Entities.Enum.Status.Active;
             order.OrderStatus = DAL.Entities.Enum.OrderStatus.ProductWaiting;
-            orderService.Update(order);
+            _orderService.Update(order);
 
             return RedirectToAction("Index");
         }
@@ -139,11 +143,11 @@ namespace WebUI.Areas.Cashier.Controllers
 
         public ActionResult Detail(Guid id)
         {
-            var order = orderService.GetById(id);
+            var order = _orderService.GetById(id);
 
             if (order.CustomerId == Guid.Empty)
             {
-                var customer = customerService.FindByTC(order.Customer.TC);
+                var customer = _customerService.FindByTC(order.Customer.TC);
                 if (customer == null)
                 {
                     return RedirectToAction("CreateOrder");
@@ -154,18 +158,18 @@ namespace WebUI.Areas.Cashier.Controllers
 
             if (order.Id == Guid.Empty)
             {
-                orderService.Create(order);
+                _orderService.Create(order);
                 order.OrderStatus = DAL.Entities.Enum.OrderStatus.Created;
-                orderService.Update(order);
+                _orderService.Update(order);
             }
             else
             {
-                var orderList = orderDetailService.GetByDefault(x => x.OrderId == order.Id);
+                var orderList = _orderDetailService.GetByDefault(x => x.OrderId == order.Id);
 
                 TempData["OrderList"] = orderList;
             }
 
-            var products = productService.GetActive();
+            var products = _productService.GetActive();
 
             ViewBag.Products = products;
             ViewBag.OrderId = order.Id;

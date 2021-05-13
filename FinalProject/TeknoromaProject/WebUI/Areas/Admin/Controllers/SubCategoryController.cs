@@ -14,25 +14,25 @@ namespace WebUI.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class SubCategoryController : Controller
     {
-        private readonly ISubCategoryService subCategoryService;
-        private readonly ICategoryService categoryService;
+        private readonly ISubCategoryService _subCategoryService;
+        private readonly ICategoryService _categoryService;
 
         public SubCategoryController(ISubCategoryService subCategoryService,ICategoryService categoryService)
         {
-            this.subCategoryService = subCategoryService;
-            this.categoryService = categoryService;
+           _subCategoryService = subCategoryService;
+           _categoryService = categoryService;
         }
 
         public ActionResult Index()
         {
-            ViewBag.Categories = categoryService.GetActive();
-            return View(subCategoryService.GetActive());
+            ViewBag.Categories = _categoryService.GetActive();
+            return View(_subCategoryService.GetActive());
         }
 
 
         public ActionResult Create()
         {
-            ViewBag.Categories = categoryService.GetActive();
+            ViewBag.Categories = _categoryService.GetActive();
             return View();
         }
 
@@ -43,7 +43,7 @@ namespace WebUI.Areas.Admin.Controllers
         {
             try
             {
-                subCategoryService.Create(subCategory);
+                _subCategoryService.Create(subCategory);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -55,8 +55,8 @@ namespace WebUI.Areas.Admin.Controllers
         
         public ActionResult Edit(Guid id)
         {
-            ViewBag.Categories = categoryService.GetActive();
-            var update = subCategoryService.GetById(id);
+            ViewBag.Categories = _categoryService.GetActive();
+            var update = _subCategoryService.GetById(id);
             return View(update);
         }
 
@@ -67,7 +67,7 @@ namespace WebUI.Areas.Admin.Controllers
         {
             try
             {
-                subCategoryService.Update(subCategory);
+                _subCategoryService.Update(subCategory);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -81,8 +81,8 @@ namespace WebUI.Areas.Admin.Controllers
         {
             try
             {
-                var delete = subCategoryService.GetById(id);
-                subCategoryService.Delete(delete);
+                var delete = _subCategoryService.GetById(id);
+                _subCategoryService.Delete(delete);
                 return RedirectToAction(nameof(Index));
             }
             catch

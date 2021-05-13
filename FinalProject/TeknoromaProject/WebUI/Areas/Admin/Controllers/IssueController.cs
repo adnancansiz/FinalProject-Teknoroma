@@ -14,28 +14,28 @@ namespace WebUI.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class IssueController : Controller
     {
-        private readonly IIssueService ıssueService;
-        private readonly IAppUserService appUserService;
+        private readonly IIssueService _ıssueService;
+        private readonly IAppUserService _appUserService;
 
         public IssueController(IIssueService ıssueService,IAppUserService appUserService)
         {
-            this.ıssueService = ıssueService;
-            this.appUserService = appUserService;
+            _ıssueService = ıssueService;
+            _appUserService = appUserService;
         }
 
         public ActionResult Index()
         {
-            ViewBag.User = appUserService.GetActive();
-            ViewBag.OpenIssue = ıssueService.GetByDefault(x => x.IssueStatus == DAL.Entities.Enum.IssueStatus.Open);
-            ViewBag.CheckingIssue = ıssueService.GetByDefault(x => x.IssueStatus == DAL.Entities.Enum.IssueStatus.Checking);
-            ViewBag.ClosedIssue = ıssueService.GetByDefault(x => x.IssueStatus == DAL.Entities.Enum.IssueStatus.Closed);
+            ViewBag.User = _appUserService.GetActive();
+            ViewBag.OpenIssue = _ıssueService.GetByDefault(x => x.IssueStatus == DAL.Entities.Enum.IssueStatus.Open);
+            ViewBag.CheckingIssue = _ıssueService.GetByDefault(x => x.IssueStatus == DAL.Entities.Enum.IssueStatus.Checking);
+            ViewBag.ClosedIssue = _ıssueService.GetByDefault(x => x.IssueStatus == DAL.Entities.Enum.IssueStatus.Closed);
             return View();
         }
 
         
         public ActionResult Create()
         {
-            ViewBag.AppUser = appUserService.GetActive();
+            ViewBag.AppUser = _appUserService.GetActive();
             return View();
         }
 
@@ -47,7 +47,7 @@ namespace WebUI.Areas.Admin.Controllers
             try
             {
                 ıssue.IssueStatus = DAL.Entities.Enum.IssueStatus.Open;
-                ıssueService.Create(ıssue);
+                _ıssueService.Create(ıssue);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -59,8 +59,8 @@ namespace WebUI.Areas.Admin.Controllers
         
         public ActionResult Edit(Guid id)
         {
-            ViewBag.AppUser = appUserService.GetActive();
-            var ıssue = ıssueService.GetById(id);
+            ViewBag.AppUser = _appUserService.GetActive();
+            var ıssue = _ıssueService.GetById(id);
             return View(ıssue);
         }
 
@@ -71,7 +71,7 @@ namespace WebUI.Areas.Admin.Controllers
         {
             try
             {
-                ıssueService.Update(ıssue);
+                _ıssueService.Update(ıssue);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -83,8 +83,8 @@ namespace WebUI.Areas.Admin.Controllers
         
         public ActionResult Delete(Guid id)
         {
-            var ıssue = ıssueService.GetById(id);
-            ıssueService.Delete(ıssue);
+            var ıssue = _ıssueService.GetById(id);
+            _ıssueService.Delete(ıssue);
             return RedirectToAction(nameof(Index));
         }
 

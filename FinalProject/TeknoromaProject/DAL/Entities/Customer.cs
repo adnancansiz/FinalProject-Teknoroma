@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DAL.Entities.Enum;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Text;
@@ -21,6 +22,9 @@ namespace DAL.Entities
 
         [Display(Name = "Telefon Numarası")]
         public string Phone { get; set; }
+
+        [Display(Name = "Cinsiyet")]
+        public Gender Gender { get; set; }
 
         [Display(Name = "Doğum Tarihi")]
         public DateTime? BirthDate { get; set; }

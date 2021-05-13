@@ -1,64 +1,80 @@
 ﻿using BLL.Repositories.Abstract;
 using DAL.Context;
 using DAL.Entities;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net;
 using System.Text;
 
 namespace BLL.Repositories.Concrete
 {
     public class ExpenseService : IExpenseService
     {
-        private readonly ApplicationDbContext context;
+        private readonly ApplicationDbContext _context;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public ExpenseService(ApplicationDbContext context)
+        public ExpenseService(ApplicationDbContext context, SignInManager<AppUser> signInManager)
         {
-            this.context = context;
+           _context = context;
+           _signInManager = signInManager;
         }
 
         public void Create(Expense entity)
         {
+            entity.CreatedBy = _signInManager.Context.User.Identity.Name;
+            entity.CreatedComputerName = Environment.MachineName;
+            entity.CreatedDate = DateTime.Now;
+            entity.CreatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString();
+
             entity.Status = DAL.Entities.Enum.Status.Active;
-            context.Expenses.Add(entity);
-            context.SaveChanges();
+            _context.Expenses.Add(entity);
+            _context.SaveChanges();
         }
 
         public void Delete(Expense entity)
         {
-            var deleted = context.Expenses.FirstOrDefault(x => x.Id == entity.Id);
-            deleted.Status = DAL.Entities.Enum.Status.Deleted;
-            Update(deleted);
-            context.SaveChanges();
+
+            entity.Status = DAL.Entities.Enum.Status.Deleted;
+            Update(entity);
+
         }
 
         public List<Expense> GetActive()
         {
-            return context.Expenses.Where(x => x.Status == DAL.Entities.Enum.Status.Active).ToList();
+            return _context.Expenses.Where(x => x.Status == DAL.Entities.Enum.Status.Active || x.Status == DAL.Entities.Enum.Status.Updated).ToList();
         }
 
         public List<Expense> GetByDefault(Expression<Func<Expense, bool>> filter = null)
         {
             if (filter != null)
             {
-                return context.Expenses.Where(filter).ToList();
+                return _context.Expenses.Where(filter).ToList();
             }
             else
             {
-                return context.Expenses.ToList();
+                return _context.Expenses.ToList();
             }
         }
 
         public Expense GetById(Guid id)
         {
-            return context.Expenses.FirstOrDefault(x => x.Id == id);
+            return _context.Expenses.FirstOrDefault(x => x.Id == id);
         }
 
         public void Update(Expense entity)
         {
-            context.Expenses.Update(entity);
-            context.SaveChanges();
+
+            entity.UpdatedBy = _signInManager.Context.User.Identity.Name;
+            entity.UpdatedComputerName = Environment.MachineName;
+            entity.UpdatedDate = DateTime.Now;
+            entity.UpdatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString();
+            entity.Status = DAL.Entities.Enum.Status.Updated;
+
+            _context.Expenses.Update(entity);
+            _context.SaveChanges();
         }
     }
 }

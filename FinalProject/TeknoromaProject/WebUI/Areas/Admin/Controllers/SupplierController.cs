@@ -14,16 +14,16 @@ namespace WebUI.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class SupplierController : Controller
     {
-        private readonly ISupplierService supplierService;
+        private readonly ISupplierService _supplierService;
 
         public SupplierController(ISupplierService supplierService)
         {
-            this.supplierService = supplierService;
+           _supplierService = supplierService;
         }
 
         public ActionResult Index()
         {
-            return View(supplierService.GetActive());
+            return View(_supplierService.GetActive());
         }
 
         
@@ -40,7 +40,7 @@ namespace WebUI.Areas.Admin.Controllers
         {
             try
             {
-                supplierService.Create(supplier);
+                _supplierService.Create(supplier);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -52,7 +52,7 @@ namespace WebUI.Areas.Admin.Controllers
         // GET: SupplierController/Edit/5
         public ActionResult Edit(Guid id)
         {
-            var update = supplierService.GetById(id);
+            var update = _supplierService.GetById(id);
             return View(update);
         }
 
@@ -63,7 +63,7 @@ namespace WebUI.Areas.Admin.Controllers
         {
             try
             {
-                supplierService.Update(supplier);
+                _supplierService.Update(supplier);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -77,8 +77,8 @@ namespace WebUI.Areas.Admin.Controllers
         {
             try
             {
-                var delete = supplierService.GetById(Id);
-                supplierService.Delete(delete);
+                var delete = _supplierService.GetById(Id);
+                _supplierService.Delete(delete);
                 return RedirectToAction(nameof(Index));
             }
             catch

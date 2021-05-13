@@ -1,70 +1,85 @@
 ﻿using BLL.Repositories.Abstract;
 using DAL.Context;
 using DAL.Entities;
+using Microsoft.AspNetCore.Identity;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Net;
 using System.Text;
 
 namespace BLL.Repositories.Concrete
 {
     public class CustomerService : ICustomerService
     {
-        private readonly ApplicationDbContext context;
+        private readonly ApplicationDbContext _context;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public CustomerService(ApplicationDbContext context)
+        public CustomerService(ApplicationDbContext context, SignInManager<AppUser> signInManager)
         {
-            this.context = context;
+            _context = context;
+            _signInManager = signInManager;
         }
 
         public void Create(Customer entity)
         {
-            context.Customers.Add(entity);
-            context.SaveChanges();
+            entity.CreatedBy = _signInManager.Context.User.Identity.Name;
+            entity.CreatedComputerName = Environment.MachineName;
+            entity.CreatedDate = DateTime.Now;
+            entity.CreatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString();
+
+            _context.Customers.Add(entity);
+            _context.SaveChanges();
         }
 
         public void Delete(Customer entity)
         {
-            var deleted = context.Customers.FirstOrDefault(x => x.Id == entity.Id);
-            deleted.Status = DAL.Entities.Enum.Status.Deleted;
-            Update(deleted);
-            context.SaveChanges();
+            entity.Status = DAL.Entities.Enum.Status.Deleted;
+            Update(entity);
+
         }
 
         public Customer FindByTC(string TC)
         {
-            var customer = context.Customers.Where(x => x.TC == TC).FirstOrDefault();
+            var customer = _context.Customers.Where(x => x.TC == TC).FirstOrDefault();
             return customer;
         }
 
         public List<Customer> GetActive()
         {
-            return context.Customers.Where(x => x.Status == DAL.Entities.Enum.Status.Active).ToList();
+            return _context.Customers.Where(x => x.Status == DAL.Entities.Enum.Status.Active || x.Status == DAL.Entities.Enum.Status.Updated).ToList();
         }
 
         public List<Customer> GetByDefault(Expression<Func<Customer, bool>> filter = null)
         {
             if (filter != null)
             {
-                return context.Customers.Where(filter).ToList();
+                return _context.Customers.Where(filter).ToList();
             }
             else
             {
-                return context.Customers.ToList();
+                return _context.Customers.ToList();
             }
         }
 
         public Customer GetById(Guid id)
         {
-            var customer = context.Customers.FirstOrDefault(x => x.Id == id);
+            var customer = _context.Customers.FirstOrDefault(x => x.Id == id);
             return customer;
         }
 
         public void Update(Customer entity)
         {
-            context.Customers.Update(entity);
-            context.SaveChanges();
+
+            entity.UpdatedBy = _signInManager.Context.User.Identity.Name;
+            entity.UpdatedComputerName = Environment.MachineName;
+            entity.UpdatedDate = DateTime.Now;
+            entity.UpdatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString();
+            entity.Status = DAL.Entities.Enum.Status.Updated;
+
+            _context.Customers.Update(entity);
+            _context.SaveChanges();
         }
     }
 }
