@@ -64,46 +64,48 @@ namespace WebUI.Areas.Admin.Controllers
 
                var exist = _appUserService.Register(appUser);
 
-                if (!exist)
+                if (exist.Id != Guid.Empty)
                 {
-                    _appUserService.UserAddRole(appUser, roleid);
-
+                    _appUserService.UserAddRole(exist, roleid);
+                    return RedirectToAction("Index");
                 }
                 else
                 {
-                    TempData["Exist"] = "Kullanıcı zaten mevcut"; 
+                    TempData["Exist"] = $"{appUser.UserName} Kullanıcısı zaten mevcut";
+                    return RedirectToAction("Index");
+
                 }
 
-                AppUser user = new AppUser
-                {
-                    UserName = appUser.UserName,
-                    FirstName = appUser.FirstName,
-                    LastName = appUser.LastName,
-                    Email = appUser.Email,
-                    PhoneNumber = appUser.PhoneNumber,
-                    Address = appUser.Address,
-                    Status= appUser.Status,
-                    
-                };
-                user.Status = DAL.Entities.Enum.Status.Active;
-                var result = await _userManager.CreateAsync(user, appUser.Password);
-                if (result.Succeeded)
-                {
-                    //var role = roleManager.Roles.FirstOrDefault(x => x.Id == roleid);
-                    //var roleName = role.Name;
-                    //userManager.AddToRoleAsync(user, roleName).Wait();
-                    _appUserService.UserAddRole(user, roleid);
-                    return RedirectToAction("Index", "Home");
-                }
-                else
-                {
-                    foreach (var error in result.Errors)
-                    {
-                        
-                        ModelState.AddModelError(error.Code, error.Description);
-                    }
-                    return View(appUser);
-                }
+                ////AppUser user = new AppUser
+                ////{
+                ////    UserName = appUser.UserName,
+                ////    FirstName = appUser.FirstName,
+                ////    LastName = appUser.LastName,
+                ////    Email = appUser.Email,
+                ////    PhoneNumber = appUser.PhoneNumber,
+                ////    Address = appUser.Address,
+                ////    Status= appUser.Status,
+
+                ////};
+                ////user.Status = DAL.Entities.Enum.Status.Active;
+                ////var result = await _userManager.CreateAsync(user, appUser.Password);
+                //if (result.Succeeded)
+                //{
+                //    //var role = roleManager.Roles.FirstOrDefault(x => x.Id == roleid);
+                //    //var roleName = role.Name;
+                //    //userManager.AddToRoleAsync(user, roleName).Wait();
+                //    _appUserService.UserAddRole(user, roleid);
+                //    return RedirectToAction("Index", "Home");
+                //}
+                //else
+                //{
+                //    foreach (var error in result.Errors)
+                //    {
+
+                //        ModelState.AddModelError(error.Code, error.Description);
+                //    }
+                //    return View(appUser);
+                //}
 
             }
             else
@@ -130,7 +132,7 @@ namespace WebUI.Areas.Admin.Controllers
                 _appUserService.Update(appUser);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception ex)
             {
                 return View();
             }

@@ -14,7 +14,7 @@ namespace BLL.Repositories.Abstract
 
         //Task<IActionResult> CreateUser(AppUser entity);
 
-        bool Register(AppUser register);
+        AppUser Register(AppUser register);
 
         List<AppUser> UserList();
     }

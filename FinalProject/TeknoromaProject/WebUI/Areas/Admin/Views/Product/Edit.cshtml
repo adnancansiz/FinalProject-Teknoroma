@@ -32,12 +32,17 @@
                     <input asp-for="BarcodeNumber" type="text" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <select class="form-control" name="CategoryId">
+                    <select class="form-control" asp-for="SubCategoryId">
                         @foreach (var subCategory in ViewBag.subCategories as List<SubCategory>)
                         {
                             <option value="@subCategory.Id">@subCategory.SubCategoryName</option>
                         }
                     </select>
+                </div>
+                <div>
+                    <label>Tedarikçi</label>
+                    <input asp-for="SupplierId" type="text" value="@Model.SupplierId" class="form-control" />
+
                 </div>
                 <button type="submit" class="btn btn-primary">Kaydet</button>
             </form>

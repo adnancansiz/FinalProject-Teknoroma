@@ -143,6 +143,8 @@ namespace WebUI.Areas.Cashier.Controllers
 
         public ActionResult Detail(Guid id)
         {
+
+
             var order = _orderService.GetById(id);
 
             if (order.CustomerId == Guid.Empty)
@@ -174,6 +176,8 @@ namespace WebUI.Areas.Cashier.Controllers
             ViewBag.Products = products;
             ViewBag.OrderId = order.Id;
             return View();
+
+
         }
 
         public ActionResult Edit(int id)

@@ -26,7 +26,6 @@ namespace WebUI.Areas.Admin.Controllers
             return View(_customerService.GetActive());
         }
 
-        
 
         public ActionResult Create()
         {

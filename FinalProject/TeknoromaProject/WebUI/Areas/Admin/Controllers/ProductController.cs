@@ -70,6 +70,7 @@ namespace WebUI.Areas.Admin.Controllers
         public ActionResult Edit(Guid id)
         {
             ViewBag.subCategories = _subCategoryService.GetActive();
+            
             var update = _productService.GetById(id);
             return View(update);
         }
@@ -84,7 +85,7 @@ namespace WebUI.Areas.Admin.Controllers
                 _productService.Update(product);
                 return RedirectToAction(nameof(Index));
             }
-            catch
+            catch(Exception ex)
             {
                 return View();
             }

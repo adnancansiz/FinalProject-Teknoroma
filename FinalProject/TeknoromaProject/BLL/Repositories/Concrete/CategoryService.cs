@@ -67,14 +67,14 @@ namespace BLL.Repositories.Concrete
         }
 
         public void Update(Category entity)
-        {
-           
+        {         
 
             entity.UpdatedBy = _signInManager.Context.User.Identity.Name;
             entity.UpdatedComputerName = Environment.MachineName;
             entity.UpdatedDate = DateTime.Now;
             entity.UpdatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString();
             entity.Status = DAL.Entities.Enum.Status.Updated;
+
 
 
 

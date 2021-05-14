@@ -58,6 +58,8 @@ RAPORLAMA VE DÖVÝZ KURU ÝÞLEMÝ KALDI.
 	*Admin areada çalýþan güncelleme kýsmý çalýþmýyor yapýalcak.
 	*Satýþ yaparken kasiyer kendi ýd sini girmek zorunda oraya bir ayar çekilecek. /*/*/*/**/ Yapýldý
 
+	* TRY CATCH 
+
 ------------------------------------------------------------------------------------------------------------------------
 
 	******************GENEL OLARAK YAPILACAKLAR///////////////////////////

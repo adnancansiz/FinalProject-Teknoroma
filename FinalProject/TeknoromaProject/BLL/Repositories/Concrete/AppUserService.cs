@@ -75,14 +75,14 @@ namespace BLL.Repositories.Concrete
             return user;
         }
 
-        public bool Register(AppUser register)
+        public AppUser Register(AppUser register)
         {
 
             var existEmail = _userManager.FindByEmailAsync(register.Email).Result;
             var existUserName = _userManager.FindByNameAsync(register.UserName).Result;
             if (existEmail != null || existUserName != null)
             {
-                return true;
+                return register;
             }
             else
             {
@@ -98,7 +98,12 @@ namespace BLL.Repositories.Concrete
                 AppUser user = new AppUser
                 {
                     UserName = register.UserName,
+                    FirstName = register.FirstName,
+                    LastName = register.LastName,
                     Email = register.Email,
+                    PhoneNumber = register.PhoneNumber,
+                    Address = register.Address,
+                    Status = register.Status,
                     CreatedBy = createdBy,
                     CreatedDate = DateTime.Now,
                     CreatedComputerName = Environment.MachineName,
@@ -107,8 +112,9 @@ namespace BLL.Repositories.Concrete
                 };
 
                 var result = _userManager.CreateAsync(user, register.Password).Result;
+                _context.SaveChanges();
 
-                return false;
+                return user;
 
             }
         }
@@ -121,17 +127,17 @@ namespace BLL.Repositories.Concrete
             entity.UpdatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString();
             entity.Status = DAL.Entities.Enum.Status.Updated;
 
-            _context.Users.Update(entity);
+            //Todo : Upade sorunu SecrutySpam ile ilgili araştırılıcak.
+
+           var result = _userManager.UpdateAsync(entity).Result;
             _context.SaveChanges();
         }
 
         public void UserAddRole(AppUser user, Guid roleid)
         {
-            var role = _context.Roles.FirstOrDefault(x => x.Id == roleid);
-            var roleName = role.Name;
-
-            _userManager.AddToRoleAsync(user, roleName).Wait();
-            //Todo : Riskli bir kod..
+          var roles =   _context.Roles.FirstOrDefault(x => x.Id == roleid);
+           
+           var result = _userManager.AddToRoleAsync(user, roles.Name).Result;
             _context.SaveChanges();
         }
 

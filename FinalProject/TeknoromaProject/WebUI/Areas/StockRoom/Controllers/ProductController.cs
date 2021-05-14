@@ -15,29 +15,29 @@ namespace WebUI.Areas.StockRoom.Controllers
     [Authorize(Roles = "StockRoom")]
     public class ProductController : Controller
     {
-        private readonly IProductService productService;
-        private readonly ISubCategoryService subCategoryService;
-        private readonly ISupplierService supplierService;
+        private readonly IProductService _productService;
+        private readonly ISubCategoryService _subCategoryService;
+        private readonly ISupplierService _supplierService;
 
         public ProductController(IProductService productService, ISubCategoryService subCategoryService, ISupplierService supplierService)
         {
-            this.productService = productService;
-            this.subCategoryService = subCategoryService;
-            this.supplierService = supplierService;
+           _productService = productService;
+           _subCategoryService = subCategoryService;
+            _supplierService = supplierService;
         }
 
         public ActionResult Index()
         {
-            ViewBag.subCategories = subCategoryService.GetActive();
-            ViewBag.suppliers = supplierService.GetActive();
-            return View(productService.GetActive());
+            ViewBag.subCategories = _subCategoryService.GetActive();
+            ViewBag.suppliers = _supplierService.GetActive();
+            return View(_productService.GetActive());
         }
 
 
         public ActionResult Create()
         {
-            ViewBag.subCategories = subCategoryService.GetActive();
-            ViewBag.suppliers = supplierService.GetActive();
+            ViewBag.subCategories = _subCategoryService.GetActive();
+            ViewBag.suppliers = _supplierService.GetActive();
             return View();
         }
 
@@ -57,7 +57,7 @@ namespace WebUI.Areas.StockRoom.Controllers
 
                     ImageUploader.ProductImageUploader(product);
                 }
-                productService.Create(product);
+                _productService.Create(product);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception ex)
@@ -69,8 +69,8 @@ namespace WebUI.Areas.StockRoom.Controllers
 
         public ActionResult Edit(Guid id)
         {
-            ViewBag.subCategories = subCategoryService.GetActive();
-            var update = productService.GetById(id);
+            ViewBag.subCategories = _subCategoryService.GetActive();
+            var update = _productService.GetById(id);
             return View(update);
         }
 
@@ -81,7 +81,7 @@ namespace WebUI.Areas.StockRoom.Controllers
         {
             try
             {
-                productService.Update(product);
+                _productService.Update(product);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -95,8 +95,8 @@ namespace WebUI.Areas.StockRoom.Controllers
         {
             try
             {
-                var delete = productService.GetById(id);
-                productService.Delete(delete);
+                var delete = _productService.GetById(id);
+                _productService.Delete(delete);
                 return RedirectToAction(nameof(Index));
             }
             catch

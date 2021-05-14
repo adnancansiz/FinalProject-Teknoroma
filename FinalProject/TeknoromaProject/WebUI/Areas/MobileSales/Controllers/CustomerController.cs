@@ -14,16 +14,16 @@ namespace WebUI.Areas.MobileSales.Controllers
     [Authorize(Roles = "MobileSales")]
     public class CustomerController : Controller
     {
-        private readonly ICustomerService customerService;
+        private readonly ICustomerService _customerService;
 
         public CustomerController(ICustomerService customerService)
         {
-            this.customerService = customerService;
+            _customerService = customerService;
         }
 
         public ActionResult Index()
         {
-            return View(customerService.GetActive());
+            return View(_customerService.GetActive());
         }
 
 
@@ -39,7 +39,7 @@ namespace WebUI.Areas.MobileSales.Controllers
         {
             try
             {
-                customerService.Create(customer);
+                _customerService.Create(customer);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -51,7 +51,7 @@ namespace WebUI.Areas.MobileSales.Controllers
         // GET: CustomerController/Edit/5
         public ActionResult Edit(Guid id)
         {
-            var update = customerService.GetById(id);
+            var update = _customerService.GetById(id);
             return View(update);
         }
 
@@ -62,7 +62,7 @@ namespace WebUI.Areas.MobileSales.Controllers
         {
             try
             {
-                customerService.Update(customer);
+                _customerService.Update(customer);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -76,8 +76,8 @@ namespace WebUI.Areas.MobileSales.Controllers
         {
             try
             {
-                var delete = customerService.GetById(id);
-                customerService.Delete(delete);
+                var delete = _customerService.GetById(id);
+                _customerService.Delete(delete);
                 return RedirectToAction(nameof(Index));
             }
             catch

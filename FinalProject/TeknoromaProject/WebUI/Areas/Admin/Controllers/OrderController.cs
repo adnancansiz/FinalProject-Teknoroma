@@ -22,13 +22,13 @@ namespace WebUI.Areas.Admin.Controllers
         private readonly IAppUserService _appUserService;
         private readonly SignInManager<AppUser> _signInManager;
 
-        public OrderController(IOrderService orderService,IOrderDetailService orderDetailService,ICustomerService customerService,IProductService productService,IAppUserService appUserService, SignInManager<AppUser> signInManager)
+        public OrderController(IOrderService orderService, IOrderDetailService orderDetailService, ICustomerService customerService, IProductService productService, IAppUserService appUserService, SignInManager<AppUser> signInManager)
         {
-          _orderService = orderService;
-          _orderDetailService = orderDetailService;
-          _customerService = customerService;
-          _productService = productService;
-          _appUserService = appUserService;
+            _orderService = orderService;
+            _orderDetailService = orderDetailService;
+            _customerService = customerService;
+            _productService = productService;
+            _appUserService = appUserService;
             _signInManager = signInManager;
         }
 
@@ -45,7 +45,7 @@ namespace WebUI.Areas.Admin.Controllers
         public ActionResult CreateOrder()
         {
             ViewBag.Customer = _customerService.GetActive();
-           var userName = _signInManager.Context.User.Identity.Name;
+            var userName = _signInManager.Context.User.Identity.Name;
 
             var customers = _appUserService.GetByDefault(x => x.UserName == userName);
             ViewBag.CustomerId = customers[0].Id;
@@ -93,9 +93,9 @@ namespace WebUI.Areas.Admin.Controllers
         {
             try
             {
-               var order = _orderService.AddOrderDetailInOrder(orderDetail);
+                var order = _orderService.AddOrderDetailInOrder(orderDetail);
 
-                return RedirectToAction("Create",order);
+                return RedirectToAction("Create", order);
 
                 //var orders = _orderDetailService.GetByDefault(x => x.OrderId == orderDetail.OrderId);
                 //var detail = orders.FirstOrDefault(x => x.ProductId == orderDetail.ProductId);
@@ -149,34 +149,16 @@ namespace WebUI.Areas.Admin.Controllers
 
 
         public ActionResult Detail(Guid id)
-        {
+        {    
+
             var order = _orderService.GetById(id);
 
-            if (order.CustomerId == Guid.Empty)
-            {
-                var customer = _customerService.FindByTC(order.Customer.TC);
-                if (customer == null)
-                {
-                    return RedirectToAction("CreateOrder");
-                }
-                order.Customer = customer;
-                order.CustomerId = customer.Id;
-            }
-
-            if (order.Id == Guid.Empty)
-            {
-                _orderService.Create(order);
-                order.OrderStatus = DAL.Entities.Enum.OrderStatus.Created;
-                _orderService.Update(order);
-            }
-            else
-            {
-                var orderList = _orderDetailService.GetByDefault(x => x.OrderId == order.Id);
-
-                TempData["OrderList"] = orderList;
-            }
+            var orderList = _orderDetailService.GetByDefault(x => x.OrderId == order.Id);
 
             var products = _productService.GetActive();
+
+            TempData["OrderList"] = orderList;
+
 
             ViewBag.Products = products;
             ViewBag.OrderId = order.Id;
@@ -188,7 +170,7 @@ namespace WebUI.Areas.Admin.Controllers
             return View();
         }
 
-        
+
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Edit(int id, IFormCollection collection)
@@ -203,7 +185,7 @@ namespace WebUI.Areas.Admin.Controllers
             }
         }
 
-        
+
         public ActionResult Delete(int id, IFormCollection collection)
         {
             try
