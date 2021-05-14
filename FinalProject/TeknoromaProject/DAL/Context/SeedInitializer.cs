@@ -12,7 +12,6 @@ namespace DAL.Context
         {
             SeedRoles(roleManager);
             SeedUsers(userManager);
-
         }
 
         private static void SeedUsers(UserManager<AppUser> userManager)

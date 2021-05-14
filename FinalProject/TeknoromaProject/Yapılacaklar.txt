@@ -5,7 +5,7 @@
 -Satýþ Takip raporu
 	*Hangi çalýþan ne kadar satýþ yapmýþ ?
 	*Aylýk 10 bin üzerine çýktýysa %10 prim verilecek
-	*En çok satýlan 10 ürünü alan müþterilerin cinsiyet ve yaþý			--/Müþteri cinsiyet bilgisi eklenecek
+	*En çok satýlan 10 ürünü alan müþterilerin cinsiyet ve yaþý			
 	(en çok satýlan ürünlerin yanýnda satýlan ürünler)
 
 -Tedarikçi hareket raporu
@@ -18,9 +18,9 @@
 -----------------------------------------------------------------------------------------------------------------------
 
 **Kasa Satýþ temsilcisi
--Satýþ ekranýnda müþteri bilgileri gösterilecek
+-Satýþ ekranýnda müþteri bilgileri gösterilecek													/*/*/YAPILDI
 -Satýþ ekranýna döviz kuru eklenecek
--Ýndex sayfasýndak tablolar düzenlenecek.
+-Ýndex sayfasýndak tablolar düzenlenecek.														/*/*/YAPILDI
 -Ürün stoðu belli bir seviyenin altýna indiðine þube müdürüne ve depocuya bilgi gidecek.
 -Prim raporunu görmek istiyor
 
@@ -33,6 +33,7 @@
 *Müþteri Ekleme iþlemi tamam
 -Satýþ iþlemi tamam
 
+PRÝM RAPORU VE DÖVÝZ KURU GÖSTERÝLECEK
 ------------------------------------------------------------------------------------------------------------------------
 
 ***Muhasebe
@@ -55,7 +56,8 @@ RAPORLAMA VE DÖVÝZ KURU ÝÞLEMÝ KALDI.
 	*Service katmanlarýnda ekleme güncelleme silme iþlemlerinde active,delete, statüleri yok düzenlenecek.  /*/*/*/*/*/* Yapýldý
 	*Sipariþ ekrarnýnda sepet kýsmýnýn görseli düzenlenecek.
 	*Seed methodu doldurulacak.
-	*Admin areada çalýþan güncelleme kýsmý çalýþmýyor yapýalcak.
+	*Müþteri cinsiyet bilgisi eklenecek												/***/Yapýldý
+	*Admin areada çalýþan güncelleme kýsmý çalýþmýyor yapýalcak.					/*/*/*/MUSTAFA YAPACAK
 	*Satýþ yaparken kasiyer kendi ýd sini girmek zorunda oraya bir ayar çekilecek. /*/*/*/**/ Yapýldý
 
 	* TRY CATCH 
@@ -65,7 +67,6 @@ RAPORLAMA VE DÖVÝZ KURU ÝÞLEMÝ KALDI.
 	******************GENEL OLARAK YAPILACAKLAR///////////////////////////
 	*Sipariþ iþleminde depocuya kasiyer adý gönderiliyor bunun yerine kasa adý gönderilecek.
 	*Sipariþte ve muhasebe bölmünde bulunan fiyatlar döviz olarakta gösterilecek.
-	*Ýþlemlerin çoðu controllerlarda service katmanýna taþýnacak
 	*Arka plana görsel eklenecek.
 	
 ------------------------------------------------------------------------------------------------------------------------

@@ -40,10 +40,7 @@
                                 <td>@customer.TC</td>
                                 <td>@customer.CustomerName</td>
                             }
-                            else
-                            {
-                                <td></td>
-                            }
+                           
                         }
                         @foreach (AppUser appUser in ViewBag.AppUser)
                         {
@@ -51,10 +48,7 @@
                             {
                                 <td>@appUser.UserName</td>
                             }
-                            else
-                            {
-                                <td></td>
-                            }
+                            
                         }
                     <td>
                         @Html.ActionLink("Ürünleri/Detayları Gör", "OrderDetail", "Home", new { id = order.Id}, new { @class = "btn btn-success btn-sm mt-2" })

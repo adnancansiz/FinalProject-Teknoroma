@@ -1471,3 +1471,6 @@ C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3
 C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.Views.pdb
 C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.csproj.CopyComplete
 C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.genruntimeconfig.cache
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\StockRoom\Views\Supplier\Create.cshtml.g.cs
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\StockRoom\Views\Supplier\Index.cshtml.g.cs
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\StockRoom\Views\Supplier\Edit.cshtml.g.cs

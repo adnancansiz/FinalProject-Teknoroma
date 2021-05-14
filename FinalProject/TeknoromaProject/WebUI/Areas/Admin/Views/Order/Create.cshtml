@@ -6,9 +6,26 @@
     var products = ViewBag.Products;
     var orderId = ViewBag.OrderId;
     var orderList = TempData["OrderList"];
+    var customer = ViewBag.Customer;
 }
 
-
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">TCKN</th>
+            <th scope="col">İsim</th>
+            <th scope="col">Telefon Numarası</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">@customer.TC</th>
+            <td>@customer.CustomerName</td>
+            <td>@customer.Phone</td>
+        </tr>
+    </tbody>
+</table>
+<hr />
 <div class="container mt-3">
     <div class="row">
         <div class="col-md-4">

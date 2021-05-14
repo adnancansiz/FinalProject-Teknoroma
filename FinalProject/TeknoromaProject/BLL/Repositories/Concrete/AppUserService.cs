@@ -103,7 +103,7 @@ namespace BLL.Repositories.Concrete
                     Email = register.Email,
                     PhoneNumber = register.PhoneNumber,
                     Address = register.Address,
-                    Status = register.Status,
+                    Status = DAL.Entities.Enum.Status.Active,
                     CreatedBy = createdBy,
                     CreatedDate = DateTime.Now,
                     CreatedComputerName = Environment.MachineName,

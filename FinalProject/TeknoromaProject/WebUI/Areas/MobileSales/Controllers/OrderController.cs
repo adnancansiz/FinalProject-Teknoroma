@@ -72,7 +72,8 @@ namespace WebUI.Areas.MobileSales.Controllers
             }
 
             var products = _productService.GetActive();
-
+            var customers = _customerService.GetById(order.CustomerId);
+            ViewBag.Customer = customers;
             ViewBag.Products = products;
             ViewBag.OrderId = order.Id;
             return View();
@@ -165,7 +166,8 @@ namespace WebUI.Areas.MobileSales.Controllers
             }
 
             var products = _productService.GetActive();
-
+            var customers = _customerService.GetById(order.CustomerId);
+            ViewBag.Customer = customers;
             ViewBag.Products = products;
             ViewBag.OrderId = order.Id;
             return View();

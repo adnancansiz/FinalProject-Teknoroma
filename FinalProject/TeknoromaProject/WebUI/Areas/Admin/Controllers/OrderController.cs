@@ -80,7 +80,8 @@ namespace WebUI.Areas.Admin.Controllers
             }
 
             var products = _productService.GetActive();
-
+            var customers = _customerService.GetById(order.CustomerId);
+            ViewBag.Customer = customers;
             ViewBag.Products = products;
             ViewBag.OrderId = order.Id;
             return View();
@@ -94,7 +95,8 @@ namespace WebUI.Areas.Admin.Controllers
             try
             {
                 var order = _orderService.AddOrderDetailInOrder(orderDetail);
-
+                var customers = _customerService.GetById(order.CustomerId);
+                ViewBag.Customer = customers;
                 return RedirectToAction("Create", order);
 
                 //var orders = _orderDetailService.GetByDefault(x => x.OrderId == orderDetail.OrderId);
@@ -159,7 +161,8 @@ namespace WebUI.Areas.Admin.Controllers
 
             TempData["OrderList"] = orderList;
 
-
+            var customers = _customerService.GetById(order.CustomerId);
+            ViewBag.Customer = customers;
             ViewBag.Products = products;
             ViewBag.OrderId = order.Id;
             return View();
