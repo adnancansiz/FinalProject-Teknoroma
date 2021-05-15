@@ -8,12 +8,14 @@
     var customer = ViewBag.Customer;
 }
 
-<table class="table">
+<label><b>Müşteri Bilgileri</b></label>
+<table class="table table-bordered table-warning">
     <thead>
         <tr>
             <th scope="col">TCKN</th>
             <th scope="col">İsim</th>
             <th scope="col">Telefon Numarası</th>
+            <th scope="col">Adres</th>
         </tr>
     </thead>
     <tbody>
@@ -21,12 +23,11 @@
             <th scope="row">@customer.TC</th>
             <td>@customer.CustomerName</td>
             <td>@customer.Phone</td>
+            <td>@customer.Address</td>
         </tr>
     </tbody>
 </table>
 <hr />
-
-
 <div class="container mt-3">
     <div class="row">
         <div class="col-md-4">
@@ -56,7 +57,7 @@
             @if (orderList != null)
             {
 
-                <table class="table-dark">
+                <table class="table table-bordered table-primary">
                     <thead>
                         <tr>
                             <th>Ürün Adı</th>
@@ -92,12 +93,61 @@
                     </div>
                 </div>
             }
-
         </div>
     </div>
 </div>
+<hr />
+<style>
+    img {
+        width: 80px;
+        height: 60px;
+    }
+</style>
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Ürün Listesi</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered table-success" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Ürün Görseli</th>
+                            <th>Ürün Adı</th>
+                            <th>Stok Miktarı</th>
+                            <th>Barkod No</th>
+                            <th>Satış Fiyatı</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Ürün Görseli</th>
+                            <th>Ürün Adı</th>
+                            <th>Stok Miktarı</th>
+                            <th>Barkod No</th>
+                            <th>Satış Fiyatı</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (var product in products)
+                        {
+                            <tr>
+                                <td><img src="~/img/Product/@product.ImageName"></td>
+                                <td>@product.ProductName</td>
+                                <td>@product.UnıtsInStock</td>
+                                <td>@product.BarcodeNumber</td>
+                                <td>@product.UnitPrice</td>
+                            </tr>
+                        }
 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
 
+</div>
 
 @section scripts
 {

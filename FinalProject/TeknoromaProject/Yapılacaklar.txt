@@ -54,7 +54,7 @@ RAPORLAMA VE DÖVÝZ KURU ÝÞLEMÝ KALDI.
 	*Satýþ yapýldýktan sonra ürünlerin stoklarýnda deðiþim yapýlmýyor yapýlacak.       /*/*//*/*/* Yapýldý (ürün eksilme yapýlýcak)
 	*Ýþlemlerin çoðu controllerlarda service katmanýna taþýnacak                   /**//**/*//**/ Mustafa yapýyor(Âdmin area tamam)
 	*Service katmanlarýnda ekleme güncelleme silme iþlemlerinde active,delete, statüleri yok düzenlenecek.  /*/*/*/*/*/* Yapýldý
-	*Sipariþ ekrarnýnda sepet kýsmýnýn görseli düzenlenecek.
+	*Sipariþ ekrarnýnda sepet kýsmýnýn görseli düzenlenecek.							/*/*/*/*/YAPILDI
 	*Seed methodu doldurulacak.
 	*Müþteri cinsiyet bilgisi eklenecek												/***/Yapýldý
 	*Admin areada çalýþan güncelleme kýsmý çalýþmýyor yapýalcak.					/*/*/*/MUSTAFA YAPACAK
