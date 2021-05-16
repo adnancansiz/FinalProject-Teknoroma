@@ -8,5 +8,7 @@ namespace BLL.Repositories.Abstract
     public interface IOrderService:IGenericService<Order>
     {
         Order AddOrderDetailInOrder(OrderDetail orderDetail);
+
+        bool CreateOrder(Order order);
     }
 }

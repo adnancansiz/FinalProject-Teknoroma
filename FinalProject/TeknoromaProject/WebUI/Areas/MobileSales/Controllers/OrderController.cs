@@ -2,6 +2,7 @@
 using DAL.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,14 +20,16 @@ namespace WebUI.Areas.MobileSales.Controllers
         private readonly ICustomerService _customerService;
         private readonly IProductService _productService;
         private readonly IAppUserService _appUserService;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public OrderController(IOrderService orderService, IOrderDetailService orderDetailService, ICustomerService customerService, IProductService productService, IAppUserService appUserService)
+        public OrderController(IOrderService orderService, IOrderDetailService orderDetailService, ICustomerService customerService, IProductService productService, IAppUserService appUserService, SignInManager<AppUser> signInManager)
         {
             _orderService = orderService;
             _orderDetailService = orderDetailService;
             _customerService = customerService;
             _productService = productService;
             _appUserService = appUserService;
+            _signInManager = signInManager;
         }
 
         public ActionResult Index()
@@ -42,6 +45,11 @@ namespace WebUI.Areas.MobileSales.Controllers
         public ActionResult CreateOrder()
         {
             ViewBag.Customer = _customerService.GetActive();
+
+            var userName = _signInManager.Context.User.Identity.Name;
+            var customers = _appUserService.GetByDefault(x => x.UserName == userName);
+            ViewBag.CustomerId = customers[0].Id;
+
             return View();
         }
 
@@ -172,38 +180,6 @@ namespace WebUI.Areas.MobileSales.Controllers
             ViewBag.OrderId = order.Id;
             return View();
         }
-
-        public ActionResult Edit(int id)
-        {
-            return View();
-        }
-
-
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
-
-
-        public ActionResult Delete(int id, IFormCollection collection)
-        {
-            try
-            {
-                return RedirectToAction(nameof(Index));
-            }
-            catch
-            {
-                return View();
-            }
-        }
+      
     }
 }

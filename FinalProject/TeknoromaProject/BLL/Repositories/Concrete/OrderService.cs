@@ -17,13 +17,15 @@ namespace BLL.Repositories.Concrete
         private readonly IOrderDetailService _orderDetailService;
         private readonly IProductService _productService;
         private readonly SignInManager<AppUser> _signInManager;
+        private readonly ICustomerService _customerService;
 
-        public OrderService(ApplicationDbContext context, IOrderDetailService orderDetailService,IProductService productService, SignInManager<AppUser> signInManager)
+        public OrderService(ApplicationDbContext context, IOrderDetailService orderDetailService,IProductService productService, SignInManager<AppUser> signInManager,ICustomerService customerService)
         {
             _context = context;
             _orderDetailService = orderDetailService;
             _productService = productService;
             _signInManager = signInManager;
+            _customerService = customerService;
         }
 
         public Order AddOrderDetailInOrder(OrderDetail orderDetail)
@@ -79,6 +81,37 @@ namespace BLL.Repositories.Concrete
 
             _context.Orders.Add(entity);
             _context.SaveChanges();
+        }
+
+        public bool CreateOrder(Order order)
+        {
+
+
+            if (order.CustomerId == Guid.Empty)
+            {
+                var customer = _customerService.FindByTC(order.Customer.TC);
+                if (customer == null)
+                {
+                    return false;
+                }
+                order.Customer = customer;
+                order.CustomerId = customer.Id;
+            }
+
+            if (order.Id == Guid.Empty)
+            {
+                Create(order);
+                order.OrderStatus = DAL.Entities.Enum.OrderStatus.Created;
+                Update(order);
+            }
+            else
+            {
+                var orderList = _orderDetailService.GetByDefault(x => x.OrderId == order.Id);
+
+              //  TempData["OrderList"] = orderList;
+            }
+
+            return true;
         }
 
         public void Delete(Order entity)

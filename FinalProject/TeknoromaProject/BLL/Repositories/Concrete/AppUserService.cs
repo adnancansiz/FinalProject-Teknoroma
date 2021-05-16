@@ -75,6 +75,32 @@ namespace BLL.Repositories.Concrete
             return user;
         }
 
+        public void MonthlySalesBonus(List<OrderDetail> orderDetails, AppUser user)
+        {
+            foreach(OrderDetail od in orderDetails)
+            {
+                if (user.MonthlySales <= 10000)
+                {
+
+                    user.MonthlySales += od.UnitPrice * od.Quantity;
+
+                    if (user.MonthlySales > 10000)
+                    {
+                        var addBonus = user.MonthlySales - 10000;
+                        user.Bonus += addBonus * (decimal)0.1;
+                    }
+
+                }
+                else
+                {
+                    user.Bonus += (user.MonthlySales - 10000) * (decimal)0.1;
+                    user.Bonus += (od.UnitPrice * od.Quantity) * (decimal)0.1;
+                }
+            }
+
+            Update(user);
+        }
+
         public AppUser Register(AppUser register)
         {
 

@@ -45,8 +45,8 @@ namespace WebUI.Areas.Admin.Controllers
         public ActionResult CreateOrder()
         {
             ViewBag.Customer = _customerService.GetActive();
-            var userName = _signInManager.Context.User.Identity.Name;
 
+            var userName = _signInManager.Context.User.Identity.Name;
             var customers = _appUserService.GetByDefault(x => x.UserName == userName);
             ViewBag.CustomerId = customers[0].Id;
 

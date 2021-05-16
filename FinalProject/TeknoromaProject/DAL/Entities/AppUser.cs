@@ -8,7 +8,7 @@ using System.Text;
 
 namespace DAL.Entities
 {
-    public class AppUser:IdentityUser<Guid>
+    public class AppUser : IdentityUser<Guid>
     {
         public Status Status { get; set; }
 
@@ -25,8 +25,14 @@ namespace DAL.Entities
         [Display(Name = ("Maaş"))]
         [Column(TypeName = "Money")]
         public decimal Salary { get; set; }
+
+        [Display(Name = ("Bonus"))]
         [Column(TypeName = "money")]
         public decimal Bonus { get; set; }
+
+        [Display(Name = ("Aylık Satış"))]
+        [Column(TypeName = "money")]
+        public decimal MonthlySales { get; set; }
 
 
         [Display(Name = "Oluşturulma Tarihi")]

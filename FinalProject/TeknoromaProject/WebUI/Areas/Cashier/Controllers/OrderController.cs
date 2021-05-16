@@ -1,7 +1,9 @@
-﻿using BLL.Repositories.Abstract;
+﻿using BLL.ApiData;
+using BLL.Repositories.Abstract;
 using DAL.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -19,14 +21,16 @@ namespace WebUI.Areas.Cashier.Controllers
         private readonly ICustomerService _customerService;
         private readonly IProductService _productService;
         private readonly IAppUserService _appUserService;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public OrderController(IOrderService orderService, IOrderDetailService orderDetailService, ICustomerService customerService, IProductService productService, IAppUserService appUserService)
+        public OrderController(IOrderService orderService, IOrderDetailService orderDetailService, ICustomerService customerService, IProductService productService, IAppUserService appUserService, SignInManager<AppUser> signInManager)
         {
             _orderService = orderService;
            _orderDetailService = orderDetailService;
             _customerService = customerService;
             _productService = productService;
             _appUserService = appUserService;
+            _signInManager = signInManager;
         }
 
         public ActionResult Index()
@@ -42,11 +46,17 @@ namespace WebUI.Areas.Cashier.Controllers
         public ActionResult CreateOrder()
         {
             ViewBag.Customer = _customerService.GetActive();
+
+            var userName = _signInManager.Context.User.Identity.Name;
+            var customers = _appUserService.GetByDefault(x => x.UserName == userName);
+            ViewBag.CustomerId = customers[0].Id;
+
             return View();
         }
 
         public ActionResult Create(Order order)
         {
+
             if (order.CustomerId == Guid.Empty)
             {
                 var customer = _customerService.FindByTC(order.Customer.TC);
@@ -70,6 +80,11 @@ namespace WebUI.Areas.Cashier.Controllers
 
                 TempData["OrderList"] = orderList;
             }
+
+            EuroDolarXml euroDolar = new EuroDolarXml();
+            
+            ViewBag.Euro = euroDolar.Euro;
+            ViewBag.Dolar = euroDolar.Dolar;
 
             var products = _productService.GetActive();
             var customers = _customerService.GetById(order.CustomerId);
@@ -134,6 +149,13 @@ namespace WebUI.Areas.Cashier.Controllers
         public ActionResult OrderDone(Guid OrderId)
         {
             var order = _orderService.GetById(OrderId);
+
+            var user = _appUserService.GetById(order.AppUserId);
+
+            var orderDetails = _orderDetailService.GetByDefault(x => x.OrderId == OrderId);
+
+            _appUserService.MonthlySalesBonus(orderDetails, user); //Aylık satış ve Bonusu Ekleyen Metod
+
             order.Status = DAL.Entities.Enum.Status.Active;
             order.OrderStatus = DAL.Entities.Enum.OrderStatus.ProductWaiting;
             _orderService.Update(order);

@@ -27,8 +27,8 @@
 ------------------------------------------------------------------------------------------------------------------------
 **Mobil Satýþ
 -Satýþ iþlemi yapýlacak.
--Satýþ ekranýnda güncel dövüz kuru gösterilecek.
--Prim raporu görmek istiyor.
+-Satýþ ekranýnda güncel dövüz kuru gösterilecek.  /*/*/*/*/*/ BLL Katmanýnda ApiData Klasöründe döviz hazýr new'leyip kullanabilirsin.
+-Prim raporu görmek istiyor. /**/*/**/*//*/ Aylýk satýþ diye bir prop eklendi bunun sayesinde bonus 
 ***********************************************************
 *Müþteri Ekleme iþlemi tamam
 -Satýþ iþlemi tamam

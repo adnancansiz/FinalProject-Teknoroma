@@ -7,6 +7,9 @@
     var orderId = ViewBag.OrderId;
     var orderList = TempData["OrderList"];
     var customer = ViewBag.Customer;
+
+    var Euro = ViewBag.Euro;
+    var Dolar = ViewBag.Dolar;
 }
 
 <label><b>Müşteri Bilgileri</b></label>
@@ -119,6 +122,7 @@
                             <th>Stok Miktarı</th>
                             <th>Barkod No</th>
                             <th>Satış Fiyatı</th>
+                            <th>Euro/Dolar Fiyatı</th>
                         </tr>
                     </thead>
                     <tfoot>
@@ -128,10 +132,12 @@
                             <th>Stok Miktarı</th>
                             <th>Barkod No</th>
                             <th>Satış Fiyatı</th>
+                            <th>Euro/Dolar Fiyatı</th>
+
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach (var product in products)
+                        @foreach (var product in products as List<Product>)
                         {
                             <tr>
                                 <td><img src="~/img/Product/@product.ImageName"></td>
@@ -139,6 +145,7 @@
                                 <td>@product.UnıtsInStock</td>
                                 <td>@product.BarcodeNumber</td>
                                 <td>@product.UnitPrice</td>
+                                <td>@Euro / @Dolar</td>
                             </tr>
                         }
 

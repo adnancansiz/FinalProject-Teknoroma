@@ -12,7 +12,7 @@ namespace BLL.Repositories.Abstract
     {
         void UserAddRole(AppUser user, Guid roleid);
 
-        //Task<IActionResult> CreateUser(AppUser entity);
+        void MonthlySalesBonus(List<OrderDetail> orderDetails, AppUser user);
 
         AppUser Register(AppUser register);
 

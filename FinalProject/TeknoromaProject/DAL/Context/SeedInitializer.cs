@@ -28,6 +28,7 @@ namespace DAL.Context
                 user.CreatedComputerName = "Test";
                 user.CreatedDate = DateTime.Now;
                 user.CreatedIP = "^Test";
+                
 
                 var result = userManager.CreateAsync(user, "Test123++").Result;
                 if (result.Succeeded)
