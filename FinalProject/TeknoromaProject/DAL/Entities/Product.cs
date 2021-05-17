@@ -19,10 +19,6 @@ namespace DAL.Entities
         [Column(TypeName ="money")]
         public decimal UnitPrice { get; set; }
 
-        [Display(Name = "Tutar")]
-        [Column(TypeName = "money")]
-        public decimal PurchasePrice { get; set; }
-
         [Display(Name = "Barkod Numarası")]
         public string BarcodeNumber { get; set; }
 
@@ -38,5 +34,8 @@ namespace DAL.Entities
 
 
         public virtual List<OrderDetail> OrderDetails { get; set; }
+        public virtual List<SupplierExpense> SupplierExpenses { get; set; }
+
+
     }
 }

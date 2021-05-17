@@ -71,7 +71,16 @@ namespace BLL.Repositories.Concrete
             entity.UpdatedComputerName = Environment.MachineName;
             entity.UpdatedDate = DateTime.Now;
             entity.UpdatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString();
-            entity.Status = DAL.Entities.Enum.Status.Updated;
+
+            if (entity.Status == DAL.Entities.Enum.Status.Deleted)
+            {
+
+            }
+            else
+            {
+
+                entity.Status = DAL.Entities.Enum.Status.Updated;
+            }
 
             _context.Expenses.Update(entity);
             _context.SaveChanges();

@@ -89,7 +89,8 @@ namespace WebUI.Controllers
             }
             return View();
         }
-        [HttpPost]
+
+       
         public async Task<IActionResult> LogOut(string id)
         {
             AppUser user = await userManager.FindByIdAsync(id);

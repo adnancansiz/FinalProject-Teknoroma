@@ -77,24 +77,26 @@ namespace BLL.Repositories.Concrete
 
         public void MonthlySalesBonus(List<OrderDetail> orderDetails, AppUser user)
         {
+            var limit = 10000;
+            var cut = 0.1;
             foreach(OrderDetail od in orderDetails)
             {
-                if (user.MonthlySales <= 10000)
+                if (user.MonthlySales <= limit)
                 {
 
                     user.MonthlySales += od.UnitPrice * od.Quantity;
 
-                    if (user.MonthlySales > 10000)
+                    if (user.MonthlySales > limit)
                     {
-                        var addBonus = user.MonthlySales - 10000;
-                        user.Bonus += addBonus * (decimal)0.1;
+                        var addBonus = user.MonthlySales - limit;
+                        user.Bonus += addBonus * (decimal)cut;
                     }
 
                 }
                 else
                 {
-                    user.Bonus += (user.MonthlySales - 10000) * (decimal)0.1;
-                    user.Bonus += (od.UnitPrice * od.Quantity) * (decimal)0.1;
+                    user.Bonus += (user.MonthlySales - limit) * (decimal)cut;
+                    user.Bonus += (od.UnitPrice * od.Quantity) * (decimal)cut;
                 }
             }
 
@@ -151,11 +153,20 @@ namespace BLL.Repositories.Concrete
             entity.UpdatedComputerName = Environment.MachineName;
             entity.UpdatedDate = DateTime.Now;
             entity.UpdatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString();
-            entity.Status = DAL.Entities.Enum.Status.Updated;
+
+            if (entity.Status == DAL.Entities.Enum.Status.Deleted)
+            {
+
+            }
+            else
+            {
+
+                entity.Status = DAL.Entities.Enum.Status.Updated;
+            }
 
             //Todo : Upade sorunu SecrutySpam ile ilgili araştırılıcak.
 
-           var result = _userManager.UpdateAsync(entity).Result;
+            var result = _userManager.UpdateAsync(entity).Result;
             _context.SaveChanges();
         }
 

@@ -22,8 +22,10 @@ namespace WebUI
             using (var scope = host.Services.CreateScope())
             {
                 var serviceProvider = scope.ServiceProvider;
+                
                 try
                 {
+                    
                     var userManager = serviceProvider.GetRequiredService<UserManager<AppUser>>();
                     var roleManager = serviceProvider.GetRequiredService<RoleManager<AppRole>>();
                     var context = serviceProvider.GetService<ApplicationDbContext>();

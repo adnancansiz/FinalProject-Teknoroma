@@ -3,8 +3,8 @@
 -Stok Takip Raporu
 //
 -Satýþ Takip raporu
-	*Hangi çalýþan ne kadar satýþ yapmýþ ?
-	*Aylýk 10 bin üzerine çýktýysa %10 prim verilecek
+	*Hangi çalýþan ne kadar satýþ yapmýþ ?                 
+	*Aylýk 10 bin üzerine çýktýysa %10 prim verilecek     /*/*/**/*/*/*/ Yapýldý
 	*En çok satýlan 10 ürünü alan müþterilerin cinsiyet ve yaþý			
 	(en çok satýlan ürünlerin yanýnda satýlan ürünler)
 

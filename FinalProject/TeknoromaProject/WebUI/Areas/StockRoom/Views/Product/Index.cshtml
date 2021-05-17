@@ -24,7 +24,6 @@
                             <th>Ürün Adı</th>
                             <th>Kategori</th>
                             <th>Stok Miktarı</th>
-                            <th>Alış Fiyatı</th>
                             <th>Fiyat</th>
                             <th>Barkod No</th>
                             <th>Tedarikçi</th>
@@ -37,7 +36,6 @@
                             <th>Ürün Adı</th>
                             <th>Kategori</th>
                             <th>Stok Miktarı</th>
-                            <th>Alış Fiyatı</th>
                             <th>Fiyat</th>
                             <th>Barkod No</th>
                             <th>Tedarikçi</th>
@@ -58,7 +56,6 @@
                                     }
                                 }
                                 <td>@product.UnıtsInStock</td>
-                                <td>@product.PurchasePrice</td>
                                 <td>@product.UnitPrice</td>
                                 <td>@product.BarcodeNumber</td>
                                 @foreach (Supplier supplier in ViewBag.Suppliers)
@@ -68,10 +65,11 @@
                                         <td>@supplier.CompanyName</td>
                                     }
                                 }
-                                <td class="text-right">
-                                    @Html.ActionLink("Güncelle", "Edit", "Product", new { id = product.Id }, new { @class = "btn btn-warning" })
-                                    @Html.ActionLink("Sil", "Delete", "Product", new { id = product.Id }, new { @class = "btn btn-danger" })
-                                </td>
+                            <td class="text-right">
+                                @Html.ActionLink("Güncelle", "Edit", "Product", new { id = product.Id }, new { @class = "btn btn-warning" })
+                                @Html.ActionLink("Sil", "Delete", "Product", new { id = product.Id }, new { @class = "btn btn-danger" })
+                                @Html.ActionLink("Stok Ekle", "AddStock", "Product", new { id = product.Id }, new { @class = "btn btn-primary" })
+                            </td>
                             </tr>
                         }
 

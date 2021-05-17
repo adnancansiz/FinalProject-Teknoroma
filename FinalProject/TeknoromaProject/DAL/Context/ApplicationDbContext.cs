@@ -1,6 +1,5 @@
 ﻿using DAL.Entities;
 using DAL.Maps;
-using DAL.SeedData;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -28,15 +27,17 @@ namespace DAL.Context
         public DbSet<Issue> Issues { get; set; }
         public DbSet<Expense> Expenses { get; set; }
         public DbSet<EmployeePayment> EmployeePayments { get; set; }
+        public DbSet<SupplierExpense> SupplierExpenses { get; set; }
 
 
 
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new ProductOrderMap());
-
+            
             base.OnModelCreating(builder);
         }
+
 
     }
 }

@@ -18,32 +18,153 @@ namespace DAL.Context
 
         private static void SeedUsers(UserManager<AppUser> userManager)
         {
-            if (userManager.FindByNameAsync("testAdmin").Result == null)
+            if (userManager.FindByNameAsync("Admin").Result == null)
             {
-                AppUser user = new AppUser();
-                user.UserName = "Admin";
-                user.Email = "admin@admin.com";
-                user.FirstName = "Admin";
-                user.LastName = "Admin";
-                user.Status = DAL.Entities.Enum.Status.Active;
-                user.CreatedBy = "Test";
-                user.CreatedComputerName = "Test";
-                user.CreatedDate = DateTime.Now;
-                user.CreatedIP = "^Test";
-                
+                AppUser Admin = new AppUser();
+                Admin.UserName = "Admin";
+                Admin.Email = "admin@admin.com";
+                Admin.FirstName = "Admin";
+                Admin.LastName = "Admin";
+                Admin.Status = DAL.Entities.Enum.Status.Active;
+                Admin.CreatedBy = "Test";
+                Admin.CreatedComputerName = "Test";
+                Admin.CreatedDate = DateTime.Now;
+                Admin.CreatedIP = "^Test";
 
-                var result = userManager.CreateAsync(user, "Test123++").Result;
-                if (result.Succeeded)
+                AppUser Cashier = new AppUser();
+                Cashier.UserName = "Cashier";
+                Cashier.Email = "Cashier@Cashier.com";
+                Cashier.FirstName = "Cashier";
+                Cashier.LastName = "Cashier";
+                Cashier.Status = DAL.Entities.Enum.Status.Active;
+                Cashier.CreatedBy = "Test";
+                Cashier.CreatedComputerName = "Test";
+                Cashier.CreatedDate = DateTime.Now;
+                Cashier.CreatedIP = "^Test";
+
+                AppUser Accounting = new AppUser();
+                Accounting.UserName = "Accounting";
+                Accounting.Email = "Accounting@Accounting.com";
+                Accounting.FirstName = "Accounting";
+                Accounting.LastName = "Accounting";
+                Accounting.Status = DAL.Entities.Enum.Status.Active;
+                Accounting.CreatedBy = "Test";
+                Accounting.CreatedComputerName = "Test";
+                Accounting.CreatedDate = DateTime.Now;
+                Accounting.CreatedIP = "^Test";
+
+                AppUser MobileSales = new AppUser();
+                MobileSales.UserName = "MobileSales";
+                MobileSales.Email = "MobileSales@MobileSales.com";
+                MobileSales.FirstName = "MobileSales";
+                MobileSales.LastName = "MobileSales";
+                MobileSales.Status = DAL.Entities.Enum.Status.Active;
+                MobileSales.CreatedBy = "Test";
+                MobileSales.CreatedComputerName = "Test";
+                MobileSales.CreatedDate = DateTime.Now;
+                MobileSales.CreatedIP = "^Test";
+
+                AppUser StockRoom = new AppUser();
+                StockRoom.UserName = "StockRoom";
+                StockRoom.Email = "StockRoom@StockRoom.com";
+                StockRoom.FirstName = "StockRoom";
+                StockRoom.LastName = "StockRoom";
+                StockRoom.Status = DAL.Entities.Enum.Status.Active;
+                StockRoom.CreatedBy = "Test";
+                StockRoom.CreatedComputerName = "Test";
+                StockRoom.CreatedDate = DateTime.Now;
+                StockRoom.CreatedIP = "^Test";
+
+                AppUser TechnicalService = new AppUser();
+                TechnicalService.UserName = "TechnicalService";
+                TechnicalService.Email = "TechnicalService@TechnicalService.com";
+                TechnicalService.FirstName = "TechnicalService";
+                TechnicalService.LastName = "TechnicalService";
+                TechnicalService.Status = DAL.Entities.Enum.Status.Active;
+                TechnicalService.CreatedBy = "Test";
+                TechnicalService.CreatedComputerName = "Test";
+                TechnicalService.CreatedDate = DateTime.Now;
+                TechnicalService.CreatedIP = "^Test";
+
+
+                var resultAdmin = userManager.CreateAsync(Admin, "Test123++").Result;
+                if (resultAdmin.Succeeded)
                 {
-                    userManager.AddToRoleAsync(user, "Admin").Wait();
+                    userManager.AddToRoleAsync(Admin, "Admin").Wait();
                 }
                 else
                 {
-                    foreach (var item in result.Errors)
+                    foreach (var item in resultAdmin.Errors)
                     {
 
                     }
                 }
+
+                var resultKasiyer = userManager.CreateAsync(Cashier, "Test123++").Result;
+                if (resultKasiyer.Succeeded)
+                {
+                    userManager.AddToRoleAsync(Cashier, "Cashier").Wait();
+                }
+                else
+                {
+                    foreach (var item in resultKasiyer.Errors)
+                    {
+
+                    }
+                }
+
+                var resultAccounting = userManager.CreateAsync(Accounting, "Test123++").Result;
+                if (resultAccounting.Succeeded)
+                {
+                    userManager.AddToRoleAsync(Accounting, "Accounting").Wait();
+                }
+                else
+                {
+                    foreach (var item in resultAccounting.Errors)
+                    {
+
+                    }
+                }
+
+                var resultMobileSales = userManager.CreateAsync(MobileSales, "Test123++").Result;
+                if (resultMobileSales.Succeeded)
+                {
+                    userManager.AddToRoleAsync(MobileSales, "MobileSales").Wait();
+                }
+                else
+                {
+                    foreach (var item in resultMobileSales.Errors)
+                    {
+
+                    }
+                }
+
+                var resultStockRoom = userManager.CreateAsync(StockRoom, "Test123++").Result;
+                if (resultStockRoom.Succeeded)
+                {
+                    userManager.AddToRoleAsync(StockRoom, "StockRoom").Wait();
+                }
+                else
+                {
+                    foreach (var item in resultStockRoom.Errors)
+                    {
+
+                    }
+                }
+
+                var resultTechnicalService = userManager.CreateAsync(TechnicalService, "Test123++").Result;
+                if (resultTechnicalService.Succeeded)
+                {
+                    userManager.AddToRoleAsync(TechnicalService, "TechnicalService").Wait();
+                }
+                else
+                {
+                    foreach (var item in resultTechnicalService.Errors)
+                    {
+
+                    }
+                }
+
             }
         }
 
@@ -121,7 +242,7 @@ namespace DAL.Context
 
         private static void SeedUse(ApplicationDbContext context)
         {
-            if (context.Categories == null)
+            if (context.Categories.Count() == 0)
             {
                 Category category = new Category();
                 category.CategoryName = "Elektronik";
@@ -192,7 +313,6 @@ namespace DAL.Context
                 product.Id = new Guid();
                 product.SubCategoryId = subCategory.Id;
                 product.ProductName = "İphone 11 Red";
-                product.PurchasePrice = 6999;
                 product.SupplierId = supplier.Id;
                 product.UnitPrice = 7999;
                 product.UnıtsInStock = 100;
@@ -202,8 +322,7 @@ namespace DAL.Context
                 product1.BarcodeNumber = "8792452452126";
                 product1.Id = new Guid();
                 product1.SubCategoryId = subCategory.Id;
-                product1.ProductName = "İphone 11 Black";
-                product1.PurchasePrice = 6999;
+                product1.ProductName = "İphone 11 Black";             
                 product1.SupplierId = supplier.Id;
                 product1.UnitPrice = 7999;
                 product1.UnıtsInStock = 100;
@@ -213,8 +332,7 @@ namespace DAL.Context
                 product2.BarcodeNumber = "87978645247126";
                 product2.Id = new Guid();
                 product2.SubCategoryId = subCategory.Id;
-                product2.ProductName = "İphone 11 Purple";
-                product2.PurchasePrice = 6999;
+                product2.ProductName = "İphone 11 Purple";               
                 product2.SupplierId = supplier.Id;
                 product2.UnitPrice = 7999;
                 product2.UnıtsInStock = 100;
@@ -224,8 +342,7 @@ namespace DAL.Context
                 product3.BarcodeNumber = "87984918484647";
                 product3.Id = new Guid();
                 product3.SubCategoryId = subCategory1.Id;
-                product3.ProductName = "Arçelik A+ 490LT Buzdolabı";
-                product3.PurchasePrice = 3999;
+                product3.ProductName = "Arçelik A+ 490LT Buzdolabı";                
                 product3.SupplierId = supplier1.Id;
                 product3.UnitPrice = 4999;
                 product3.UnıtsInStock = 100;
@@ -236,16 +353,52 @@ namespace DAL.Context
                 product4.Id = new Guid();
                 product4.SubCategoryId = subCategory1.Id;
                 product4.ProductName = "Arçelik A+ 520LT Buzdolabı";
-                product4.PurchasePrice = 3999;
                 product4.SupplierId = supplier1.Id;
                 product4.UnitPrice = 4999;
                 product4.UnıtsInStock = 100;
                 context.Products.Add(product4);
 
+
+                SupplierExpense expense1 = new SupplierExpense();
+                expense1.Id = new Guid();
+                expense1.ProductId = product.Id;
+                expense1.Price = 6999;
+                expense1.Quantity = 100;
+                context.SupplierExpenses.Add(expense1);
+
+                SupplierExpense expense2 = new SupplierExpense();
+                expense2.Id = new Guid();
+                expense2.ProductId = product1.Id;
+                expense2.Price = 6999;
+                expense2.Quantity = 100;
+                context.SupplierExpenses.Add(expense2);
+
+                SupplierExpense expense3 = new SupplierExpense();
+                expense3.Id = new Guid();
+                expense3.ProductId = product2.Id;
+                expense3.Price = 6999;
+                expense3.Quantity = 100;
+                context.SupplierExpenses.Add(expense3);
+
+                SupplierExpense expense4 = new SupplierExpense();
+                expense4.Id = new Guid();
+                expense4.ProductId = product3.Id;
+                expense4.Price = 3999;
+                expense4.Quantity = 100;
+                context.SupplierExpenses.Add(expense4);
+
+                SupplierExpense expense5 = new SupplierExpense();
+                expense5.Id = new Guid();
+                expense5.ProductId = product4.Id;
+                expense5.Price = 3999;
+                expense5.Quantity = 100;
+                context.SupplierExpenses.Add(expense5);
+
+
                 context.SaveChanges();
             }
-            
-            
+
+
 
         }
     }

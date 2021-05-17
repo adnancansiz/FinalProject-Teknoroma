@@ -21,12 +21,12 @@ namespace WebUI.Areas.StockRoom.Controllers
 
         public ProductController(IProductService productService, ISubCategoryService subCategoryService, ISupplierService supplierService)
         {
-           _productService = productService;
-           _subCategoryService = subCategoryService;
+            _productService = productService;
+            _subCategoryService = subCategoryService;
             _supplierService = supplierService;
         }
 
-        public ActionResult Index()
+        public IActionResult Index()
         {
             ViewBag.subCategories = _subCategoryService.GetActive();
             ViewBag.suppliers = _supplierService.GetActive();
@@ -34,7 +34,7 @@ namespace WebUI.Areas.StockRoom.Controllers
         }
 
 
-        public ActionResult Create()
+        public IActionResult Create()
         {
             ViewBag.subCategories = _subCategoryService.GetActive();
             ViewBag.suppliers = _supplierService.GetActive();
@@ -44,7 +44,7 @@ namespace WebUI.Areas.StockRoom.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create(Product product)
+        public IActionResult Create(Product product)
         {
             try
             {
@@ -67,7 +67,7 @@ namespace WebUI.Areas.StockRoom.Controllers
         }
 
 
-        public ActionResult Edit(Guid id)
+        public IActionResult Edit(Guid id)
         {
             ViewBag.subCategories = _subCategoryService.GetActive();
             var update = _productService.GetById(id);
@@ -77,7 +77,7 @@ namespace WebUI.Areas.StockRoom.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(Product product)
+        public IActionResult Edit(Product product)
         {
             try
             {
@@ -91,7 +91,7 @@ namespace WebUI.Areas.StockRoom.Controllers
         }
 
 
-        public ActionResult Delete(Guid id)
+        public IActionResult Delete(Guid id)
         {
             try
             {
@@ -102,6 +102,31 @@ namespace WebUI.Areas.StockRoom.Controllers
             catch
             {
                 return View();
+            }
+        }
+        public IActionResult AddStock(Guid id)
+        {
+            var product = _productService.GetById(id);
+            var supplier = _supplierService.GetById(product.SupplierId);
+            ViewBag.Supplier = supplier;
+            return View(product);
+        }
+
+        [HttpPost]
+        public IActionResult AddStock(Guid id, int stock)
+        {
+            try
+            {
+                var product = _productService.GetById(id);
+                product.UnıtsInStock += stock;
+                _productService.Update(product);
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+
+                throw;
             }
         }
     }

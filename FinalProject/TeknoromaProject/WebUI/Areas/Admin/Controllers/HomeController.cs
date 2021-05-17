@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Authorization;
+﻿using BLL.Repositories.Abstract;
+using DAL.Entities;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -12,7 +15,14 @@ namespace WebUI.Areas.Admin.Controllers
     [Authorize(Roles = "Admin")]
     public class HomeController : Controller
     {
+        private readonly IAppUserService _appUserService;
+        private readonly SignInManager<AppUser> _signInManager;
 
+        public HomeController(IAppUserService appUserService, SignInManager<AppUser> signInManager)
+        {
+            _appUserService = appUserService;
+            _signInManager = signInManager;
+        }
 
         public ActionResult Index()
         {
@@ -87,5 +97,6 @@ namespace WebUI.Areas.Admin.Controllers
                 return View();
             }
         }
+
     }
 }

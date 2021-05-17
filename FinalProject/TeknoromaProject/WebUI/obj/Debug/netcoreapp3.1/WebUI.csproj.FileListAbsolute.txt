@@ -1241,6 +1241,12 @@ C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp
 C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\StockRoom\Views\Supplier\Create.cshtml.g.cs
 C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\StockRoom\Views\Supplier\Index.cshtml.g.cs
 C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\StockRoom\Views\Supplier\Edit.cshtml.g.cs
+C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.AssemblyInfoInputs.cache
+C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.AssemblyInfo.cs
+C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.csproj.CoreCompileInputs.cache
+C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.MvcApplicationPartsAssemblyInfo.cache
+C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.RazorAssemblyInfo.cache
+C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.RazorAssemblyInfo.cs
 C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\bin\Debug\netcoreapp3.1\appsettings.Development.json
 C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\bin\Debug\netcoreapp3.1\appsettings.json
 C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\bin\Debug\netcoreapp3.1\WebUI.exe
@@ -1377,12 +1383,6 @@ C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\bin\Debug\netcoreapp3
 C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\bin\Debug\netcoreapp3.1\Common.pdb
 C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\bin\Debug\netcoreapp3.1\DAL.pdb
 C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.csprojAssemblyReference.cache
-C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.AssemblyInfoInputs.cache
-C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.AssemblyInfo.cs
-C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.csproj.CoreCompileInputs.cache
-C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.MvcApplicationPartsAssemblyInfo.cache
-C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.RazorAssemblyInfo.cache
-C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.RazorAssemblyInfo.cs
 C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\staticwebassets\WebUI.StaticWebAssets.Manifest.cache
 C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\staticwebassets\WebUI.StaticWebAssets.xml
 C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\scopedcss\bundle\WebUI.styles.css
@@ -1477,3 +1477,8 @@ C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3
 C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.dll
 C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.pdb
 C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.genruntimeconfig.cache
+C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Report\SupplierReport.cshtml.g.cs
+C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Report\ProductReport.cshtml.g.cs
+C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Report\ExpenseReport.cshtml.g.cs
+C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Report\SalesTrackingReport.cshtml.g.cs
+C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\StockRoom\Views\Product\AddStock.cshtml.g.cs

@@ -1,0 +1,32 @@
+﻿@model Product
+@{
+    ViewData["Title"] = "AddStock";
+    Layout = "~/Areas/StockRoom/Views/Shared/_Layout.cshtml";
+
+    Supplier supplier = ViewBag.Supplier;
+}
+
+<div>
+   
+        <label>Tedarikçi Bilgileri</label> <br />
+        <label>Şirket Adı : @supplier.CompanyName</label> <br />
+        <label>Adı : @supplier.ContactName</label><br />
+        <label>Email : @supplier.Email</label><br />
+        <label>Telefon no : @supplier.PhoneNumber</label><br />
+    
+</div>
+
+<form method="post" enctype="multipart/form-data">
+
+    <div class="form-group">
+        <label >Ürün ID </label>
+        <input class="form-control" type="text" name="id" value="@Model.Id" />
+    </div>
+    <div class="form-group">
+        <label>Eklenecek Stock</label>
+        <input class="form-control" type="number" name="stock" value="" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Ekle</button>
+</form>
+

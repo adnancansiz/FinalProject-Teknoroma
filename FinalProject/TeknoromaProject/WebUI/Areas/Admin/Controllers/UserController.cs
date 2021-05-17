@@ -39,25 +39,10 @@ namespace WebUI.Areas.Admin.Controllers
             return View();
         }
 
-        // POST: UserController/Create
-        //[HttpPost]
-        //[ValidateAntiForgeryToken]
-        //public ActionResult  Create(AppUser appUser, Guid roleid)
-        //{
-        //    try
-        //    {
-        //        appUserService.Create(appUser);
-        //        appUserService.UserAddRole(appUser, roleid);
-        //        return RedirectToAction(nameof(Index));
-        //    }
-        //    catch
-        //    {
-        //        return View();
-        //    }
-        //}
+        
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Create(AppUser appUser, Guid roleid)
+        public  IActionResult Create(AppUser appUser, Guid roleid)
         {
             if (ModelState.IsValid)
             {
@@ -76,6 +61,7 @@ namespace WebUI.Areas.Admin.Controllers
 
                 }
 
+                #region Eski kod
                 ////AppUser user = new AppUser
                 ////{
                 ////    UserName = appUser.UserName,
@@ -105,7 +91,8 @@ namespace WebUI.Areas.Admin.Controllers
                 //        ModelState.AddModelError(error.Code, error.Description);
                 //    }
                 //    return View(appUser);
-                //}
+                //} 
+                #endregion
 
             }
             else

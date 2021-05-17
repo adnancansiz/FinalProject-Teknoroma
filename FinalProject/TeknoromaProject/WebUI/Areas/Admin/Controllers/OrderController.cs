@@ -43,7 +43,8 @@ namespace WebUI.Areas.Admin.Controllers
         }
 
         public ActionResult CreateOrder()
-        {
+        {           
+
             ViewBag.Customer = _customerService.GetActive();
 
             var userName = _signInManager.Context.User.Identity.Name;
