@@ -55,7 +55,7 @@ RAPORLAMA VE DÖVÝZ KURU ÝÞLEMÝ KALDI.
 	*Ýþlemlerin çoðu controllerlarda service katmanýna taþýnacak                   /**//**/*//**/ Mustafa yapýyor(Âdmin area tamam)
 	*Service katmanlarýnda ekleme güncelleme silme iþlemlerinde active,delete, statüleri yok düzenlenecek.  /*/*/*/*/*/* Yapýldý
 	*Sipariþ ekrarnýnda sepet kýsmýnýn görseli düzenlenecek.							/*/*/*/*/YAPILDI
-	*Seed methodu doldurulacak.
+	*Seed methodu doldurulacak.															/*/*/Yapýldý.
 	*Müþteri cinsiyet bilgisi eklenecek												/***/Yapýldý
 	*Admin areada çalýþan güncelleme kýsmý çalýþmýyor yapýalcak.					/*/*/*/MUSTAFA YAPACAK
 	*Satýþ yaparken kasiyer kendi ýd sini girmek zorunda oraya bir ayar çekilecek. /*/*/*/**/ Yapýldý

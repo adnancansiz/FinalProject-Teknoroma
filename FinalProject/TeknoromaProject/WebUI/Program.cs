@@ -26,7 +26,8 @@ namespace WebUI
                 {
                     var userManager = serviceProvider.GetRequiredService<UserManager<AppUser>>();
                     var roleManager = serviceProvider.GetRequiredService<RoleManager<AppRole>>();
-                    SeedInitializer.SeedData(userManager, roleManager);
+                    var context = serviceProvider.GetService<ApplicationDbContext>();
+                    SeedInitializer.SeedData(userManager, roleManager,context);
                 }
                 catch (Exception)
                 {

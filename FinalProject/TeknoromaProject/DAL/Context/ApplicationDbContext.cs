@@ -1,5 +1,6 @@
 ﻿using DAL.Entities;
 using DAL.Maps;
+using DAL.SeedData;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Identity.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore;
@@ -33,7 +34,7 @@ namespace DAL.Context
         protected override void OnModelCreating(ModelBuilder builder)
         {
             builder.ApplyConfiguration(new ProductOrderMap());
-            
+
             base.OnModelCreating(builder);
         }
 
