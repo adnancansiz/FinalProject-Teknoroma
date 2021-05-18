@@ -105,5 +105,31 @@ namespace WebUI.Areas.Admin.Controllers
                 return View();
             }
         }
+
+        public IActionResult AddStock(Guid id)
+        {
+            var product = _productService.GetById(id);
+            var supplier = _supplierService.GetById(product.SupplierId);
+            ViewBag.Supplier = supplier;
+            return View(product);
+        }
+
+        [HttpPost]
+        public IActionResult AddStock(Guid id, int stock)
+        {
+            try
+            {
+                var product = _productService.GetById(id);
+                product.UnıtsInStock += stock;
+                _productService.Update(product);
+
+                return RedirectToAction("Index");
+            }
+            catch (Exception ex)
+            {
+
+                throw;
+            }
+        }
     }
 }

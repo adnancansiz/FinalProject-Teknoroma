@@ -1482,3 +1482,9 @@ C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3
 C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Report\ExpenseReport.cshtml.g.cs
 C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Report\SalesTrackingReport.cshtml.g.cs
 C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\StockRoom\Views\Product\AddStock.cshtml.g.cs
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Report\ExpenseReport.cshtml.g.cs
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Report\ProductReport.cshtml.g.cs
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Report\SalesTrackingReport.cshtml.g.cs
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Report\SupplierReport.cshtml.g.cs
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\StockRoom\Views\Product\AddStock.cshtml.g.cs
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Product\AddStock.cshtml.g.cs

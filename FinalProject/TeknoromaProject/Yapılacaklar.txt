@@ -1,13 +1,9 @@
 ----------------------------------------------------------------------------------------------------------------------
 ***Þube Müdürü
--Stok Takip Raporu
-//
 -Satýþ Takip raporu
-	*Hangi çalýþan ne kadar satýþ yapmýþ ?                 
-	*Aylýk 10 bin üzerine çýktýysa %10 prim verilecek     /*/*/**/*/*/*/ Yapýldý
+	*Hangi çalýþan ne kadar satýþ yapmýþ ?   
 	*En çok satýlan 10 ürünü alan müþterilerin cinsiyet ve yaþý			
 	(en çok satýlan ürünlerin yanýnda satýlan ürünler)
-
 -Tedarikçi hareket raporu
 	*Hangi tedarikçiden bu ay hangi ürünleri almýþýz ve toplamda ne kadar almýþýz?
 -Ürün liste raporu
@@ -16,57 +12,27 @@
 -Gider raporu
 	*Muhasebe iþlemleri
 -----------------------------------------------------------------------------------------------------------------------
-
-**Kasa Satýþ temsilcisi
--Satýþ ekranýnda müþteri bilgileri gösterilecek													/*/*/YAPILDI
--Satýþ ekranýna döviz kuru eklenecek
--Ýndex sayfasýndak tablolar düzenlenecek.														/*/*/YAPILDI
--Ürün stoðu belli bir seviyenin altýna indiðine þube müdürüne ve depocuya bilgi gidecek.
--Prim raporunu görmek istiyor
-
-------------------------------------------------------------------------------------------------------------------------
-**Mobil Satýþ
--Satýþ iþlemi yapýlacak.
--Satýþ ekranýnda güncel dövüz kuru gösterilecek.  /*/*/*/*/*/ BLL Katmanýnda ApiData Klasöründe döviz hazýr new'leyip kullanabilirsin.
--Prim raporu görmek istiyor. /**/*/**/*//*/ Aylýk satýþ diye bir prop eklendi bunun sayesinde bonus 
-***********************************************************
-*Müþteri Ekleme iþlemi tamam
--Satýþ iþlemi tamam
-
-PRÝM RAPORU VE DÖVÝZ KURU GÖSTERÝLECEK
-------------------------------------------------------------------------------------------------------------------------
-
 ***Muhasebe
 -Ödemeler , parasal iþlemler.
 -Aylýk olarak giriþ çýkýþlar.
 -Ekranýna döviz kuru eklenecek.
-
 **************************************
 -Çalýþan ödemeleri oluþturma/düzenleme/silme yapýldý
 -diðer ödelemeler  oluþturma/düzenleme/silme yapýldý
-
 RAPORLAMA VE DÖVÝZ KURU ÝÞLEMÝ KALDI.
-
 ------------------------------------------------------------------------------------------------------------------------
-
-	******************Eksik olanlar//////////////////////////////////
-	*Çalýþan eklerken maaþ bilgisi yok eklenecek.										/*/*/*/*/*YAPILDI
-	*Satýþ yapýldýktan sonra ürünlerin stoklarýnda deðiþim yapýlmýyor yapýlacak.       /*/*//*/*/* Yapýldý (ürün eksilme yapýlýcak)
-	*Ýþlemlerin çoðu controllerlarda service katmanýna taþýnacak                   /**//**/*//**/ Mustafa yapýyor(Âdmin area tamam)
-	*Service katmanlarýnda ekleme güncelleme silme iþlemlerinde active,delete, statüleri yok düzenlenecek.  /*/*/*/*/*/* Yapýldý
-	*Sipariþ ekrarnýnda sepet kýsmýnýn görseli düzenlenecek.							/*/*/*/*/YAPILDI
-	*Seed methodu doldurulacak.															/*/*/Yapýldý.
-	*Müþteri cinsiyet bilgisi eklenecek												/***/Yapýldý
-	*Admin areada çalýþan güncelleme kýsmý çalýþmýyor yapýalcak.					/*/*/*/MUSTAFA YAPACAK
-	*Satýþ yaparken kasiyer kendi ýd sini girmek zorunda oraya bir ayar çekilecek. /*/*/*/**/ Yapýldý
-
-	* TRY CATCH 
-
+******************Eksik olanlar////////////////////////////////// 
+*Ýþlemlerin çoðu controllerlarda service katmanýna taþýnacak                   /**//**/*//**/ Mustafa yapýyor(Âdmin area tamam)
+*Admin areada çalýþan güncelleme kýsmý çalýþmýyor yapýalcak.					/*/*/*/MUSTAFA YAPACAK
+* TRY CATCH 
 ------------------------------------------------------------------------------------------------------------------------
-
-	******************GENEL OLARAK YAPILACAKLAR///////////////////////////
-	*Sipariþ iþleminde depocuya kasiyer adý gönderiliyor bunun yerine kasa adý gönderilecek.
-	*Sipariþte ve muhasebe bölmünde bulunan fiyatlar döviz olarakta gösterilecek.
-	*Arka plana görsel eklenecek.
-	
+******************GENEL OLARAK YAPILACAKLAR///////////////////////////
+*Sipariþ iþleminde depocuya kasiyer adý gönderiliyor bunun yerine kasa adý gönderilecek.
+*Sipariþte ve muhasebe bölmünde bulunan fiyatlar döviz olarakta gösterilecek.
+*Arka plana görsel eklenecek.
 ------------------------------------------------------------------------------------------------------------------------
+1-Admin areada personel güncelleme kýsmý çalýþmýyor.
+3-kasiyerde sipariþ oluþtururken kasiyer ýd çýkýyor düzeltilecek.
+5-admin areada sipariþ oluþtururken kasiyer ýd çýkýyor düzeltilecek.
+6-Giriþ ekranýnda kullanýcý adýný girdikten sonra þifreyi yanlýþ veya eksik girersen hata veriyor düzeltilecek.
+10-Logout Kýsmý düzeltilecek.Yönlendirme Hatalý.                                                                     

@@ -6,6 +6,28 @@
     var orderId = ViewBag.OrderId;
     var orderList = TempData["OrderList"];
     var customer = ViewBag.Customer;
+
+    var Euro = ViewBag.Euro;
+    var Dolar = ViewBag.Dolar;
+}
+<label><b>Güncel Döviz Kurları</b></label>
+<table class="table table-bordered table-primary">
+    <thead>
+        <tr>
+            <th scope="col">Tarih</th>
+            <th scope="col">Dolar</th>
+            <th scope="col">Euro</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <th scope="row">@DateTime.Now</th>
+            <td>@Dolar</td>
+            <td>@Euro</td>
+        </tr>
+    </tbody>
+</table>
+<hr />
 }
 
 <label><b>Müşteri Bilgileri</b></label>
@@ -88,7 +110,7 @@
                         <span style="font-size:x-large" id="Total"></span>
                     </div>
                     <div class="card-footer">
-                        @Html.ActionLink("Kasaya Yönlendir", "Index", "Home",null, new { @class = "btn btn-success btn-sm mt-2" })
+                        @Html.ActionLink("Kasaya Yönlendir", "Index", "Home", null, new { @class = "btn btn-success btn-sm mt-2" })
 
                     </div>
                 </div>

@@ -1,4 +1,5 @@
-﻿using BLL.Repositories.Abstract;
+﻿using BLL.ApiData;
+using BLL.Repositories.Abstract;
 using DAL.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -78,6 +79,11 @@ namespace WebUI.Areas.MobileSales.Controllers
 
                 TempData["OrderList"] = orderList;
             }
+
+            EuroDolarXml euroDolar = new EuroDolarXml();
+
+            ViewBag.Euro = euroDolar.Euro;
+            ViewBag.Dolar = euroDolar.Dolar;
 
             var products = _productService.GetActive();
             var customers = _customerService.GetById(order.CustomerId);
@@ -172,6 +178,11 @@ namespace WebUI.Areas.MobileSales.Controllers
 
                 TempData["OrderList"] = orderList;
             }
+
+            EuroDolarXml euroDolar = new EuroDolarXml();
+
+            ViewBag.Euro = euroDolar.Euro;
+            ViewBag.Dolar = euroDolar.Dolar;
 
             var products = _productService.GetActive();
             var customers = _customerService.GetById(order.CustomerId);

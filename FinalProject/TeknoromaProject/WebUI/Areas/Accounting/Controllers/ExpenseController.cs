@@ -101,6 +101,7 @@ namespace WebUI.Areas.Accounting.Controllers
 
         public ActionResult EditEmployeePayment(Guid id)
         {
+            ViewBag.AppUser = appUserService.GetActive();
             var empPayment = employeePaymentService.GetById(id);
             return View(empPayment);
         }

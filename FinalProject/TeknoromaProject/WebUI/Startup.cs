@@ -31,7 +31,7 @@ namespace WebUI
 
             services.AddControllersWithViews();
 
-            services.AddDbContext<ApplicationDbContext>(x => x.UseSqlServer("Server=.;Database=Teknoroma;Trusted_Connection=True;"));
+            services.AddDbContext<ApplicationDbContext>(x => x.UseSqlServer("Server=DESKTOP-QR4J7JA\\SQLEXPRESS;Database=Teknoroma; Trusted_Connection=True;"));
 
             services.AddIdentity<AppUser, AppRole>(x =>
             {
