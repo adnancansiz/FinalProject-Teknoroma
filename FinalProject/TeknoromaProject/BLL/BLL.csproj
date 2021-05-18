@@ -13,8 +13,4 @@
     <ProjectReference Include="..\DAL\DAL.csproj" />
   </ItemGroup>
 
-  <ItemGroup>
-    <Folder Include="ViewModels\ReportsVM\" />
-  </ItemGroup>
-
 </Project>

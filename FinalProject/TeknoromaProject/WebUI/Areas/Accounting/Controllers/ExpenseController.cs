@@ -45,6 +45,7 @@ namespace WebUI.Areas.Accounting.Controllers
         {
             try
             {
+
                 expenseService.Create(expense);
                 return RedirectToAction(nameof(Index));
             }

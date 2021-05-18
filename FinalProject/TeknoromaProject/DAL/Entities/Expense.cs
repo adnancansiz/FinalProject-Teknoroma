@@ -18,7 +18,6 @@ namespace DAL.Entities
         public string Explanation { get; set; }
         public Payments Payments { get; set; }
         public DateTime PaymentDate { get; set; }
-        public string PayingUser { get; set; }
 
 
 

@@ -24,6 +24,7 @@ namespace BLL.Repositories.Concrete
 
         public void Create(Expense entity)
         {
+
             entity.CreatedBy = _signInManager.Context.User.Identity.Name;
             entity.CreatedComputerName = Environment.MachineName;
             entity.CreatedDate = DateTime.Now;

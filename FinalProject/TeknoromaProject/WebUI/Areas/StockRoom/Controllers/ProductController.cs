@@ -18,12 +18,14 @@ namespace WebUI.Areas.StockRoom.Controllers
         private readonly IProductService _productService;
         private readonly ISubCategoryService _subCategoryService;
         private readonly ISupplierService _supplierService;
+        private readonly ISupplierExpenseService _supplierExpenseService;
 
-        public ProductController(IProductService productService, ISubCategoryService subCategoryService, ISupplierService supplierService)
+        public ProductController(IProductService productService, ISubCategoryService subCategoryService, ISupplierService supplierService,ISupplierExpenseService supplierExpenseService)
         {
             _productService = productService;
             _subCategoryService = subCategoryService;
             _supplierService = supplierService;
+            _supplierExpenseService = supplierExpenseService;
         }
 
         public IActionResult Index()
@@ -104,22 +106,24 @@ namespace WebUI.Areas.StockRoom.Controllers
                 return View();
             }
         }
+
+
         public IActionResult AddStock(Guid id)
         {
             var product = _productService.GetById(id);
             var supplier = _supplierService.GetById(product.SupplierId);
             ViewBag.Supplier = supplier;
-            return View(product);
+            ViewBag.Product = product;
+            return View();
         }
 
+
         [HttpPost]
-        public IActionResult AddStock(Guid id, int stock)
+        public IActionResult AddStock(SupplierExpense supplierExpense)
         {
             try
             {
-                var product = _productService.GetById(id);
-                product.UnıtsInStock += stock;
-                _productService.Update(product);
+                _supplierExpenseService.Create(supplierExpense);
 
                 return RedirectToAction("Index");
             }

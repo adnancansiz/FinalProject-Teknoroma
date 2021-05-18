@@ -38,17 +38,26 @@
                     <tbody>
                         @foreach (Expense expenses in expense)
                         {
-                            <tr>
-                                <td>@expenses.PaymentDate</td>
-                                <td>@expenses.Payments</td>
-                                <td>@expenses.Amount</td>
-                                <td>@expenses.Explanation</td>
-                                <td>@expenses.PayingUser</td>
-                                <td>
-                                    @Html.ActionLink("Güncelle", "Edit", "Expense", new { id = expenses.Id }, new { @class = "btn btn-warning" })
-                                    @Html.ActionLink("Sil", "Delete", "Expense", new { id = expenses.Id }, new { @class = "btn btn-danger" })
-                                </td>
-                            </tr>
+                        <tr>
+                            <td>@expenses.PaymentDate</td>
+                            <td>@expenses.Payments</td>
+                            <td>@expenses.Amount</td>
+                            <td>@expenses.Explanation</td>
+                            @if (expenses.UpdatedBy == null)
+                            {
+                                <td>@expenses.CreatedBy</td>
+
+                            }
+                            else
+                            {
+                                <td>@expenses.UpdatedBy</td>
+
+                            }
+                            <td>
+                                @Html.ActionLink("Güncelle", "Edit", "Expense", new { id = expenses.Id }, new { @class = "btn btn-warning" })
+                                @Html.ActionLink("Sil", "Delete", "Expense", new { id = expenses.Id }, new { @class = "btn btn-danger" })
+                            </td>
+                        </tr>
                         }
 
                     </tbody>
@@ -91,23 +100,32 @@
                     <tbody>
                         @foreach (EmployeePayment employee in employeePayment)
                         {
-                            <tr>
-                                <td>@employee.PaymentDate</td>
-                                @foreach (AppUser user in appUser)
+                        <tr>
+                            <td>@employee.PaymentDate</td>
+                            @foreach (AppUser user in appUser)
+                            {
+                                if (user.Id == employee.AppUserId)
                                 {
-                                    if (user.Id == employee.AppUserId)
-                                    {
-                                        <td>@user.UserName</td>
-                                    }
+                                    <td>@user.UserName</td>
                                 }
-                                <td>@employee.Amount</td>
-                                <td>@employee.Explanation</td>
-                                <td>@employee.PayingUser</td>
-                                <td>
-                                    @Html.ActionLink("Güncelle", "EditEmployeePayment", "Expense", new { id = employee.Id }, new { @class = "btn btn-warning" })
-                                    @Html.ActionLink("Sil", "DeleteEmployeePayment", "Expense", new { id = employee.Id }, new { @class = "btn btn-danger" })
-                                </td>
-                            </tr>
+                            }
+                            <td>@employee.Amount</td>
+                            <td>@employee.Explanation</td>
+                            @if (employee.UpdatedBy == null)
+                            {
+                                <td>@employee.CreatedBy</td>
+
+                            }
+                            else
+                            {
+                                <td>@employee.UpdatedBy</td>
+
+                            }
+                            <td>
+                                @Html.ActionLink("Güncelle", "EditEmployeePayment", "Expense", new { id = employee.Id }, new { @class = "btn btn-warning" })
+                                @Html.ActionLink("Sil", "DeleteEmployeePayment", "Expense", new { id = employee.Id }, new { @class = "btn btn-danger" })
+                            </td>
+                        </tr>
                         }
 
                     </tbody>

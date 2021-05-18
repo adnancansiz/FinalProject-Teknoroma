@@ -18,14 +18,16 @@ namespace BLL.Repositories.Concrete
         private readonly IProductService _productService;
         private readonly SignInManager<AppUser> _signInManager;
         private readonly ICustomerService _customerService;
+        private readonly IAppUserService _appUserService;
 
-        public OrderService(ApplicationDbContext context, IOrderDetailService orderDetailService,IProductService productService, SignInManager<AppUser> signInManager,ICustomerService customerService)
+        public OrderService(ApplicationDbContext context, IOrderDetailService orderDetailService, IProductService productService, SignInManager<AppUser> signInManager, ICustomerService customerService,IAppUserService appUserService)
         {
             _context = context;
             _orderDetailService = orderDetailService;
             _productService = productService;
             _signInManager = signInManager;
             _customerService = customerService;
+            _appUserService = appUserService;
         }
 
         public Order AddOrderDetailInOrder(OrderDetail orderDetail)
@@ -45,11 +47,11 @@ namespace BLL.Repositories.Concrete
                     product.UnıtsInStock -= orderDetail.Quantity;
                     _productService.Update(product);
 
-                    return order ;
+                    return order;
                 }
                 else
                 {
-                   
+
                     detail.Quantity += orderDetail.Quantity;
 
                     product.UnıtsInStock -= orderDetail.Quantity;
@@ -73,6 +75,7 @@ namespace BLL.Repositories.Concrete
 
         public void Create(Order entity)
         {
+
             entity.CreatedBy = _signInManager.Context.User.Identity.Name;
             entity.CreatedComputerName = Environment.MachineName;
             entity.CreatedDate = DateTime.Now;
@@ -108,7 +111,7 @@ namespace BLL.Repositories.Concrete
             {
                 var orderList = _orderDetailService.GetByDefault(x => x.OrderId == order.Id);
 
-              //  TempData["OrderList"] = orderList;
+                //  TempData["OrderList"] = orderList;
             }
 
             return true;

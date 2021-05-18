@@ -1,4 +1,5 @@
 ﻿
+using BLL.ViewModels.ReportsVM;
 using DAL.Entities;
 using System;
 using System.Collections.Generic;
@@ -8,6 +9,5 @@ namespace BLL.Repositories.Abstract
 {
     public interface IProductService:IGenericService<Product>
     {
-       
     }
 }

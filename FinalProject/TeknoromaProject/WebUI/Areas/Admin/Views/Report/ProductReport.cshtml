@@ -1,9 +1,47 @@
-﻿
+﻿@model List<Product>
+
 @{
     ViewData["Title"] = "ProductReport";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
 
-<h1>ÇALIŞ ADNAN ÇALIŞ</h1>
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Satışı Durdurulan Ürünler / Listesi</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Ürün </th>
+                            <th>Stok</th>
+                            <th>Drum</th>
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Ürün </th>
+                            <th>Stok</th>
+                            <th>Drum</th>
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (Product top10 in Model)
+                        {
+                            <tr>
+                                <td>@top10.ProductName</td>
+                                <td>@top10.UnıtsInStock</td>
+                                <td>@top10.Status</td>
+                            </tr>
+                        }
 
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>

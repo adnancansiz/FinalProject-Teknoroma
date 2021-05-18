@@ -3,7 +3,6 @@
     ViewData["Title"] = "CreateOrder";
     Layout = "~/Areas/MobileSales/Views/Shared/_Layout.cshtml";
 
-    var customerId = ViewBag.CustomerId;
 
 }
 
@@ -60,10 +59,7 @@
                     <label>Müşteri TCKN</label>
                     <input asp-for="Customer.TC" type="text" class="form-control" />
                 </div>
-                <div class="form-group">
-                    <label>Kasiyer ID</label>
-                    <input asp-for="AppUserId" value="@customerId" type="text" class="form-control" />
-                </div>
+                
 
                 <button class="btn btn-primary" asp-action="Create" asp-controller="Order">Kaydet</button>
             </form>

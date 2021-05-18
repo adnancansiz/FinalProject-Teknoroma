@@ -1,6 +1,8 @@
 ﻿using BLL.Repositories.Abstract;
+using DAL.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
@@ -13,19 +15,19 @@ namespace WebUI.Areas.MobileSales.Controllers
     [Authorize(Roles = "MobileSales")]
     public class HomeController : Controller
     {
-        private readonly IAppUserService appUserService;
+        private readonly SignInManager<AppUser> _signInManager;
 
-        public HomeController(IAppUserService appUserService)
+        public HomeController(SignInManager<AppUser> signInManager)
         {
-            this.appUserService = appUserService;
+
+            _signInManager = signInManager;
         }
 
         public ActionResult Index()
         {
-            var user = User.Identity.Name;
-            var users = appUserService.GetByDefault(x => x.UserName == user);
+            var user = _signInManager.UserManager.FindByNameAsync(User.Identity.Name).Result;
 
-            return View(users[0]);
+            return View(user);
         }
     }
 }

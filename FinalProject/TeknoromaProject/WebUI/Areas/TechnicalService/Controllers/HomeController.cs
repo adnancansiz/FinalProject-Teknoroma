@@ -14,28 +14,28 @@ namespace WebUI.Areas.TechnicalService.Controllers
     [Authorize(Roles = "TechnicalService")]
     public class HomeController : Controller
     {
-        private readonly IIssueService ıssueService;
-        private readonly IAppUserService appUserService;
+        private readonly IIssueService _ıssueService;
+        private readonly IAppUserService _appUserService;
 
         public HomeController(IIssueService ıssueService,IAppUserService appUserService)
         {
-            this.ıssueService = ıssueService;
-            this.appUserService = appUserService;
+            _ıssueService = ıssueService;
+            _appUserService = appUserService;
         }
 
         public ActionResult Index()
         {
-            ViewBag.AppUser = appUserService.GetActive();
-            ViewBag.OpenIssue = ıssueService.GetByDefault(x => x.IssueStatus == DAL.Entities.Enum.IssueStatus.Open);
-            ViewBag.CheckingIssue = ıssueService.GetByDefault(x => x.IssueStatus == DAL.Entities.Enum.IssueStatus.Checking);
-            ViewBag.ClosedIssue = ıssueService.GetByDefault(x => x.IssueStatus == DAL.Entities.Enum.IssueStatus.Closed);
+            ViewBag.AppUser = _appUserService.GetActive();
+            ViewBag.OpenIssue = _ıssueService.GetByDefault(x => x.IssueStatus == DAL.Entities.Enum.IssueStatus.Open);
+            ViewBag.CheckingIssue = _ıssueService.GetByDefault(x => x.IssueStatus == DAL.Entities.Enum.IssueStatus.Checking);
+            ViewBag.ClosedIssue = _ıssueService.GetByDefault(x => x.IssueStatus == DAL.Entities.Enum.IssueStatus.Closed);
             return View();
         }
 
         
         public ActionResult Details(Guid id)
         {
-            var ıssue = ıssueService.GetById(id);
+            var ıssue = _ıssueService.GetById(id);
 
             return View(ıssue);
         }
@@ -64,23 +64,23 @@ namespace WebUI.Areas.TechnicalService.Controllers
         
         public ActionResult UpdateStatus(Guid id)
         {
-            var ıssue = ıssueService.GetById(id);
+            var ıssue = _ıssueService.GetById(id);
             ıssue.IssueStatus = DAL.Entities.Enum.IssueStatus.Checking;
-            ıssueService.Update(ıssue);
+            _ıssueService.Update(ıssue);
             return RedirectToAction(nameof(Index));
         }
 
         public ActionResult ClosedDetails(Guid id)
         {
-            ViewBag.AppUser = appUserService.GetActive();
-            var ıssue = ıssueService.GetById(id);
+            ViewBag.AppUser = _appUserService.GetActive();
+            var ıssue = _ıssueService.GetById(id);
             return View(ıssue);
         }
 
         public ActionResult Edit(Guid id)
         {
-            ViewBag.AppUser = appUserService.GetActive();
-            var ıssue = ıssueService.GetById(id);
+            ViewBag.AppUser = _appUserService.GetActive();
+            var ıssue = _ıssueService.GetById(id);
             return View(ıssue);
         }
 
@@ -92,7 +92,7 @@ namespace WebUI.Areas.TechnicalService.Controllers
             try
             {
                 ıssue.IssueStatus = DAL.Entities.Enum.IssueStatus.Closed;
-                ıssueService.Update(ıssue);
+                _ıssueService.Update(ıssue);
                 return RedirectToAction(nameof(Index));
             }
             catch(Exception ex)

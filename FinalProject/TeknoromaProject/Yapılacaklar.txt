@@ -1,29 +1,21 @@
 ----------------------------------------------------------------------------------------------------------------------
 ***Þube Müdürü
--Satýþ Takip raporu
-	*Hangi çalýþan ne kadar satýþ yapmýþ ?   
+-Satýþ Takip raporu	
 	*En çok satýlan 10 ürünü alan müþterilerin cinsiyet ve yaþý			
 	(en çok satýlan ürünlerin yanýnda satýlan ürünler)
--Tedarikçi hareket raporu
-	*Hangi tedarikçiden bu ay hangi ürünleri almýþýz ve toplamda ne kadar almýþýz?
 -Ürün liste raporu
 	*Kategorilere göre ürün bilgileri
-	*Þu an satmadýðýmýz eskiden sattýðýmýz ürünler ve bu ürünlerden kaç adet olduðu
 -Gider raporu
 	*Muhasebe iþlemleri
 -----------------------------------------------------------------------------------------------------------------------
 ***Muhasebe
 -Ödemeler , parasal iþlemler.
--Aylýk olarak giriþ çýkýþlar.
+-Aylýk olarak giriþ çýkýþlar.                                        **Not : SupplierExpenseService içinde GetMountyreport var bunu bakarak uyarlama yapabilirsin yoksa ben hallderim. ** 
 -Ekranýna döviz kuru eklenecek.
 **************************************
--Çalýþan ödemeleri oluþturma/düzenleme/silme yapýldý
--diðer ödelemeler  oluþturma/düzenleme/silme yapýldý
 RAPORLAMA VE DÖVÝZ KURU ÝÞLEMÝ KALDI.
 ------------------------------------------------------------------------------------------------------------------------
 ******************Eksik olanlar////////////////////////////////// 
-*Ýþlemlerin çoðu controllerlarda service katmanýna taþýnacak                   /**//**/*//**/ Mustafa yapýyor(Âdmin area tamam)
-*Admin areada çalýþan güncelleme kýsmý çalýþmýyor yapýalcak.					/*/*/*/MUSTAFA YAPACAK
 * TRY CATCH 
 ------------------------------------------------------------------------------------------------------------------------
 ******************GENEL OLARAK YAPILACAKLAR///////////////////////////
@@ -32,7 +24,5 @@ RAPORLAMA VE DÖVÝZ KURU ÝÞLEMÝ KALDI.
 *Arka plana görsel eklenecek.
 ------------------------------------------------------------------------------------------------------------------------
 1-Admin areada personel güncelleme kýsmý çalýþmýyor.
-3-kasiyerde sipariþ oluþtururken kasiyer ýd çýkýyor düzeltilecek.
-5-admin areada sipariþ oluþtururken kasiyer ýd çýkýyor düzeltilecek.
 6-Giriþ ekranýnda kullanýcý adýný girdikten sonra þifreyi yanlýþ veya eksik girersen hata veriyor düzeltilecek.
 10-Logout Kýsmý düzeltilecek.Yönlendirme Hatalý.                                                                     

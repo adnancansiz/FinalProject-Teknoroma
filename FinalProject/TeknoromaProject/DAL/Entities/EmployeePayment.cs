@@ -16,7 +16,6 @@ namespace DAL.Entities
         public decimal Amount { get; set; }
         public string Explanation { get; set; }
         public DateTime PaymentDate { get; set; }
-        public string PayingUser { get; set; }
 
         public AppUser AppUser { get; set; }
         public Guid AppUserId { get; set; }

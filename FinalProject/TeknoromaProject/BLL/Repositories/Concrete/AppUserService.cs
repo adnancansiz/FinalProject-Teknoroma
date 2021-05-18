@@ -29,21 +29,8 @@ namespace BLL.Repositories.Concrete
 
         public void Create(AppUser entity)
         {
-            //AppUser user = new AppUser
-            //{
-            //    UserName = entity.UserName,
-            //    FirstName = entity.FirstName,
-            //    LastName = entity.LastName,
-            //    Email = entity.Email,
-            //    PhoneNumber = entity.PhoneNumber,
-            //    Address = entity.Address
-                
-            //};
-            //var result = userManager.CreateAsync(user, entity.Password);
-            //context.SaveChanges();
+            throw new NotImplementedException();
         }
-
-        
 
         public void Delete(AppUser entity)
         {
@@ -73,7 +60,7 @@ namespace BLL.Repositories.Concrete
         {
             var user = _context.Users.FirstOrDefault(x => x.Id == id);
             return user;
-        }
+        }     
 
         public void MonthlySalesBonus(List<OrderDetail> orderDetails, AppUser user)
         {
@@ -182,22 +169,6 @@ namespace BLL.Repositories.Concrete
         {
            return _context.Users.ToList();
         }
-
-        //public async Task<IActionResult> CreateUser(AppUser entity)
-        //{
-        //    AppUser user = new AppUser
-        //    {
-        //        UserName = entity.UserName,
-        //        FirstName = entity.FirstName,
-        //        LastName = entity.LastName,
-        //        Email = entity.Email,
-        //        PhoneNumber = entity.PhoneNumber,
-        //        Address = entity.Address,
-        //        Password = entity.Password
-        //    };
-        //    var result = await userManager.CreateAsync(user, entity.Password);
-        //    context.SaveChanges();
-
-        //}
+       
     }
 }

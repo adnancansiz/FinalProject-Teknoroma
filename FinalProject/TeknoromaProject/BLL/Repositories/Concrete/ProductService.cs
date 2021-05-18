@@ -1,4 +1,5 @@
 ﻿using BLL.Repositories.Abstract;
+using BLL.ViewModels.ReportsVM;
 using DAL.Context;
 using DAL.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -64,7 +65,6 @@ namespace BLL.Repositories.Concrete
             return _context.Products.FirstOrDefault(x => x.Id == id);
         }
 
-      
 
         public void Update(Product entity)
         {
@@ -75,14 +75,14 @@ namespace BLL.Repositories.Concrete
 
             if (entity.Status == DAL.Entities.Enum.Status.Deleted)
             {
-              
+
             }
             else
             {
-               
+
                 entity.Status = DAL.Entities.Enum.Status.Updated;
             }
-           
+
 
             if (entity.UnıtsInStock > 0)
             {
@@ -90,8 +90,8 @@ namespace BLL.Repositories.Concrete
                 _context.SaveChanges();
 
             }
-           
-            
+
+
         }
     }
 }

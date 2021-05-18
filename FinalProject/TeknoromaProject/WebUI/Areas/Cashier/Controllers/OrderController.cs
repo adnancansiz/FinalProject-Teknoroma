@@ -26,7 +26,7 @@ namespace WebUI.Areas.Cashier.Controllers
         public OrderController(IOrderService orderService, IOrderDetailService orderDetailService, ICustomerService customerService, IProductService productService, IAppUserService appUserService, SignInManager<AppUser> signInManager)
         {
             _orderService = orderService;
-           _orderDetailService = orderDetailService;
+            _orderDetailService = orderDetailService;
             _customerService = customerService;
             _productService = productService;
             _appUserService = appUserService;
@@ -56,6 +56,7 @@ namespace WebUI.Areas.Cashier.Controllers
 
         public ActionResult Create(Order order)
         {
+            order.AppUser = _signInManager.UserManager.FindByNameAsync(User.Identity.Name).Result;
 
             if (order.CustomerId == Guid.Empty)
             {
@@ -82,7 +83,7 @@ namespace WebUI.Areas.Cashier.Controllers
             }
 
             EuroDolarXml euroDolar = new EuroDolarXml();
-            
+
             ViewBag.Euro = euroDolar.Euro;
             ViewBag.Dolar = euroDolar.Dolar;
 

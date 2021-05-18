@@ -1,8 +1,57 @@
-﻿
+﻿@model List<AppUser>
 @{
     ViewData["Title"] = "SalesTrackingReport";
     Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
 }
 
-<h1>SalesTrackingReport</h1>
+<div class="container-fluid">
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Tedarikçi Raporu / Tüm Zaman</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>Kullanıcı Adı </th>
+                            <th>Adı </th>
+                            <th>Soyadı</th>
+                            <th>Telefon</th>
+                            <th>Toplam Satış</th>
+                            <th>Bonus</th>
+
+                        </tr>
+                    </thead>
+                    <tfoot>
+                        <tr>
+                            <th>Kullanıcı Adı </th>
+                            <th>Adı </th>
+                            <th>Soyadı</th>
+                            <th>Telefon</th>
+                            <th>Toplam Satış</th>
+                            <th>Bonus</th>
+
+                        </tr>
+                    </tfoot>
+                    <tbody>
+                        @foreach (AppUser user in Model)
+                        {
+                        <tr>
+                            <td>@user.UserName</td>
+                            <td>@user.FirstName</td>
+                            <td>@user.LastName</td>
+                            <td>@user.PhoneNumber</td>
+                            <td>@user.MonthlySales</td>
+                            <td>@user.Bonus</td>
+                        </tr>
+                        }
+
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+</div>
 

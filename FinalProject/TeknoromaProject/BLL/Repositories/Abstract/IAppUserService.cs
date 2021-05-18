@@ -17,5 +17,6 @@ namespace BLL.Repositories.Abstract
         AppUser Register(AppUser register);
 
         List<AppUser> UserList();
+
     }
 }

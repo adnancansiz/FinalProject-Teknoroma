@@ -46,17 +46,15 @@ namespace WebUI.Areas.Admin.Controllers
         public ActionResult CreateOrder()
         {           
 
-            ViewBag.Customer = _customerService.GetActive();
-
-            var userName = _signInManager.Context.User.Identity.Name;
-            var customers = _appUserService.GetByDefault(x => x.UserName == userName);
-            ViewBag.CustomerId = customers[0].Id;
-
+            ViewBag.Customer = _customerService.GetActive();           
             return View();
         }
 
         public ActionResult Create(Order order)
         {
+            order.AppUser = _signInManager.UserManager.FindByNameAsync(User.Identity.Name).Result;
+
+
             if (order.CustomerId == Guid.Empty)
             {
                 var customer = _customerService.FindByTC(order.Customer.TC);

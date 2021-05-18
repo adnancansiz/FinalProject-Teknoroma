@@ -47,15 +47,14 @@ namespace WebUI.Areas.MobileSales.Controllers
         {
             ViewBag.Customer = _customerService.GetActive();
 
-            var userName = _signInManager.Context.User.Identity.Name;
-            var customers = _appUserService.GetByDefault(x => x.UserName == userName);
-            ViewBag.CustomerId = customers[0].Id;
-
             return View();
         }
 
         public ActionResult Create(Order order)
         {
+
+            order.AppUser = _signInManager.UserManager.FindByNameAsync(User.Identity.Name).Result;
+
             if (order.CustomerId == Guid.Empty)
             {
                 var customer = _customerService.FindByTC(order.Customer.TC);
