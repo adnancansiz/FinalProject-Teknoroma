@@ -22,6 +22,7 @@
                             <th>Tutar</th>
                             <th>Açıklama</th>
                             <th>Ödemeyi Yapan</th>
+                            <th>Kur Bilgisi</th>
                             <th>İşlemler</th>
                         </tr>
                     </thead>
@@ -32,6 +33,7 @@
                             <th>Tutar</th>
                             <th>Açıklama</th>
                             <th>Ödemeyi Yapan</th>
+                            <th>Kur Bilgisi</th>
                             <th>İşlemler</th>
                         </tr>
                     </tfoot>
@@ -43,6 +45,7 @@
                             <td>@expenses.Payments</td>
                             <td>@expenses.Amount</td>
                             <td>@expenses.Explanation</td>
+
                             @if (expenses.UpdatedBy == null)
                             {
                                 <td>@expenses.CreatedBy</td>
@@ -53,6 +56,7 @@
                                 <td>@expenses.UpdatedBy</td>
 
                             }
+                            <td>@expenses.Dolar/@expenses.Euro</td>
                             <td>
                                 @Html.ActionLink("Güncelle", "Edit", "Expense", new { id = expenses.Id }, new { @class = "btn btn-warning" })
                                 @Html.ActionLink("Sil", "Delete", "Expense", new { id = expenses.Id }, new { @class = "btn btn-danger" })
@@ -84,6 +88,7 @@
                             <th>Tutar</th>
                             <th>Açıklama</th>
                             <th>Ödemeyi Yapan</th>
+                            <th>Kur Bilgisi</th>
                             <th>İşlemler</th>
                         </tr>
                     </thead>
@@ -94,6 +99,7 @@
                             <th>Tutar</th>
                             <th>Açıklama</th>
                             <th>Ödemeyi Yapan</th>
+                            <th>Kur Bilgisi</th>
                             <th>İşlemler</th>
                         </tr>
                     </tfoot>
@@ -121,6 +127,7 @@
                                 <td>@employee.UpdatedBy</td>
 
                             }
+                            <td>@employee.Dolar/@employee.Euro</td>
                             <td>
                                 @Html.ActionLink("Güncelle", "EditEmployeePayment", "Expense", new { id = employee.Id }, new { @class = "btn btn-warning" })
                                 @Html.ActionLink("Sil", "DeleteEmployeePayment", "Expense", new { id = employee.Id }, new { @class = "btn btn-danger" })

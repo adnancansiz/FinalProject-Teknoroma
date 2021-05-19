@@ -1489,3 +1489,6 @@ C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3
 C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.dll
 C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.pdb
 C:\Users\mstfc\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.genruntimeconfig.cache
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Accounting\Views\Expense\Sales.cshtml.g.cs
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Report\CategoryReport.cshtml.g.cs
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Report\ProductList.cshtml.g.cs

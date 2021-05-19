@@ -1,4 +1,5 @@
-﻿using BLL.Repositories.Abstract;
+﻿using BLL.ApiData;
+using BLL.Repositories.Abstract;
 using DAL.Entities;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
@@ -17,12 +18,16 @@ namespace WebUI.Areas.Accounting.Controllers
         private readonly IExpenseService expenseService;
         private readonly IAppUserService appUserService;
         private readonly IEmployeePaymentService employeePaymentService;
+        private readonly IOrderService orderService;
+        private readonly ICustomerService customerService;
 
-        public ExpenseController(IExpenseService expenseService,IAppUserService appUserService,IEmployeePaymentService employeePaymentService)
+        public ExpenseController(IExpenseService expenseService,IAppUserService appUserService,IEmployeePaymentService employeePaymentService,IOrderService orderService,ICustomerService customerService)
         {
             this.expenseService = expenseService;
             this.appUserService = appUserService;
             this.employeePaymentService = employeePaymentService;
+            this.orderService = orderService;
+            this.customerService = customerService;
         }
 
         public ActionResult Index()
@@ -33,8 +38,19 @@ namespace WebUI.Areas.Accounting.Controllers
             return View();
         }
 
+        public ActionResult Sales()
+        {
+            ViewBag.Customer = customerService.GetActive();
+            ViewBag.AppUser = appUserService.GetActive();
+            var complatedOrder = orderService.GetByDefault(x => x.OrderStatus == DAL.Entities.Enum.OrderStatus.Completed);
+            return View(complatedOrder);
+        }
+
         public ActionResult Create()
         {
+            EuroDolarXml doviz = new EuroDolarXml();
+            ViewBag.Dolar = doviz.Dolar;
+            ViewBag.Euro = doviz.Euro;
             return View();
         }
 
@@ -55,8 +71,12 @@ namespace WebUI.Areas.Accounting.Controllers
             }
         }
 
+
         public ActionResult CreateEmployeePayment()
         {
+            EuroDolarXml doviz = new EuroDolarXml();
+            ViewBag.Dolar = doviz.Dolar;
+            ViewBag.Euro = doviz.Euro;
             ViewBag.AppUser = appUserService.GetActive();
             return View();
         }

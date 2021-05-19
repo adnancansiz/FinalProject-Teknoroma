@@ -19,14 +19,22 @@ namespace WebUI.Areas.Admin.Controllers
         private readonly ISupplierService _supplierService;
         private readonly IAppUserService _appUserService;
         private readonly IOrderDetailService _orderDetailService;
+        private readonly IExpenseService _expenseService;
+        private readonly IEmployeePaymentService _employeePaymentService;
+        private readonly ICategoryService _categoryService;
+        private readonly ISubCategoryService _subCategoryService;
 
-        public ReportController(ISupplierExpenseService supplierExpenseService, IProductService productService, ISupplierService supplierService,IAppUserService appUserService,IOrderDetailService orderDetailService)
+        public ReportController(ISupplierExpenseService supplierExpenseService, IProductService productService, ISupplierService supplierService,IAppUserService appUserService,IOrderDetailService orderDetailService,IExpenseService expenseService,IEmployeePaymentService employeePaymentService,ICategoryService categoryService,ISubCategoryService subCategoryService)
         {
             _supplierExpenseService = supplierExpenseService;
             _productService = productService;
             _supplierService = supplierService;
             _appUserService = appUserService;
             _orderDetailService = orderDetailService;
+            _expenseService = expenseService;
+            _employeePaymentService = employeePaymentService;
+            _categoryService = categoryService;
+            _subCategoryService = subCategoryService;
         }
 
 
@@ -48,8 +56,27 @@ namespace WebUI.Areas.Admin.Controllers
 
         }
 
+        public IActionResult CategoryReport()
+        {
+            ViewBag.SubCategory = _subCategoryService.GetActive();
+            return View(_categoryService.GetActive());
+        }
+
+        public IActionResult ProductList(Guid id)
+        {
+            var productList = _productService.GetByDefault(x => x.SubCategoryId == id);
+            ViewBag.Suppliers = _supplierService.GetActive();
+            ViewBag.subCategories = _subCategoryService.GetActive();
+
+            return View(productList);
+        }
+
         public IActionResult ExpenseReport()
         {
+            ViewBag.Expense = _expenseService.GetActive();
+            ViewBag.EmployeePayment = _employeePaymentService.GetActive();
+            ViewBag.AppUser = _appUserService.GetActive();
+
             return View();
         }
 
@@ -59,5 +86,6 @@ namespace WebUI.Areas.Admin.Controllers
            
             return View(users);
         }
+
     }
 }

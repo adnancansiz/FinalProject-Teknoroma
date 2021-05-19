@@ -3,17 +3,11 @@
 -Satýþ Takip raporu	
 	*En çok satýlan 10 ürünü alan müþterilerin cinsiyet ve yaþý			
 	(en çok satýlan ürünlerin yanýnda satýlan ürünler)
--Ürün liste raporu
-	*Kategorilere göre ürün bilgileri
--Gider raporu
-	*Muhasebe iþlemleri
 -----------------------------------------------------------------------------------------------------------------------
 ***Muhasebe
--Ödemeler , parasal iþlemler.
--Aylýk olarak giriþ çýkýþlar.                                        **Not : SupplierExpenseService içinde GetMountyreport var bunu bakarak uyarlama yapabilirsin yoksa ben hallderim. ** 
--Ekranýna döviz kuru eklenecek.
+-Aylýk olarak giriþ çýkýþlar. **Not : SupplierExpenseService içinde GetMountyreport var bunu bakarak uyarlama yapabilirsin yoksa ben hallderim. ** 
 **************************************
-RAPORLAMA VE DÖVÝZ KURU ÝÞLEMÝ KALDI.
+RAPORLAMA ÝÞLEMÝ KALDI.
 ------------------------------------------------------------------------------------------------------------------------
 ******************Eksik olanlar////////////////////////////////// 
 * TRY CATCH 

@@ -14,7 +14,13 @@ namespace DAL.Entities
 
         [Column(TypeName = "money")]
         public decimal Amount { get; set; }
+
+        [Column(TypeName = "money")]
+        public decimal Euro { get; set; }
+        [Column(TypeName = "money")]
+        public decimal Dolar { get; set; }
         public string Explanation { get; set; }
+
         public DateTime PaymentDate { get; set; }
 
         public AppUser AppUser { get; set; }

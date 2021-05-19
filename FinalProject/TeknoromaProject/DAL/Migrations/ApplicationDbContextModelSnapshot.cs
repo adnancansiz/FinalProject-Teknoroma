@@ -294,14 +294,17 @@ namespace DAL.Migrations
                     b.Property<string>("CreatedIP")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("Dolar")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("Euro")
+                        .HasColumnType("money");
+
                     b.Property<string>("Explanation")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MasterId")
                         .HasColumnType("int");
-
-                    b.Property<string>("PayingUser")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("PaymentDate")
                         .HasColumnType("datetime2");
@@ -352,14 +355,17 @@ namespace DAL.Migrations
                     b.Property<string>("CreatedIP")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("Dolar")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("Euro")
+                        .HasColumnType("money");
+
                     b.Property<string>("Explanation")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MasterId")
                         .HasColumnType("int");
-
-                    b.Property<string>("PayingUser")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("PaymentDate")
                         .HasColumnType("datetime2");
