@@ -1,21 +1,13 @@
-----------------------------------------------------------------------------------------------------------------------
-***Þube Müdürü
--Satýþ Takip raporu	
-	*En çok satýlan 10 ürünü alan müþterilerin cinsiyet ve yaþý			
-	(en çok satýlan ürünlerin yanýnda satýlan ürünler)
------------------------------------------------------------------------------------------------------------------------
-***Muhasebe
--Aylýk olarak giriþ çýkýþlar. **Not : SupplierExpenseService içinde GetMountyreport var bunu bakarak uyarlama yapabilirsin yoksa ben hallderim. ** 
-**************************************
-RAPORLAMA ÝÞLEMÝ KALDI.
-------------------------------------------------------------------------------------------------------------------------
-******************Eksik olanlar////////////////////////////////// 
-* TRY CATCH 
-------------------------------------------------------------------------------------------------------------------------
-******************GENEL OLARAK YAPILACAKLAR///////////////////////////
-*Sipariþte ve muhasebe bölmünde bulunan fiyatlar döviz olarakta gösterilecek.
-*Arka plana görsel eklenecek.
-------------------------------------------------------------------------------------------------------------------------
-1-Admin areada personel güncelleme kýsmý çalýþmýyor.
-6-Giriþ ekranýnda kullanýcý adýný girdikten sonra þifreyi yanlýþ veya eksik girersen hata veriyor düzeltilecek.    /**//*/* WTF IS THIS
-                                                            
+
+------------------------------------------------------SON KONTROL--------------------------------------------------------
+-- admin hariç diðer arealarda sorun bildir kýsmý yok yapýalcak
+
+--keyfi olarak product ve satýþ ekranýa o anki döviz karþýlýklarý eklenebilir.
+
+--TRY CATCH 
+
+--keyfi olarak arka plana resim eklenebilir. 
+
+--controllerlarda conslarda this olan yerler düzeltilecek.
+
+--admin areada personel güncellemesi çalýþmýyor.

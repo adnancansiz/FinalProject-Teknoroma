@@ -314,7 +314,7 @@ namespace DAL.Context
                 product.SubCategoryId = subCategory.Id;
                 product.ProductName = "İphone 11 Red";
                 product.SupplierId = supplier.Id;
-                product.UnitPrice = 7999;
+                product.UnitPrice = 1000;
                 product.UnıtsInStock = 100;
                 context.Products.Add(product);
 
@@ -324,7 +324,7 @@ namespace DAL.Context
                 product1.SubCategoryId = subCategory.Id;
                 product1.ProductName = "İphone 11 Black";             
                 product1.SupplierId = supplier.Id;
-                product1.UnitPrice = 7999;
+                product1.UnitPrice = 1000;
                 product1.UnıtsInStock = 100;
                 context.Products.Add(product1);
 
@@ -334,7 +334,7 @@ namespace DAL.Context
                 product2.SubCategoryId = subCategory.Id;
                 product2.ProductName = "İphone 11 Purple";               
                 product2.SupplierId = supplier.Id;
-                product2.UnitPrice = 7999;
+                product2.UnitPrice = 1000;
                 product2.UnıtsInStock = 100;
                 context.Products.Add(product2);
 
@@ -344,7 +344,7 @@ namespace DAL.Context
                 product3.SubCategoryId = subCategory1.Id;
                 product3.ProductName = "Arçelik A+ 490LT Buzdolabı";                
                 product3.SupplierId = supplier1.Id;
-                product3.UnitPrice = 4999;
+                product3.UnitPrice = 1000;
                 product3.UnıtsInStock = 100;
                 context.Products.Add(product3);
 
@@ -354,7 +354,7 @@ namespace DAL.Context
                 product4.SubCategoryId = subCategory1.Id;
                 product4.ProductName = "Arçelik A+ 520LT Buzdolabı";
                 product4.SupplierId = supplier1.Id;
-                product4.UnitPrice = 4999;
+                product4.UnitPrice = 1000;
                 product4.UnıtsInStock = 100;
                 context.Products.Add(product4);
 
@@ -362,35 +362,35 @@ namespace DAL.Context
                 SupplierExpense expense1 = new SupplierExpense();
                 expense1.Id = new Guid();
                 expense1.ProductId = product.Id;
-                expense1.Price = 6999;
+                expense1.Price = 500;
                 expense1.Quantity = 100;
                 context.SupplierExpenses.Add(expense1);
 
                 SupplierExpense expense2 = new SupplierExpense();
                 expense2.Id = new Guid();
                 expense2.ProductId = product1.Id;
-                expense2.Price = 6999;
+                expense2.Price = 500;
                 expense2.Quantity = 100;
                 context.SupplierExpenses.Add(expense2);
 
                 SupplierExpense expense3 = new SupplierExpense();
                 expense3.Id = new Guid();
                 expense3.ProductId = product2.Id;
-                expense3.Price = 6999;
+                expense3.Price = 500;
                 expense3.Quantity = 100;
                 context.SupplierExpenses.Add(expense3);
 
                 SupplierExpense expense4 = new SupplierExpense();
                 expense4.Id = new Guid();
                 expense4.ProductId = product3.Id;
-                expense4.Price = 3999;
+                expense4.Price = 500;
                 expense4.Quantity = 100;
                 context.SupplierExpenses.Add(expense4);
 
                 SupplierExpense expense5 = new SupplierExpense();
                 expense5.Id = new Guid();
                 expense5.ProductId = product4.Id;
-                expense5.Price = 3999;
+                expense5.Price = 500;
                 expense5.Quantity = 100;
                 context.SupplierExpenses.Add(expense5);
 

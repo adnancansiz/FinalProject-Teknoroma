@@ -1737,3 +1737,4 @@ C:\Users\mstfc\Desktop\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.cspr
 C:\Users\mstfc\Desktop\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.dll
 C:\Users\mstfc\Desktop\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.pdb
 C:\Users\mstfc\Desktop\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.genruntimeconfig.cache
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Accounting\Views\Expense\SelectMount.cshtml.g.cs

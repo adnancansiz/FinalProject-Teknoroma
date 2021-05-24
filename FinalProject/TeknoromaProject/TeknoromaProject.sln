@@ -13,10 +13,11 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Common", "Common\Common.csp
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{BF86B7EA-029F-478F-90D4-665148CA5E3F}"
 	ProjectSection(SolutionItems) = preProject
+		Teknoroma-ReadMe.txt = Teknoroma-ReadMe.txt
 		Yapılacaklar.txt = Yapılacaklar.txt
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WebApi", "WebApi\WebApi.csproj", "{676F76F6-C716-494A-B489-E3DC25791218}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "WebApi", "WebApi\WebApi.csproj", "{676F76F6-C716-494A-B489-E3DC25791218}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

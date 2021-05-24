@@ -66,26 +66,34 @@ namespace BLL.Repositories.Concrete
         {
             var limit = 10000;
             var cut = 0.1;
-            foreach(OrderDetail od in orderDetails)
+            var toplamSatış = 0;
+            foreach (OrderDetail od in orderDetails)
             {
-                if (user.MonthlySales <= limit)
+                toplamSatış += od.Quantity * (int)od.UnitPrice;
+            }
+
+
+            if (user.MonthlySales >= limit)
+            {
+                var bonus = toplamSatış * cut;
+                user.Bonus += (decimal)bonus;
+                user.MonthlySales += toplamSatış;
+            }
+            else
+            {
+                if (toplamSatış >= limit)
                 {
-
-                    user.MonthlySales += od.UnitPrice * od.Quantity;
-
-                    if (user.MonthlySales > limit)
-                    {
-                        var addBonus = user.MonthlySales - limit;
-                        user.Bonus += addBonus * (decimal)cut;
-                    }
-
+                    var bonus = (toplamSatış - limit) * cut;
+                    user.Bonus += (decimal)bonus;
+                    user.MonthlySales += toplamSatış;
                 }
                 else
                 {
-                    user.Bonus += (user.MonthlySales - limit) * (decimal)cut;
-                    user.Bonus += (od.UnitPrice * od.Quantity) * (decimal)cut;
+                    user.MonthlySales += toplamSatış;
                 }
             }
+
+
 
             Update(user);
         }

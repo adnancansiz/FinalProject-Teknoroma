@@ -1,4 +1,5 @@
 ﻿using BLL.Repositories.Abstract;
+using BLL.ViewModels.ReportsVM;
 using DAL.Context;
 using DAL.Entities;
 using Microsoft.AspNetCore.Identity;
@@ -63,6 +64,60 @@ namespace BLL.Repositories.Concrete
         public Expense GetById(Guid id)
         {
             return _context.Expenses.FirstOrDefault(x => x.Id == id);
+        }
+
+        public List<MountlySalesVM> MountlySales(DateTime startDate)
+        {
+            var query = from c in _context.Customers
+                        join o in _context.Orders on c.Id equals o.CustomerId
+                        join od in _context.OrderDetails on o.Id equals od.OrderId
+                        join u in _context.Users on o.AppUserId equals u.Id
+                        select new MountlySalesVM
+                        {
+                            CustomerName = c.CustomerName,
+                            EmployeUserName = u.UserName,
+                            OrderDate = o.OrderDate,
+                            TCKN = c.TC,
+                            SalesTotal = od.UnitPrice*od.Quantity,
+                            OrderId=o.Id,
+                        };
+
+            List<MountlySalesVM> mountlySales = new List<MountlySalesVM>();
+
+            foreach (var q in query)
+            {
+                var createdMount = q.OrderDate.Month;
+                var createdYear = q.OrderDate.Year;
+
+                if (createdMount == startDate.Month && createdYear == startDate.Year)
+                {
+                    bool exist = false;
+                    foreach (var ms in mountlySales)
+                    {
+                        if (q.OrderId == ms.OrderId)
+                        {
+                            exist = true;
+                            ms.SalesTotal += q.SalesTotal;
+                            break;
+                        }
+
+                    }
+                    if (!exist)
+                    {
+                        mountlySales.Add(new MountlySalesVM
+                        {
+                            CustomerName = q.CustomerName,
+                            TCKN = q.TCKN,
+                            OrderDate = q.OrderDate,
+                            EmployeUserName = q.EmployeUserName,
+                            SalesTotal = q.SalesTotal,
+                            OrderId = q.OrderId,
+                        });
+                    }
+                }
+                
+            }
+            return mountlySales;
         }
 
         public void Update(Expense entity)

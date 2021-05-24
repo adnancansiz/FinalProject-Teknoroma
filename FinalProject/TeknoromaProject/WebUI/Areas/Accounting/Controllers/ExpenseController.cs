@@ -37,14 +37,18 @@ namespace WebUI.Areas.Accounting.Controllers
             ViewBag.Expense = expenseService.GetActive();
             return View();
         }
-
-        public ActionResult Sales()
+        
+        public ActionResult SelectMount()
         {
-            ViewBag.Customer = customerService.GetActive();
-            ViewBag.AppUser = appUserService.GetActive();
-            var complatedOrder = orderService.GetByDefault(x => x.OrderStatus == DAL.Entities.Enum.OrderStatus.Completed);
-            return View(complatedOrder);
+            return View();
         }
+        
+        public ActionResult Sales(DateTime time)
+        {
+            var salesList =expenseService.MountlySales(time);
+            return View(salesList);
+        }
+        
 
         public ActionResult Create()
         {
