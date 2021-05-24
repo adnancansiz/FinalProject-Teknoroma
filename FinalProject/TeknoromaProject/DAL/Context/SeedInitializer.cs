@@ -239,7 +239,6 @@ namespace DAL.Context
             }
         }
 
-
         private static void SeedUse(ApplicationDbContext context)
         {
             if (context.Categories.Count() == 0)

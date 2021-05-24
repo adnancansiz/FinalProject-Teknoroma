@@ -1,5 +1,6 @@
 
 ------------------------------------------------------SON KONTROL--------------------------------------------------------
+
 -- admin hariç diðer arealarda sorun bildir kýsmý yok yapýalcak
 
 --keyfi olarak product ve satýþ ekranýa o anki döviz karþýlýklarý eklenebilir.
@@ -8,6 +9,9 @@
 
 --keyfi olarak arka plana resim eklenebilir. 
 
---controllerlarda conslarda this olan yerler düzeltilecek.
 
---admin areada personel güncellemesi çalýþmýyor.
+
+
+
+
+

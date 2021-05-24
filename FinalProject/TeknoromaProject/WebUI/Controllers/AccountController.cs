@@ -13,15 +13,15 @@ namespace WebUI.Controllers
 {
     public class AccountController : Controller
     {
-        private readonly UserManager<AppUser> userManager;
-        private readonly SignInManager<AppUser> signInManager;
-        private readonly ApplicationDbContext context;
+        private readonly UserManager<AppUser> _userManager;
+        private readonly SignInManager<AppUser> _signInManager;
+        private readonly ApplicationDbContext _context;
 
         public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,ApplicationDbContext context)
         {
-            this.userManager = userManager;
-            this.signInManager = signInManager;
-            this.context = context;
+            _userManager = userManager;
+            _signInManager = signInManager;
+            _context = context;
         }
 
         public ActionResult Create()
@@ -40,7 +40,7 @@ namespace WebUI.Controllers
                     Email = registerVM.Email
 
                 };
-                var result = await userManager.CreateAsync(user, registerVM.Password);
+                var result = await _userManager.CreateAsync(user, registerVM.Password);
                 if (result.Succeeded)
                 {
                     return RedirectToAction("Index", "Home");
@@ -70,16 +70,16 @@ namespace WebUI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginVM loginVM)
         {
-            var users = userManager.FindByNameAsync(loginVM.UserName).Result;
+            var users = _userManager.FindByNameAsync(loginVM.UserName).Result;
 
             if (users != null)
             {
-                var result = signInManager.PasswordSignInAsync(users, loginVM.Password, loginVM.IsPersistant, false).Result;
+                var result = _signInManager.PasswordSignInAsync(users, loginVM.Password, loginVM.IsPersistant, false).Result;
                 if (result.Succeeded)
                 {
-                    var query = from user in context.Users
-                            join userRole in context.UserRoles on user.Id equals userRole.UserId
-                            join role in context.Roles on userRole.RoleId equals role.Id
+                    var query = from user in _context.Users
+                            join userRole in _context.UserRoles on user.Id equals userRole.UserId
+                            join role in _context.Roles on userRole.RoleId equals role.Id
                             select new { user.UserName, role.Name };
                     var q = query.Where(x => x.UserName == users.UserName).FirstOrDefault();
                     
@@ -93,10 +93,10 @@ namespace WebUI.Controllers
        
         public async Task<IActionResult> LogOut(string id)
         {
-            AppUser user = await userManager.FindByIdAsync(id);
+            AppUser user = await _userManager.FindByIdAsync(id);
             if (user != null)
             {
-                await signInManager.SignOutAsync();
+                await _signInManager.SignOutAsync();
                 return RedirectToAction("Login");
             }
             return RedirectToAction("Login");

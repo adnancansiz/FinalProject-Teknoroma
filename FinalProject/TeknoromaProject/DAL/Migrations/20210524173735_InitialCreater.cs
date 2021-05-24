@@ -3,7 +3,7 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace DAL.Migrations
 {
-    public partial class initial : Migration
+    public partial class InitialCreater : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
@@ -41,12 +41,21 @@ namespace DAL.Migrations
                     LockoutEnabled = table.Column<bool>(nullable: false),
                     AccessFailedCount = table.Column<int>(nullable: false),
                     Status = table.Column<int>(nullable: false),
-                    FirstName = table.Column<string>(nullable: true),
-                    LastName = table.Column<string>(nullable: true),
+                    FirstName = table.Column<string>(type: "nvarchar(50)", nullable: true),
+                    LastName = table.Column<string>(type: "nvarchar(50)", nullable: true),
                     Address = table.Column<string>(nullable: true),
                     Password = table.Column<string>(nullable: true),
-                    Salary = table.Column<decimal>(type: "money", nullable: false),
-                    Bonus = table.Column<decimal>(type: "money", nullable: false)
+                    Salary = table.Column<decimal>(type: "Money", nullable: false),
+                    Bonus = table.Column<decimal>(type: "money", nullable: false),
+                    MonthlySales = table.Column<decimal>(type: "money", nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedComputerName = table.Column<string>(nullable: true),
+                    CreatedIP = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    UpdatedComputerName = table.Column<string>(nullable: true),
+                    UpdatedIP = table.Column<string>(nullable: true),
+                    UpdatedBy = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -60,6 +69,14 @@ namespace DAL.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     MasterId = table.Column<int>(nullable: false),
                     Status = table.Column<int>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedComputerName = table.Column<string>(nullable: true),
+                    CreatedIP = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    UpdatedComputerName = table.Column<string>(nullable: true),
+                    UpdatedIP = table.Column<string>(nullable: true),
+                    UpdatedBy = table.Column<string>(nullable: true),
                     CategoryName = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true)
                 },
@@ -75,11 +92,20 @@ namespace DAL.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     MasterId = table.Column<int>(nullable: false),
                     Status = table.Column<int>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedComputerName = table.Column<string>(nullable: true),
+                    CreatedIP = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    UpdatedComputerName = table.Column<string>(nullable: true),
+                    UpdatedIP = table.Column<string>(nullable: true),
+                    UpdatedBy = table.Column<string>(nullable: true),
                     TC = table.Column<string>(nullable: true),
                     CustomerName = table.Column<string>(nullable: true),
                     EmailAddress = table.Column<string>(nullable: true),
                     Address = table.Column<string>(nullable: true),
                     Phone = table.Column<string>(nullable: true),
+                    Gender = table.Column<int>(nullable: false),
                     BirthDate = table.Column<DateTime>(nullable: true)
                 },
                 constraints: table =>
@@ -94,6 +120,14 @@ namespace DAL.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     MasterId = table.Column<int>(nullable: false),
                     Status = table.Column<int>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedComputerName = table.Column<string>(nullable: true),
+                    CreatedIP = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    UpdatedComputerName = table.Column<string>(nullable: true),
+                    UpdatedIP = table.Column<string>(nullable: true),
+                    UpdatedBy = table.Column<string>(nullable: true),
                     CompanyName = table.Column<string>(nullable: true),
                     ContactName = table.Column<string>(nullable: true),
                     Email = table.Column<string>(nullable: true),
@@ -218,10 +252,19 @@ namespace DAL.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     MasterId = table.Column<int>(nullable: false),
                     Status = table.Column<int>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedComputerName = table.Column<string>(nullable: true),
+                    CreatedIP = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    UpdatedComputerName = table.Column<string>(nullable: true),
+                    UpdatedIP = table.Column<string>(nullable: true),
+                    UpdatedBy = table.Column<string>(nullable: true),
                     Amount = table.Column<decimal>(type: "money", nullable: false),
+                    Euro = table.Column<decimal>(type: "money", nullable: false),
+                    Dolar = table.Column<decimal>(type: "money", nullable: false),
                     Explanation = table.Column<string>(nullable: true),
                     PaymentDate = table.Column<DateTime>(nullable: false),
-                    PayingUser = table.Column<string>(nullable: true),
                     AppUserId = table.Column<Guid>(nullable: false)
                 },
                 constraints: table =>
@@ -242,11 +285,20 @@ namespace DAL.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     MasterId = table.Column<int>(nullable: false),
                     Status = table.Column<int>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedComputerName = table.Column<string>(nullable: true),
+                    CreatedIP = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    UpdatedComputerName = table.Column<string>(nullable: true),
+                    UpdatedIP = table.Column<string>(nullable: true),
+                    UpdatedBy = table.Column<string>(nullable: true),
                     Amount = table.Column<decimal>(type: "money", nullable: false),
+                    Euro = table.Column<decimal>(type: "money", nullable: false),
+                    Dolar = table.Column<decimal>(type: "money", nullable: false),
                     Explanation = table.Column<string>(nullable: true),
                     Payments = table.Column<int>(nullable: false),
                     PaymentDate = table.Column<DateTime>(nullable: false),
-                    PayingUser = table.Column<string>(nullable: true),
                     AppUserId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
@@ -267,6 +319,14 @@ namespace DAL.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     MasterId = table.Column<int>(nullable: false),
                     Status = table.Column<int>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedComputerName = table.Column<string>(nullable: true),
+                    CreatedIP = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    UpdatedComputerName = table.Column<string>(nullable: true),
+                    UpdatedIP = table.Column<string>(nullable: true),
+                    UpdatedBy = table.Column<string>(nullable: true),
                     Subject = table.Column<string>(nullable: true),
                     Problem = table.Column<string>(nullable: true),
                     Answer = table.Column<string>(nullable: true),
@@ -291,6 +351,14 @@ namespace DAL.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     MasterId = table.Column<int>(nullable: false),
                     Status = table.Column<int>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedComputerName = table.Column<string>(nullable: true),
+                    CreatedIP = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    UpdatedComputerName = table.Column<string>(nullable: true),
+                    UpdatedIP = table.Column<string>(nullable: true),
+                    UpdatedBy = table.Column<string>(nullable: true),
                     SubCategoryName = table.Column<string>(nullable: true),
                     Description = table.Column<string>(nullable: true),
                     CategoryId = table.Column<Guid>(nullable: false)
@@ -313,10 +381,19 @@ namespace DAL.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     MasterId = table.Column<int>(nullable: false),
                     Status = table.Column<int>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedComputerName = table.Column<string>(nullable: true),
+                    CreatedIP = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    UpdatedComputerName = table.Column<string>(nullable: true),
+                    UpdatedIP = table.Column<string>(nullable: true),
+                    UpdatedBy = table.Column<string>(nullable: true),
                     OrderDate = table.Column<DateTime>(nullable: false),
                     OrderStatus = table.Column<int>(nullable: false),
                     AppUserId = table.Column<Guid>(nullable: false),
-                    CustomerId = table.Column<Guid>(nullable: false)
+                    CustomerId = table.Column<Guid>(nullable: false),
+                    CaseNo = table.Column<string>(nullable: true)
                 },
                 constraints: table =>
                 {
@@ -342,10 +419,17 @@ namespace DAL.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     MasterId = table.Column<int>(nullable: false),
                     Status = table.Column<int>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedComputerName = table.Column<string>(nullable: true),
+                    CreatedIP = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    UpdatedComputerName = table.Column<string>(nullable: true),
+                    UpdatedIP = table.Column<string>(nullable: true),
+                    UpdatedBy = table.Column<string>(nullable: true),
                     ProductName = table.Column<string>(nullable: true),
                     UnıtsInStock = table.Column<int>(nullable: false),
                     UnitPrice = table.Column<decimal>(type: "money", nullable: false),
-                    PurchasePrice = table.Column<decimal>(type: "money", nullable: false),
                     BarcodeNumber = table.Column<string>(nullable: true),
                     ImageName = table.Column<string>(nullable: true),
                     SubCategoryId = table.Column<Guid>(nullable: false),
@@ -376,6 +460,14 @@ namespace DAL.Migrations
                     OrderId = table.Column<Guid>(nullable: false),
                     MasterId = table.Column<int>(nullable: false),
                     Status = table.Column<int>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedComputerName = table.Column<string>(nullable: true),
+                    CreatedIP = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    UpdatedComputerName = table.Column<string>(nullable: true),
+                    UpdatedIP = table.Column<string>(nullable: true),
+                    UpdatedBy = table.Column<string>(nullable: true),
                     UnitPrice = table.Column<decimal>(type: "money", nullable: false),
                     Quantity = table.Column<int>(nullable: false)
                 },
@@ -390,6 +482,36 @@ namespace DAL.Migrations
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
                         name: "FK_OrderDetails_Products_ProductId",
+                        column: x => x.ProductId,
+                        principalTable: "Products",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "SupplierExpenses",
+                columns: table => new
+                {
+                    Id = table.Column<Guid>(nullable: false),
+                    MasterId = table.Column<int>(nullable: false),
+                    Status = table.Column<int>(nullable: false),
+                    CreatedDate = table.Column<DateTime>(nullable: false),
+                    CreatedComputerName = table.Column<string>(nullable: true),
+                    CreatedIP = table.Column<string>(nullable: true),
+                    CreatedBy = table.Column<string>(nullable: true),
+                    UpdatedDate = table.Column<DateTime>(nullable: true),
+                    UpdatedComputerName = table.Column<string>(nullable: true),
+                    UpdatedIP = table.Column<string>(nullable: true),
+                    UpdatedBy = table.Column<string>(nullable: true),
+                    Price = table.Column<decimal>(type: "money", nullable: false),
+                    Quantity = table.Column<short>(nullable: false),
+                    ProductId = table.Column<Guid>(nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_SupplierExpenses", x => x.Id);
+                    table.ForeignKey(
+                        name: "FK_SupplierExpenses_Products_ProductId",
                         column: x => x.ProductId,
                         principalTable: "Products",
                         principalColumn: "Id",
@@ -479,6 +601,11 @@ namespace DAL.Migrations
                 name: "IX_SubCategories_CategoryId",
                 table: "SubCategories",
                 column: "CategoryId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_SupplierExpenses_ProductId",
+                table: "SupplierExpenses",
+                column: "ProductId");
         }
 
         protected override void Down(MigrationBuilder migrationBuilder)
@@ -509,6 +636,9 @@ namespace DAL.Migrations
 
             migrationBuilder.DropTable(
                 name: "OrderDetails");
+
+            migrationBuilder.DropTable(
+                name: "SupplierExpenses");
 
             migrationBuilder.DropTable(
                 name: "AspNetRoles");

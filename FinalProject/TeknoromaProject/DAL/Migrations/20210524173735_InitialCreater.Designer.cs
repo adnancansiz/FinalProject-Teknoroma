@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DAL.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20210516083945_InitialCreater")]
+    [Migration("20210524173735_InitialCreater")]
     partial class InitialCreater
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -296,14 +296,17 @@ namespace DAL.Migrations
                     b.Property<string>("CreatedIP")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("Dolar")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("Euro")
+                        .HasColumnType("money");
+
                     b.Property<string>("Explanation")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MasterId")
                         .HasColumnType("int");
-
-                    b.Property<string>("PayingUser")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("PaymentDate")
                         .HasColumnType("datetime2");
@@ -354,14 +357,17 @@ namespace DAL.Migrations
                     b.Property<string>("CreatedIP")
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<decimal>("Dolar")
+                        .HasColumnType("money");
+
+                    b.Property<decimal>("Euro")
+                        .HasColumnType("money");
+
                     b.Property<string>("Explanation")
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<int>("MasterId")
                         .HasColumnType("int");
-
-                    b.Property<string>("PayingUser")
-                        .HasColumnType("nvarchar(max)");
 
                     b.Property<DateTime>("PaymentDate")
                         .HasColumnType("datetime2");
@@ -457,6 +463,9 @@ namespace DAL.Migrations
 
                     b.Property<Guid>("AppUserId")
                         .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CaseNo")
+                        .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("CreatedBy")
                         .HasColumnType("nvarchar(max)");
@@ -586,9 +595,6 @@ namespace DAL.Migrations
 
                     b.Property<string>("ProductName")
                         .HasColumnType("nvarchar(max)");
-
-                    b.Property<decimal>("PurchasePrice")
-                        .HasColumnType("money");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
@@ -732,6 +738,58 @@ namespace DAL.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Suppliers");
+                });
+
+            modelBuilder.Entity("DAL.Entities.SupplierExpense", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<string>("CreatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("CreatedComputerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime>("CreatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("CreatedIP")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int>("MasterId")
+                        .HasColumnType("int");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("money");
+
+                    b.Property<Guid>("ProductId")
+                        .HasColumnType("uniqueidentifier");
+
+                    b.Property<short>("Quantity")
+                        .HasColumnType("smallint");
+
+                    b.Property<int>("Status")
+                        .HasColumnType("int");
+
+                    b.Property<string>("UpdatedBy")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<string>("UpdatedComputerName")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<DateTime?>("UpdatedDate")
+                        .HasColumnType("datetime2");
+
+                    b.Property<string>("UpdatedIP")
+                        .HasColumnType("nvarchar(max)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("ProductId");
+
+                    b.ToTable("SupplierExpenses");
                 });
 
             modelBuilder.Entity("Microsoft.AspNetCore.Identity.IdentityRoleClaim<System.Guid>", b =>
@@ -910,6 +968,15 @@ namespace DAL.Migrations
                     b.HasOne("DAL.Entities.Category", "Category")
                         .WithMany("SubCategories")
                         .HasForeignKey("CategoryId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+                });
+
+            modelBuilder.Entity("DAL.Entities.SupplierExpense", b =>
+                {
+                    b.HasOne("DAL.Entities.Product", "Product")
+                        .WithMany("SupplierExpenses")
+                        .HasForeignKey("ProductId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
                 });

@@ -61,39 +61,6 @@ namespace WebUI.Areas.Admin.Controllers
 
                 }
 
-                #region Eski kod
-                ////AppUser user = new AppUser
-                ////{
-                ////    UserName = appUser.UserName,
-                ////    FirstName = appUser.FirstName,
-                ////    LastName = appUser.LastName,
-                ////    Email = appUser.Email,
-                ////    PhoneNumber = appUser.PhoneNumber,
-                ////    Address = appUser.Address,
-                ////    Status= appUser.Status,
-
-                ////};
-                ////user.Status = DAL.Entities.Enum.Status.Active;
-                ////var result = await _userManager.CreateAsync(user, appUser.Password);
-                //if (result.Succeeded)
-                //{
-                //    //var role = roleManager.Roles.FirstOrDefault(x => x.Id == roleid);
-                //    //var roleName = role.Name;
-                //    //userManager.AddToRoleAsync(user, roleName).Wait();
-                //    _appUserService.UserAddRole(user, roleid);
-                //    return RedirectToAction("Index", "Home");
-                //}
-                //else
-                //{
-                //    foreach (var error in result.Errors)
-                //    {
-
-                //        ModelState.AddModelError(error.Code, error.Description);
-                //    }
-                //    return View(appUser);
-                //} 
-                #endregion
-
             }
             else
             {
@@ -106,17 +73,22 @@ namespace WebUI.Areas.Admin.Controllers
         public ActionResult Edit(Guid id)
         {
             ViewBag.Roles = _roleManager.Roles.ToList();
+
             var update = _appUserService.GetById(id);
+
             return View(update);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit(AppUser appUser)
+        public ActionResult Edit(AppUser appUser,Guid roleId)
         {
             try
             {
-                _appUserService.Update(appUser);
+                ////var user = _appUserService.Update(appUser);
+
+                //_appUserService.UserAddRole(user, roleId);
+
                 return RedirectToAction(nameof(Index));
             }
             catch(Exception ex)

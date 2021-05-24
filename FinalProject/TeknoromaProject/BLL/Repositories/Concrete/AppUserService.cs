@@ -4,6 +4,7 @@ using DAL.Context;
 using DAL.Entities;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -39,6 +40,8 @@ namespace BLL.Repositories.Concrete
 
         }
 
+
+
         public List<AppUser> GetActive()
         {
             return _context.Users.Where(x => x.Status == DAL.Entities.Enum.Status.Active || x.Status == DAL.Entities.Enum.Status.Updated).ToList();
@@ -58,9 +61,9 @@ namespace BLL.Repositories.Concrete
 
         public AppUser GetById(Guid id)
         {
-            var user = _context.Users.FirstOrDefault(x => x.Id == id);
-            return user;
-        }     
+            var entity = _context.Users.AsNoTracking().Where(x => x.Id == id).ToList();
+            return entity[0];
+        }
 
         public void MonthlySalesBonus(List<OrderDetail> orderDetails, AppUser user)
         {
@@ -144,6 +147,14 @@ namespace BLL.Repositories.Concrete
 
         public void Update(AppUser entity)
         {
+            var user = GetById(entity.Id);
+
+            entity.CreatedBy = user.CreatedBy;
+            entity.CreatedComputerName = user.CreatedComputerName;
+            entity.CreatedDate = user.CreatedDate;
+            entity.CreatedIP = user.CreatedIP;
+            entity.SecurityStamp = user.SecurityStamp;
+
             entity.UpdatedBy = _signInManager.Context.User.Identity.Name;
             entity.UpdatedComputerName = Environment.MachineName;
             entity.UpdatedDate = DateTime.Now;
@@ -151,7 +162,7 @@ namespace BLL.Repositories.Concrete
 
             if (entity.Status == DAL.Entities.Enum.Status.Deleted)
             {
-
+                entity.Status = DAL.Entities.Enum.Status.Deleted;
             }
             else
             {
@@ -159,24 +170,25 @@ namespace BLL.Repositories.Concrete
                 entity.Status = DAL.Entities.Enum.Status.Updated;
             }
 
-            //Todo : Upade sorunu SecrutySpam ile ilgili araştırılıcak.
 
             var result = _userManager.UpdateAsync(entity).Result;
+
             _context.SaveChanges();
         }
 
         public void UserAddRole(AppUser user, Guid roleid)
         {
-          var roles =   _context.Roles.FirstOrDefault(x => x.Id == roleid);
-           
-           var result = _userManager.AddToRoleAsync(user, roles.Name).Result;
+            var role = _context.Roles.FirstOrDefault(x => x.Id == roleid);
+
+            var result = _userManager.AddToRoleAsync(user, role.Name).Result;
+
             _context.SaveChanges();
         }
 
         public List<AppUser> UserList()
         {
-           return _context.Users.ToList();
+            return _context.Users.ToList();
         }
-       
+
     }
 }

@@ -2,6 +2,7 @@
 using DAL.Context;
 using DAL.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -59,28 +60,33 @@ namespace BLL.Repositories.Concrete
 
         public Supplier GetById(Guid id)
         {
-            return _context.Suppliers.FirstOrDefault(x => x.Id == id);
-
+            var entity = _context.Suppliers.AsNoTracking().Where(x => x.Id == id).ToList();
+            return entity[0];
         }
 
         public void Update(Supplier entity)
         {
+            var exist = GetById(entity.Id);
+
             entity.UpdatedBy = _signInManager.Context.User.Identity.Name;
             entity.UpdatedComputerName = Environment.MachineName;
             entity.UpdatedDate = DateTime.Now;
             entity.UpdatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString();
 
+            entity.CreatedIP = exist.CreatedIP;
+            entity.CreatedDate = exist.CreatedDate;
+            entity.CreatedComputerName = exist.CreatedComputerName;
+            entity.CreatedBy = exist.CreatedBy;
+
+
             if (entity.Status == DAL.Entities.Enum.Status.Deleted)
             {
-
+                entity.Status = DAL.Entities.Enum.Status.Deleted;
             }
             else
             {
-
                 entity.Status = DAL.Entities.Enum.Status.Updated;
             }
-
-
 
             _context.Suppliers.Update(entity);
             _context.SaveChanges();

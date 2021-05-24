@@ -44,7 +44,7 @@
                     <input asp-for="Password" type="text" class="form-control" />
                 </div>
                 <div class="form-group">
-                    <select class="form-control" name="roleid">
+                    <select class="form-control" name="roleId">
                         @foreach (var role in ViewBag.Roles as List<AppRole>)
                         {
                             <option value="@role.Id">@role.Name</option>

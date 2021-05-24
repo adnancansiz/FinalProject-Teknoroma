@@ -3,6 +3,7 @@ using BLL.ViewModels.ReportsVM;
 using DAL.Context;
 using DAL.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -63,7 +64,8 @@ namespace BLL.Repositories.Concrete
 
         public Expense GetById(Guid id)
         {
-            return _context.Expenses.FirstOrDefault(x => x.Id == id);
+            var entity = _context.Expenses.AsNoTracking().Where(x => x.Id == id).ToList();
+            return entity[0];
         }
 
         public List<MountlySalesVM> MountlySales(DateTime startDate)
@@ -123,23 +125,32 @@ namespace BLL.Repositories.Concrete
         public void Update(Expense entity)
         {
 
+            var exist = GetById(entity.Id);
+
             entity.UpdatedBy = _signInManager.Context.User.Identity.Name;
             entity.UpdatedComputerName = Environment.MachineName;
             entity.UpdatedDate = DateTime.Now;
             entity.UpdatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString();
 
+            entity.CreatedIP = exist.CreatedIP;
+            entity.CreatedDate = exist.CreatedDate;
+            entity.CreatedComputerName = exist.CreatedComputerName;
+            entity.CreatedBy = exist.CreatedBy;
+
+
             if (entity.Status == DAL.Entities.Enum.Status.Deleted)
             {
-
+                entity.Status = DAL.Entities.Enum.Status.Deleted;
             }
             else
             {
-
                 entity.Status = DAL.Entities.Enum.Status.Updated;
             }
 
             _context.Expenses.Update(entity);
+
             _context.SaveChanges();
+
         }
     }
 }

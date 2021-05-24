@@ -2,6 +2,7 @@
 using DAL.Context;
 using DAL.Entities;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -18,8 +19,8 @@ namespace BLL.Repositories.Concrete
 
         public IssueService(ApplicationDbContext context, SignInManager<AppUser> signInManager)
         {
-           _context = context;
-           _signInManager = signInManager;
+            _context = context;
+            _signInManager = signInManager;
         }
 
         public void Create(Issue entity)
@@ -38,8 +39,8 @@ namespace BLL.Repositories.Concrete
 
         public void Delete(Issue entity)
         {
-            entity.Status = DAL.Entities.Enum.Status.Deleted;       
-            
+            entity.Status = DAL.Entities.Enum.Status.Deleted;
+
             //Todo : silinen bir ticket kapanmış olmak zorunda değil. Gözden kaçabilir.
             entity.IssueStatus = DAL.Entities.Enum.IssueStatus.Closed;
             Update(entity);
@@ -64,30 +65,38 @@ namespace BLL.Repositories.Concrete
 
         public Issue GetById(Guid id)
         {
-            return _context.Issues.FirstOrDefault(x => x.Id == id);
+            var entity = _context.Issues.AsNoTracking().Where(x => x.Id == id).ToList();
+            return entity[0];
         }
 
         public void Update(Issue entity)
         {
+            var exist = GetById(entity.Id);
 
             entity.UpdatedBy = _signInManager.Context.User.Identity.Name;
             entity.UpdatedComputerName = Environment.MachineName;
             entity.UpdatedDate = DateTime.Now;
             entity.UpdatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString();
 
+            entity.CreatedIP = exist.CreatedIP;
+            entity.CreatedDate = exist.CreatedDate;
+            entity.CreatedComputerName = exist.CreatedComputerName;
+            entity.CreatedBy = exist.CreatedBy;
+
 
             if (entity.Status == DAL.Entities.Enum.Status.Deleted)
             {
-
+                entity.Status = DAL.Entities.Enum.Status.Deleted;
             }
             else
             {
-
                 entity.Status = DAL.Entities.Enum.Status.Updated;
             }
 
             _context.Issues.Update(entity);
+
             _context.SaveChanges();
+
         }
     }
 }

@@ -20,7 +20,7 @@ namespace BLL.Repositories.Concrete
         private readonly ICustomerService _customerService;
         private readonly IAppUserService _appUserService;
 
-        public OrderService(ApplicationDbContext context, IOrderDetailService orderDetailService, IProductService productService, SignInManager<AppUser> signInManager, ICustomerService customerService,IAppUserService appUserService)
+        public OrderService(ApplicationDbContext context, IOrderDetailService orderDetailService, IProductService productService, SignInManager<AppUser> signInManager, ICustomerService customerService, IAppUserService appUserService)
         {
             _context = context;
             _orderDetailService = orderDetailService;

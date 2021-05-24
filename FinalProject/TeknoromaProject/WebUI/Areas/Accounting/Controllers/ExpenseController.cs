@@ -15,26 +15,22 @@ namespace WebUI.Areas.Accounting.Controllers
     [Authorize(Roles = "Accounting")]
     public class ExpenseController : Controller
     {
-        private readonly IExpenseService expenseService;
-        private readonly IAppUserService appUserService;
-        private readonly IEmployeePaymentService employeePaymentService;
-        private readonly IOrderService orderService;
-        private readonly ICustomerService customerService;
+        private readonly IExpenseService _expenseService;
+        private readonly IAppUserService _appUserService;
+        private readonly IEmployeePaymentService _employeePaymentService;
 
-        public ExpenseController(IExpenseService expenseService,IAppUserService appUserService,IEmployeePaymentService employeePaymentService,IOrderService orderService,ICustomerService customerService)
+        public ExpenseController(IExpenseService expenseService,IAppUserService appUserService,IEmployeePaymentService employeePaymentService)
         {
-            this.expenseService = expenseService;
-            this.appUserService = appUserService;
-            this.employeePaymentService = employeePaymentService;
-            this.orderService = orderService;
-            this.customerService = customerService;
+            _expenseService = expenseService;
+            _appUserService = appUserService;
+            _employeePaymentService = employeePaymentService;
         }
 
         public ActionResult Index()
         {
-            ViewBag.AppUser = appUserService.GetActive();
-            ViewBag.EmployeePayment = employeePaymentService.GetActive();
-            ViewBag.Expense = expenseService.GetActive();
+            ViewBag.AppUser = _appUserService.GetActive();
+            ViewBag.EmployeePayment = _employeePaymentService.GetActive();
+            ViewBag.Expense = _expenseService.GetActive();
             return View();
         }
         
@@ -45,7 +41,7 @@ namespace WebUI.Areas.Accounting.Controllers
         
         public ActionResult Sales(DateTime time)
         {
-            var salesList =expenseService.MountlySales(time);
+            var salesList = _expenseService.MountlySales(time);
             return View(salesList);
         }
         
@@ -66,7 +62,7 @@ namespace WebUI.Areas.Accounting.Controllers
             try
             {
 
-                expenseService.Create(expense);
+                _expenseService.Create(expense);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -81,7 +77,7 @@ namespace WebUI.Areas.Accounting.Controllers
             EuroDolarXml doviz = new EuroDolarXml();
             ViewBag.Dolar = doviz.Dolar;
             ViewBag.Euro = doviz.Euro;
-            ViewBag.AppUser = appUserService.GetActive();
+            ViewBag.AppUser = _appUserService.GetActive();
             return View();
         }
 
@@ -92,7 +88,7 @@ namespace WebUI.Areas.Accounting.Controllers
         {
             try
             {
-                employeePaymentService.Create(employeePayment);
+                _employeePaymentService.Create(employeePayment);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -104,7 +100,7 @@ namespace WebUI.Areas.Accounting.Controllers
         
         public ActionResult Edit(Guid id)
         {
-            var exp = expenseService.GetById(id);
+            var exp = _expenseService.GetById(id);
             return View(exp);
         }
 
@@ -115,7 +111,7 @@ namespace WebUI.Areas.Accounting.Controllers
         {
             try
             {
-                expenseService.Update(expense);
+                _expenseService.Update(expense);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -126,8 +122,8 @@ namespace WebUI.Areas.Accounting.Controllers
 
         public ActionResult EditEmployeePayment(Guid id)
         {
-            ViewBag.AppUser = appUserService.GetActive();
-            var empPayment = employeePaymentService.GetById(id);
+            ViewBag.AppUser = _appUserService.GetActive();
+            var empPayment = _employeePaymentService.GetById(id);
             return View(empPayment);
         }
 
@@ -138,7 +134,7 @@ namespace WebUI.Areas.Accounting.Controllers
         {
             try
             {
-                employeePaymentService.Update(employeePayment);
+                _employeePaymentService.Update(employeePayment);
                 return RedirectToAction(nameof(Index));
             }
             catch
@@ -150,15 +146,15 @@ namespace WebUI.Areas.Accounting.Controllers
 
         public ActionResult DeleteEmployeePayment(Guid id)
         {
-            var deleteEmpPayment = employeePaymentService.GetById(id);
-            employeePaymentService.Delete(deleteEmpPayment);
+            var deleteEmpPayment = _employeePaymentService.GetById(id);
+            _employeePaymentService.Delete(deleteEmpPayment);
             return RedirectToAction(nameof(Index));
         }
 
         public ActionResult Delete(Guid id)
         {
-            var deleted = expenseService.GetById(id);
-            expenseService.Delete(deleted);
+            var deleted = _expenseService.GetById(id);
+            _expenseService.Delete(deleted);
             return RedirectToAction(nameof(Index));
         }
 
