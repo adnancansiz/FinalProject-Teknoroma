@@ -13,10 +13,9 @@ RAPORLAMA ÝÞLEMÝ KALDI.
 * TRY CATCH 
 ------------------------------------------------------------------------------------------------------------------------
 ******************GENEL OLARAK YAPILACAKLAR///////////////////////////
-*Sipariþ iþleminde depocuya kasiyer adý gönderiliyor bunun yerine kasa adý gönderilecek.
 *Sipariþte ve muhasebe bölmünde bulunan fiyatlar döviz olarakta gösterilecek.
 *Arka plana görsel eklenecek.
 ------------------------------------------------------------------------------------------------------------------------
 1-Admin areada personel güncelleme kýsmý çalýþmýyor.
-6-Giriþ ekranýnda kullanýcý adýný girdikten sonra þifreyi yanlýþ veya eksik girersen hata veriyor düzeltilecek.
-10-Logout Kýsmý düzeltilecek.Yönlendirme Hatalý.                                                                     
+6-Giriþ ekranýnda kullanýcý adýný girdikten sonra þifreyi yanlýþ veya eksik girersen hata veriyor düzeltilecek.    /**//*/* WTF IS THIS
+                                                            

@@ -8,6 +8,7 @@ using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace WebUI.Areas.Cashier.Controllers
@@ -155,10 +156,13 @@ namespace WebUI.Areas.Cashier.Controllers
 
             var orderDetails = _orderDetailService.GetByDefault(x => x.OrderId == OrderId);
 
+           
+
             _appUserService.MonthlySalesBonus(orderDetails, user); //Aylık satış ve Bonusu Ekleyen Metod
 
             order.Status = DAL.Entities.Enum.Status.Active;
             order.OrderStatus = DAL.Entities.Enum.OrderStatus.ProductWaiting;
+            order.CaseNo = Environment.MachineName;
             _orderService.Update(order);
 
             return RedirectToAction("Index");

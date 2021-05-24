@@ -1,21 +1,27 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\AdnanC\\Desktop\\FinalProject\\TeknoromaProject\\WebApi\\WebApi.csproj": {}
+    "C:\\Users\\mstfc\\Desktop\\TeknoromaProject\\WebApi\\WebApi.csproj": {}
   },
   "projects": {
-    "C:\\Users\\AdnanC\\Desktop\\FinalProject\\TeknoromaProject\\BLL\\BLL.csproj": {
+    "C:\\Users\\mstfc\\Desktop\\TeknoromaProject\\BLL\\BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\AdnanC\\Desktop\\FinalProject\\TeknoromaProject\\BLL\\BLL.csproj",
+        "projectUniqueName": "C:\\Users\\mstfc\\Desktop\\TeknoromaProject\\BLL\\BLL.csproj",
         "projectName": "BLL",
-        "projectPath": "C:\\Users\\AdnanC\\Desktop\\FinalProject\\TeknoromaProject\\BLL\\BLL.csproj",
-        "packagesPath": "C:\\Users\\AdnanC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\AdnanC\\Desktop\\FinalProject\\TeknoromaProject\\BLL\\obj\\",
+        "projectPath": "C:\\Users\\mstfc\\Desktop\\TeknoromaProject\\BLL\\BLL.csproj",
+        "packagesPath": "C:\\Users\\mstfc\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mstfc\\Desktop\\TeknoromaProject\\BLL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\AdnanC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\mstfc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -28,8 +34,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\AdnanC\\Desktop\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\AdnanC\\Desktop\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj"
+              "C:\\Users\\mstfc\\Desktop\\TeknoromaProject\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\mstfc\\Desktop\\TeknoromaProject\\DAL\\DAL.csproj"
               }
             }
           }
@@ -72,18 +78,24 @@
         }
       }
     },
-    "C:\\Users\\AdnanC\\Desktop\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj": {
+    "C:\\Users\\mstfc\\Desktop\\TeknoromaProject\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\AdnanC\\Desktop\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj",
+        "projectUniqueName": "C:\\Users\\mstfc\\Desktop\\TeknoromaProject\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "C:\\Users\\AdnanC\\Desktop\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj",
-        "packagesPath": "C:\\Users\\AdnanC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\AdnanC\\Desktop\\FinalProject\\TeknoromaProject\\DAL\\obj\\",
+        "projectPath": "C:\\Users\\mstfc\\Desktop\\TeknoromaProject\\DAL\\DAL.csproj",
+        "packagesPath": "C:\\Users\\mstfc\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mstfc\\Desktop\\TeknoromaProject\\DAL\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\AdnanC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\mstfc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -150,18 +162,24 @@
         }
       }
     },
-    "C:\\Users\\AdnanC\\Desktop\\FinalProject\\TeknoromaProject\\WebApi\\WebApi.csproj": {
+    "C:\\Users\\mstfc\\Desktop\\TeknoromaProject\\WebApi\\WebApi.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\AdnanC\\Desktop\\FinalProject\\TeknoromaProject\\WebApi\\WebApi.csproj",
+        "projectUniqueName": "C:\\Users\\mstfc\\Desktop\\TeknoromaProject\\WebApi\\WebApi.csproj",
         "projectName": "WebApi",
-        "projectPath": "C:\\Users\\AdnanC\\Desktop\\FinalProject\\TeknoromaProject\\WebApi\\WebApi.csproj",
-        "packagesPath": "C:\\Users\\AdnanC\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\AdnanC\\Desktop\\FinalProject\\TeknoromaProject\\WebApi\\obj\\",
+        "projectPath": "C:\\Users\\mstfc\\Desktop\\TeknoromaProject\\WebApi\\WebApi.csproj",
+        "packagesPath": "C:\\Users\\mstfc\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\mstfc\\Desktop\\TeknoromaProject\\WebApi\\obj\\",
         "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
+          "C:\\Program Files (x86)\\Microsoft\\Xamarin\\NuGet\\"
+        ],
         "configFilePaths": [
-          "C:\\Users\\AdnanC\\AppData\\Roaming\\NuGet\\NuGet.Config",
-          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+          "C:\\Users\\mstfc\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Xamarin.Offline.config"
         ],
         "originalTargetFrameworks": [
           "netcoreapp3.1"
@@ -174,8 +192,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\AdnanC\\Desktop\\FinalProject\\TeknoromaProject\\BLL\\BLL.csproj": {
-                "projectPath": "C:\\Users\\AdnanC\\Desktop\\FinalProject\\TeknoromaProject\\BLL\\BLL.csproj"
+              "C:\\Users\\mstfc\\Desktop\\TeknoromaProject\\BLL\\BLL.csproj": {
+                "projectPath": "C:\\Users\\mstfc\\Desktop\\TeknoromaProject\\BLL\\BLL.csproj"
               }
             }
           }

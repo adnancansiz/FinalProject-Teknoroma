@@ -1,4 +1,5 @@
 ﻿
+using BLL.ViewModels.ApiVM;
 using BLL.ViewModels.ReportsVM;
 using DAL.Entities;
 using System;
@@ -9,5 +10,6 @@ namespace BLL.Repositories.Abstract
 {
     public interface IProductService:IGenericService<Product>
     {
+        List<ProductVM> GetAllProductForApi();
     }
 }

@@ -1,7 +1,12 @@
+using BLL.Repositories.Abstract;
+using BLL.Repositories.Concrete;
+using DAL.Context;
+using DAL.Entities;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -26,6 +31,20 @@ namespace WebApi
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddDbContext<ApplicationDbContext>(x => x.UseSqlServer("Server=.;Database=Teknoroma; Trusted_Connection=True;"));
+
+            services.AddIdentity<AppUser, AppRole>(x =>
+            {
+                x.Password.RequireDigit = false;
+                x.Password.RequireLowercase = false;
+                x.Password.RequiredLength = 5;
+                x.Password.RequireNonAlphanumeric = false;
+                x.Password.RequireUppercase = false;
+
+            }).AddEntityFrameworkStores<ApplicationDbContext>();
+
+            services.AddScoped<IProductService, ProductService>();
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

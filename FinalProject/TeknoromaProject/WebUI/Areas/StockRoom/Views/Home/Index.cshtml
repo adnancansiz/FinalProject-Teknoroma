@@ -15,7 +15,7 @@
                     <th>Satış Tarihi</th>
                     <th>TCKN</th>
                     <th>Müşteri İsmi</th>
-                    <th>Teslim Edilecek Personel</th>
+                    <th>Teslim Edilecek Kasa</th>
                     <th></th>
                 </tr>
             </thead>
@@ -24,7 +24,7 @@
                     <th>Satış Tarihi</th>
                     <th>TCKN</th>
                     <th>Müşteri İsmi</th>
-                    <th>Teslim Edilcek Personel</th>
+                    <th>Teslim Edilcek Kasa</th>
                     <th></th>
                 </tr>
             </tfoot>
@@ -40,19 +40,12 @@
                                 <td>@customer.TC</td>
                                 <td>@customer.CustomerName</td>
                             }
-                           
+
                         }
-                        @foreach (AppUser appUser in ViewBag.AppUser)
-                        {
-                            if (order.AppUserId == appUser.Id)
-                            {
-                                <td>@appUser.UserName</td>
-                            }
-                            
-                        }
-                    <td>
-                        @Html.ActionLink("Ürünleri/Detayları Gör", "OrderDetail", "Home", new { id = order.Id}, new { @class = "btn btn-success btn-sm mt-2" })
-                    </td>
+                        <td>@order.CaseNo</td>
+                        <td>
+                            @Html.ActionLink("Ürünleri/Detayları Gör", "OrderDetail", "Home", new { id = order.Id }, new { @class = "btn btn-success btn-sm mt-2" })
+                        </td>
 
 
                     </tr>

@@ -32,6 +32,7 @@ namespace WebUI.Areas.StockRoom.Controllers
         {
             ViewBag.Customer = _customerService.GetActive();
             ViewBag.AppUser = _appUserService.UserList();
+            
             var productWaiting = _orderService.GetByDefault(x => x.OrderStatus == DAL.Entities.Enum.OrderStatus.ProductWaiting);
             return View(productWaiting);
         }

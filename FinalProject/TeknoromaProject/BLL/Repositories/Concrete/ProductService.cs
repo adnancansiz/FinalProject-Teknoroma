@@ -1,4 +1,5 @@
 ﻿using BLL.Repositories.Abstract;
+using BLL.ViewModels.ApiVM;
 using BLL.ViewModels.ReportsVM;
 using DAL.Context;
 using DAL.Entities;
@@ -46,6 +47,20 @@ namespace BLL.Repositories.Concrete
         public List<Product> GetActive()
         {
             return _context.Products.Where(x => x.Status == DAL.Entities.Enum.Status.Active || x.Status == DAL.Entities.Enum.Status.Updated).ToList();
+        }
+
+        public List<ProductVM> GetAllProductForApi()
+        {
+            var query = from p in _context.Products
+                        select new ProductVM
+                        {
+                            ProductName = p.ProductName,
+                            UnitPrice = p.UnitPrice,
+                            UnıtsInStock = p.UnıtsInStock
+                        };                     
+
+            return query.ToList();
+
         }
 
         public List<Product> GetByDefault(Expression<Func<Product, bool>> filter = null)

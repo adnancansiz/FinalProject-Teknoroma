@@ -25,6 +25,8 @@ namespace DAL.Entities
         public Customer Customer { get; set; }
         public Guid CustomerId { get; set; }
 
+        public string CaseNo  { get; set; }
+
         public  virtual List<OrderDetail> OrderDetails { get; set; }
 
 

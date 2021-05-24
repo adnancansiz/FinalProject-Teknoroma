@@ -97,9 +97,10 @@ namespace WebUI.Controllers
             if (user != null)
             {
                 await signInManager.SignOutAsync();
-                return View();
+                return RedirectToAction("Login");
             }
-            return View();
+            return RedirectToAction("Login");
+
         }
 
     }
