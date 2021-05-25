@@ -80,6 +80,18 @@ namespace WebUI.Areas.Admin.Controllers
             }
         }
 
+        public ActionResult Detail(Guid id)
+        {
+            var ıssue = _ıssueService.GetById(id);
+            return View(ıssue);
+        }
+
+        public ActionResult ClosedDetail(Guid id)
+        {
+            ViewBag.AppUser = _appUserService.GetActive();
+            var ıssue = _ıssueService.GetById(id);
+            return View(ıssue);
+        }
         
         public ActionResult Delete(Guid id)
         {

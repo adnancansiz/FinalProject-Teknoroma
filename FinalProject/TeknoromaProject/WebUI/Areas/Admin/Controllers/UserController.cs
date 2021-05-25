@@ -85,10 +85,7 @@ namespace WebUI.Areas.Admin.Controllers
         {
             try
             {
-                ////var user = _appUserService.Update(appUser);
-
-                //_appUserService.UserAddRole(user, roleId);
-
+                _appUserService.Update(appUser);
                 return RedirectToAction(nameof(Index));
             }
             catch(Exception ex)

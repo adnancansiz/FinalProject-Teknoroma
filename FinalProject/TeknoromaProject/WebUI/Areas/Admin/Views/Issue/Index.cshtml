@@ -5,7 +5,7 @@
 
     var open = ViewBag.OpenIssue;
     var checking = ViewBag.CheckingIssue;
-    var closed = ViewBag.ClosedIsse;
+    var closed = ViewBag.ClosedIssue;
 }
 
 <div class="container-fluid">
@@ -91,7 +91,7 @@
                                 <td>@checkingIssue.AppUser.UserName</td>
                                 <td>@checkingIssue.IssueStatus</td>
                                 <td>
-                                    @Html.ActionLink("Güncelle", "Edit", "Issue", new { id = checkingIssue.Id }, new { @class = "btn btn-warning" })
+                                    @Html.ActionLink("İncele", "Detail", "Issue", new { id = checkingIssue.Id }, new { @class = "btn btn-warning" })
                                 </td>
                             </tr>
                         }
@@ -129,7 +129,7 @@
                         </tr>
                     </tfoot>
                     <tbody>
-                        @foreach (Issue closedIssue in checking)
+                        @foreach (Issue closedIssue in closed)
                         {
                             <tr>
 
@@ -138,7 +138,7 @@
                                 <td>@closedIssue.AppUser.UserName</td>
                                 <td>@closedIssue.IssueStatus</td>
                                 <td>
-                                    @Html.ActionLink("Güncelle", "Edit", "Issue", new { id = closedIssue.Id }, new { @class = "btn btn-warning" })
+                                    @Html.ActionLink("İncele", "ClosedDetail", "Issue", new { id = closedIssue.Id }, new { @class = "btn btn-warning" })
                                 </td>
                             </tr>
                         }

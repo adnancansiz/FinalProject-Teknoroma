@@ -1,16 +1,10 @@
 
-------------------------------------------------------SON KONTROL--------------------------------------------------------
-
--- admin hariç diðer arealarda sorun bildir kýsmý yok yapýalcak
-
---keyfi olarak product ve satýþ ekranýa o anki döviz karþýlýklarý eklenebilir.
-
 --TRY CATCH 
-
---keyfi olarak arka plana resim eklenebilir. 
-
-
-
+-------------------------------------------------------------------------------------------------------------------------
+Admin areada personel güncelleme kýsmý çalýþmýyor. 
+Personel silme iþlemi yapýlmýyor.
+-------------------------------------------------------------------------------------------------------------------------
+Account kýsmý taþýnacak
 
 
 
