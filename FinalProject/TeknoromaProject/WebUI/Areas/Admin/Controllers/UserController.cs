@@ -94,7 +94,8 @@ namespace WebUI.Areas.Admin.Controllers
             }
         }
 
-        
+        [HttpPost]
+        [ValidateAntiForgeryToken]
         public ActionResult Delete(Guid id)
         {
             try

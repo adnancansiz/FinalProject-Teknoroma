@@ -147,18 +147,13 @@ namespace BLL.Repositories.Concrete
 
         public void Update(AppUser entity)
         {
-            var user = GetById(entity.Id);
 
-            entity.CreatedBy = user.CreatedBy;
-            entity.CreatedComputerName = user.CreatedComputerName;
-            entity.CreatedDate = user.CreatedDate;
-            entity.CreatedIP = user.CreatedIP;
-            entity.SecurityStamp = user.SecurityStamp;
 
             entity.UpdatedBy = _signInManager.Context.User.Identity.Name;
             entity.UpdatedComputerName = Environment.MachineName;
             entity.UpdatedDate = DateTime.Now;
             entity.UpdatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString();
+
 
             if (entity.Status == DAL.Entities.Enum.Status.Deleted)
             {
@@ -166,7 +161,6 @@ namespace BLL.Repositories.Concrete
             }
             else
             {
-
                 entity.Status = DAL.Entities.Enum.Status.Updated;
             }
 

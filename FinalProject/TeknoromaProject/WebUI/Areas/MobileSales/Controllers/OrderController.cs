@@ -99,50 +99,30 @@ namespace WebUI.Areas.MobileSales.Controllers
         {
             try
             {
-
                 var order = _orderService.AddOrderDetailInOrder(orderDetail);
+                if (order.MasterId != 1)
+                {
+                    return RedirectToAction("Create", order);
 
-                return RedirectToAction("Create", order);
+                }
+                else
+                {
 
-
-                //var orders = orderDetailService.GetByDefault(x => x.OrderId == orderDetail.OrderId);
-                //var detail = orders.FirstOrDefault(x => x.ProductId == orderDetail.ProductId);
-                //var product = productService.GetById(orderDetail.ProductId);
-
-                //var order = _orderService.GetById(orderDetail.OrderId);
-                //if (orders != null)
-                //{
-                //    if (detail == null)
-                //    {
-                //        orderDetail.UnitPrice = product.UnitPrice;
-                //        orderDetailService.Create(orderDetail);
-
-
-                //        return RedirectToAction("Create", order);
-                //    }
-                //    else
-                //    {
-                //        var qua = orderDetail.Quantity;
-                //        detail.Quantity += qua;
-                //        orderDetailService.Update(detail);
-                //        return RedirectToAction("Create", order);
-                //    }
-                //}
-                //else
-                //{
-                //    orderDetail.UnitPrice = product.UnitPrice;
-                //    orderDetailService.Create(orderDetail);
-
-
-                //    return RedirectToAction("Create", order);
-                //}
+                    TempData["Alert"] = "Stok Yetersiz.";
+                    return RedirectToAction("Create", order);
+                }
 
 
             }
             catch (Exception ex)
             {
-                throw;
+
+                var order = _orderService.GetById(orderDetail.OrderId);
+                TempData["Alert"] = ex.Message;
+                return RedirectToAction("Create", order);
+
             }
+
         }
 
 

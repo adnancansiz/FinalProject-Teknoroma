@@ -78,24 +78,18 @@ namespace BLL.Repositories.Concrete
 
         public Product GetById(Guid id)
         {
-            var entity = _context.Products.AsNoTracking().Where(x => x.Id == id).ToList();
-            return entity[0];
+            return _context.Products.FirstOrDefault(x => x.Id == id);
+
         }
 
 
         public void Update(Product entity)
         {
-            var exist = GetById(entity.Id);
 
             entity.UpdatedBy = _signInManager.Context.User.Identity.Name;
             entity.UpdatedComputerName = Environment.MachineName;
             entity.UpdatedDate = DateTime.Now;
             entity.UpdatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString();
-
-            entity.CreatedIP = exist.CreatedIP;
-            entity.CreatedDate = exist.CreatedDate;
-            entity.CreatedComputerName = exist.CreatedComputerName;
-            entity.CreatedBy = exist.CreatedBy;
 
 
             if (entity.Status == DAL.Entities.Enum.Status.Deleted)
@@ -105,7 +99,7 @@ namespace BLL.Repositories.Concrete
             else
             {
                 entity.Status = DAL.Entities.Enum.Status.Updated;
-            }            
+            }
 
             if (entity.UnıtsInStock > 0)
             {

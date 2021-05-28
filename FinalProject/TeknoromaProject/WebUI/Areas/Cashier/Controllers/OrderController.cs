@@ -55,7 +55,7 @@ namespace WebUI.Areas.Cashier.Controllers
             return View();
         }
 
-        public ActionResult Create(Order order)
+        public IActionResult Create(Order order)
         {
             order.AppUser = _signInManager.UserManager.FindByNameAsync(User.Identity.Name).Result;
 
@@ -94,6 +94,8 @@ namespace WebUI.Areas.Cashier.Controllers
             ViewBag.Products = products;
             ViewBag.OrderId = order.Id;
             return View();
+
+            
         }
 
 
@@ -104,46 +106,27 @@ namespace WebUI.Areas.Cashier.Controllers
             try
             {
                 var order = _orderService.AddOrderDetailInOrder(orderDetail);
+                if (order.MasterId != 1)
+                {
+                    return RedirectToAction("Create", order);
 
-                return RedirectToAction("Create", order);
-
-                //var orders = _orderDetailService.GetByDefault(x => x.OrderId == orderDetail.OrderId);
-                //var detail = orders.FirstOrDefault(x => x.ProductId == orderDetail.ProductId);
-                //var product = productService.GetById(orderDetail.ProductId);
-
-                //var order = _orderService.GetById(orderDetail.OrderId);
-                //if (orders != null)
-                //{
-                //    if (detail == null)
-                //    {
-                //        orderDetail.UnitPrice = product.UnitPrice;
-                //        _orderDetailService.Create(orderDetail);
-
-
-                //        return RedirectToAction("Create", order);
-                //    }
-                //    else
-                //    {
-                //        var qua = orderDetail.Quantity;
-                //        detail.Quantity += qua;
-                //        _orderDetailService.Update(detail);
-                //        return RedirectToAction("Create", order);
-                //    }
-                //}
-                //else
-                //{
-                //    orderDetail.UnitPrice = product.UnitPrice;
-                //    _orderDetailService.Create(orderDetail);
-
-
-                //    return RedirectToAction("Create", order);
-                //}
+                }
+                else
+                {
+                   
+                    TempData["Alert"] = "Stok Yetersiz.";
+                    return RedirectToAction("Create", order);
+                }
 
 
             }
             catch (Exception ex)
             {
-                throw;
+
+                var order = _orderService.GetById(orderDetail.OrderId);
+                TempData["Alert"] = ex.Message;
+                return RedirectToAction("Create", order);
+
             }
         }
 

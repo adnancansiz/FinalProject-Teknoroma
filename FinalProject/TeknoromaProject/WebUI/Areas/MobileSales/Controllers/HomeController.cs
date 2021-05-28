@@ -27,6 +27,8 @@ namespace WebUI.Areas.MobileSales.Controllers
         {
             var user = _signInManager.UserManager.FindByNameAsync(User.Identity.Name).Result;
 
+          
+
             return View(user);
         }
     }

@@ -36,41 +36,53 @@ namespace BLL.Repositories.Concrete
             var detail = orders.FirstOrDefault(x => x.ProductId == orderDetail.ProductId);
             var product = _productService.GetById(orderDetail.ProductId);
 
+            product.UnıtsInStock -= orderDetail.Quantity;
+
             var order = GetById(orderDetail.OrderId);
 
-            if (orders != null)
+            if (product.UnıtsInStock >= 0)
             {
-                if (detail == null)
+                if (orders != null)
                 {
-                    orderDetail.UnitPrice = product.UnitPrice;
-                    _orderDetailService.Create(orderDetail);
-                    product.UnıtsInStock -= orderDetail.Quantity;
-                    _productService.Update(product);
+                    if (detail == null)
+                    {
+                        orderDetail.UnitPrice = product.UnitPrice;
+                        _orderDetailService.Create(orderDetail);
+                        _productService.Update(product);
 
-                    return order;
+
+
+                        return order;
+                    }
+                    else
+                    {
+
+                        detail.Quantity += orderDetail.Quantity;
+
+                        _productService.Update(product);
+
+                        _orderDetailService.Update(detail);
+                        return order;
+                    }
                 }
                 else
                 {
-
-                    detail.Quantity += orderDetail.Quantity;
-
-                    product.UnıtsInStock -= orderDetail.Quantity;
+                    orderDetail.UnitPrice = product.UnitPrice;
                     _productService.Update(product);
+                    _orderDetailService.Create(orderDetail);
 
-                    _orderDetailService.Update(detail);
                     return order;
+
                 }
             }
             else
             {
-                orderDetail.UnitPrice = product.UnitPrice;
-                product.UnıtsInStock -= orderDetail.Quantity;
-                _productService.Update(product);
-                _orderDetailService.Create(orderDetail);
-
+                order.MasterId = 1;
+                product.UnıtsInStock += orderDetail.Quantity;
                 return order;
-
             }
+
+
         }
 
         public void Create(Order entity)
@@ -111,7 +123,6 @@ namespace BLL.Repositories.Concrete
             {
                 var orderList = _orderDetailService.GetByDefault(x => x.OrderId == order.Id);
 
-                //  TempData["OrderList"] = orderList;
             }
 
             return true;

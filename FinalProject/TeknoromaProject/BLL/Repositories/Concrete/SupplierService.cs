@@ -60,8 +60,8 @@ namespace BLL.Repositories.Concrete
 
         public Supplier GetById(Guid id)
         {
-            var entity = _context.Suppliers.AsNoTracking().Where(x => x.Id == id).ToList();
-            return entity[0];
+            return _context.Suppliers.FirstOrDefault(x => x.Id == id);
+
         }
 
         public void Update(Supplier entity)

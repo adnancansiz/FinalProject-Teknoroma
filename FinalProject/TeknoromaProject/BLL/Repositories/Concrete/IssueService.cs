@@ -65,23 +65,16 @@ namespace BLL.Repositories.Concrete
 
         public Issue GetById(Guid id)
         {
-            var entity = _context.Issues.AsNoTracking().Where(x => x.Id == id).ToList();
-            return entity[0];
+            var entity = _context.Issues.Where(x => x.Id == id).FirstOrDefault();
+            return entity;
         }
 
         public void Update(Issue entity)
         {
-            var exist = GetById(entity.Id);
-
             entity.UpdatedBy = _signInManager.Context.User.Identity.Name;
             entity.UpdatedComputerName = Environment.MachineName;
             entity.UpdatedDate = DateTime.Now;
             entity.UpdatedIP = Dns.GetHostEntry(Dns.GetHostName()).AddressList.GetValue(1).ToString();
-
-            entity.CreatedIP = exist.CreatedIP;
-            entity.CreatedDate = exist.CreatedDate;
-            entity.CreatedComputerName = exist.CreatedComputerName;
-            entity.CreatedBy = exist.CreatedBy;
 
 
             if (entity.Status == DAL.Entities.Enum.Status.Deleted)
