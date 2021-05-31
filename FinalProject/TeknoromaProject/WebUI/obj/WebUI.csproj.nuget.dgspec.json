@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\WebUI\\WebUI.csproj": {}
+    "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\WebUI\\WebUI.csproj": {}
   },
   "projects": {
-    "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\BLL\\BLL.csproj": {
+    "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\BLL\\BLL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\BLL\\BLL.csproj",
+        "projectUniqueName": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\BLL\\BLL.csproj",
         "projectName": "BLL",
-        "projectPath": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\BLL\\BLL.csproj",
+        "projectPath": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\BLL\\BLL.csproj",
         "packagesPath": "C:\\Users\\mstfc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\BLL\\obj\\",
+        "outputPath": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\BLL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -34,8 +34,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj"
+              "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj"
               }
             }
           }
@@ -78,14 +78,14 @@
         }
       }
     },
-    "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\Common\\Common.csproj": {
+    "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\Common\\Common.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\Common\\Common.csproj",
+        "projectUniqueName": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\Common\\Common.csproj",
         "projectName": "Common",
-        "projectPath": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\Common\\Common.csproj",
+        "projectPath": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\Common\\Common.csproj",
         "packagesPath": "C:\\Users\\mstfc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\Common\\obj\\",
+        "outputPath": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\Common\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -108,8 +108,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj"
+              "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj"
               }
             }
           }
@@ -142,14 +142,14 @@
         }
       }
     },
-    "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj": {
+    "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj",
+        "projectUniqueName": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj",
         "projectName": "DAL",
-        "projectPath": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj",
+        "projectPath": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj",
         "packagesPath": "C:\\Users\\mstfc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\DAL\\obj\\",
+        "outputPath": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\DAL\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -226,14 +226,14 @@
         }
       }
     },
-    "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\WebUI\\WebUI.csproj": {
+    "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\WebUI\\WebUI.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\WebUI\\WebUI.csproj",
+        "projectUniqueName": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\WebUI\\WebUI.csproj",
         "projectName": "WebUI",
-        "projectPath": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\WebUI\\WebUI.csproj",
+        "projectPath": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\WebUI\\WebUI.csproj",
         "packagesPath": "C:\\Users\\mstfc\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\WebUI\\obj\\",
+        "outputPath": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\WebUI\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -256,14 +256,14 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\BLL\\BLL.csproj": {
-                "projectPath": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\BLL\\BLL.csproj"
+              "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\BLL\\BLL.csproj": {
+                "projectPath": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\BLL\\BLL.csproj"
               },
-              "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\Common\\Common.csproj": {
-                "projectPath": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\Common\\Common.csproj"
+              "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\Common\\Common.csproj": {
+                "projectPath": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\Common\\Common.csproj"
               },
-              "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj": {
-                "projectPath": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj"
+              "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj": {
+                "projectPath": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj"
               }
             }
           }

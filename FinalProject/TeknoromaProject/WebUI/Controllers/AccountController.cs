@@ -1,4 +1,5 @@
-﻿using BLL.ViewModels;
+﻿using BLL.Repositories.Abstract;
+using BLL.ViewModels;
 using DAL.Context;
 using DAL.Entities;
 using Microsoft.AspNetCore.Http;
@@ -15,13 +16,13 @@ namespace WebUI.Controllers
     {
         private readonly UserManager<AppUser> _userManager;
         private readonly SignInManager<AppUser> _signInManager;
-        private readonly ApplicationDbContext _context;
+        private readonly IAppUserService _appUserService;
 
-        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager,ApplicationDbContext context)
+        public AccountController(UserManager<AppUser> userManager, SignInManager<AppUser> signInManager, IAppUserService appUserService)
         {
             _userManager = userManager;
             _signInManager = signInManager;
-            _context = context;
+            _appUserService = appUserService;
         }
 
         public ActionResult Create()
@@ -70,24 +71,20 @@ namespace WebUI.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Login(LoginVM loginVM)
         {
-            var users = _userManager.FindByNameAsync(loginVM.UserName).Result;
+            var user = _userManager.FindByNameAsync(loginVM.UserName).Result;
 
-            if (users != null)
+            if (user != null)
             {
-                var result = _signInManager.PasswordSignInAsync(users, loginVM.Password, loginVM.IsPersistant, false).Result;
+                var result = _signInManager.PasswordSignInAsync(user, loginVM.Password, loginVM.IsPersistant, false).Result;
                 if (result.Succeeded)
                 {
-                    var query = from user in _context.Users
-                            join userRole in _context.UserRoles on user.Id equals userRole.UserId
-                            join role in _context.Roles on userRole.RoleId equals role.Id
-                            select new { user.UserName, role.Name };
-                    var q = query.Where(x => x.UserName == users.UserName).FirstOrDefault();
-                    
-                    return Redirect($"/{q.Name}/Home/Index");
+                    string area = _appUserService.AreaLogin(user);
+                    return Redirect($"/{area}/Home/Index");
                 }
                 return View();
             }
             return View();
+
         }
 
        

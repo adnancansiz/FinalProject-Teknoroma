@@ -6600,11 +6600,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\WebApi\\WebApi.csproj",
+      "projectUniqueName": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\WebApi\\WebApi.csproj",
       "projectName": "WebApi",
-      "projectPath": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\WebApi\\WebApi.csproj",
+      "projectPath": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\WebApi\\WebApi.csproj",
       "packagesPath": "C:\\Users\\mstfc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\WebApi\\obj\\",
+      "outputPath": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\WebApi\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
@@ -6627,8 +6627,8 @@
         "netcoreapp3.1": {
           "targetAlias": "netcoreapp3.1",
           "projectReferences": {
-            "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\BLL\\BLL.csproj": {
-              "projectPath": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\BLL\\BLL.csproj"
+            "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\BLL\\BLL.csproj": {
+              "projectPath": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\BLL\\BLL.csproj"
             }
           }
         }

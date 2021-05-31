@@ -11,5 +11,8 @@ namespace BLL.Repositories.Abstract
     public interface IProductService:IGenericService<Product>
     {
         List<ProductVM> GetAllProductForApi();
+
+        List<Top10ProductVM> GetTop10();
+
     }
 }

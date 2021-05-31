@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "jUF8PluH6x8dcZ25Rm3gKoH3oVzUghl5p/+2Z2wolANFGGqt2FrTV9wj6C/yWTQENDnNrAE9ELDnxNYybki+3g==",
+  "dgSpecHash": "EAZ396MtrdOJ4OZSxIuQxE5y7d0AtDOUydDH96+j0RIRfGRy7UKVxQ/hRo+KCaPzp2S/Od9SEBOq+k5QHYJomQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\BLL\\BLL.csproj",
+  "projectFilePath": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\BLL\\BLL.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mstfc\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\mstfc\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

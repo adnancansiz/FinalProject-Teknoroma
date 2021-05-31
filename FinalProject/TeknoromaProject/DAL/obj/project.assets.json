@@ -5947,11 +5947,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj",
+      "projectUniqueName": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj",
       "projectName": "DAL",
-      "projectPath": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj",
+      "projectPath": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\DAL\\DAL.csproj",
       "packagesPath": "C:\\Users\\mstfc\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\DAL\\obj\\",
+      "outputPath": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\DAL\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",

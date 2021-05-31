@@ -39,7 +39,7 @@ namespace WebUI.Areas.MobileSales.Controllers
             ViewBag.ProductWaiting = _orderService.GetByDefault(x => x.OrderStatus == DAL.Entities.Enum.OrderStatus.ProductWaiting);
             ViewBag.Completed = _orderService.GetByDefault(x => x.OrderStatus == DAL.Entities.Enum.OrderStatus.Completed);
             ViewBag.Customer = _customerService.GetActive();
-            ViewBag.AppUser = _appUserService.UserList();
+            ViewBag.AppUser = _appUserService.GetByDefault();
             return View();
         }
 

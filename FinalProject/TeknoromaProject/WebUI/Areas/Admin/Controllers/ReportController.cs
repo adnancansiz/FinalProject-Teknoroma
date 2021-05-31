@@ -51,8 +51,52 @@ namespace WebUI.Areas.Admin.Controllers
 
         public IActionResult ProductReport()
         {
-            var products = _productService.GetByDefault(x => x.Status == DAL.Entities.Enum.Status.Deleted);
-            return View(products);
+            try
+            {
+                var products = _productService.GetByDefault(x => x.Status == DAL.Entities.Enum.Status.Deleted);
+                ViewBag.Product = products;
+
+                var top10 = _productService.GetTop10();
+
+
+                return View(top10);
+            }
+            catch (Exception)
+            {
+                TempData["Error"] = "Upss.. Bir hata meydana  geldi.";
+                return View();
+            }
+
+        }
+
+        public IActionResult ProductBuyers(Guid productId)
+        {
+            try
+            {
+                var top10 = _productService.GetTop10().Where(x => x.ProductId == productId);
+                if (top10.Count() > 0)
+                {
+                    List<Customer> customers = new List<Customer>();
+                    foreach (var item in top10)
+                    {
+                        foreach (var customer in item.Customers)
+                        {
+                            customers.Add(customer);
+                        }
+                    }
+
+                    return View(customers);
+                }
+
+                TempData["Error"] = "Ürün Id'ye ulaşılamıyor lütfen tekrar deneyin";
+                return View();
+            }
+            catch (Exception)
+            {
+
+                TempData["Error"] = "Upss.. Bir hata meydana  geldi.";
+                return View();
+            }
 
         }
 

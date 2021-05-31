@@ -64,6 +64,60 @@ namespace BLL.Repositories.Concrete
 
         }
 
+        public List<Top10ProductVM> GetTop10()
+        {
+            var query = from p in _context.Products
+                        join od in _context.OrderDetails on p.Id equals od.ProductId
+                        join o in _context.Orders on od.OrderId equals o.Id
+                        select new Top10ProductVM
+                        {
+                            ProductName = p.ProductName,
+                            TotalSell = od.Quantity,
+                            ProductId = p.Id,
+                            Customer = o.Customer
+
+                        };
+
+            List<Top10ProductVM> vM = new List<Top10ProductVM>();
+
+            foreach (var q in query)
+            {
+                bool exist = false;
+                var count = 0;
+
+                foreach (var v in vM)
+                {
+                    if (v.ProductId == q.ProductId)
+                    {
+                        exist = true;
+                        v.TotalSell += q.TotalSell;
+
+                        v.Customers.Add(q.Customer);
+                        break;
+                    }
+                }
+                if (!exist && count <= 10)
+                {
+                    count++;
+
+                    List<Customer> customers = new List<Customer>();
+                    customers.Add(q.Customer);
+
+                    Top10ProductVM x = new Top10ProductVM();
+                    x.Customers = customers;
+                    x.ProductId = q.ProductId;
+                    x.ProductName = q.ProductName;
+                    x.TotalSell = q.TotalSell;
+
+                    vM.Add(x);
+                }
+            }
+
+
+
+            return vM.OrderByDescending(x => x.TotalSell).ToList();
+        }
+
         public List<Product> GetByDefault(Expression<Func<Product, bool>> filter = null)
         {
             if (filter != null)

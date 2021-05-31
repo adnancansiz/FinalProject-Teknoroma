@@ -40,8 +40,6 @@ namespace BLL.Repositories.Concrete
 
         }
 
-
-
         public List<AppUser> GetActive()
         {
             return _context.Users.Where(x => x.Status == DAL.Entities.Enum.Status.Active || x.Status == DAL.Entities.Enum.Status.Updated).ToList();
@@ -61,8 +59,8 @@ namespace BLL.Repositories.Concrete
 
         public AppUser GetById(Guid id)
         {
-            var entity = _context.Users.AsNoTracking().Where(x => x.Id == id).ToList();
-            return entity[0];
+            var entity = _context.Users.Where(x => x.Id == id).FirstOrDefault();
+            return entity;
         }
 
         public void MonthlySalesBonus(List<OrderDetail> orderDetails, AppUser user)
@@ -147,8 +145,6 @@ namespace BLL.Repositories.Concrete
 
         public void Update(AppUser entity)
         {
-
-
             entity.UpdatedBy = _signInManager.Context.User.Identity.Name;
             entity.UpdatedComputerName = Environment.MachineName;
             entity.UpdatedDate = DateTime.Now;
@@ -165,7 +161,7 @@ namespace BLL.Repositories.Concrete
             }
 
 
-            var result = _userManager.UpdateAsync(entity).Result;
+            _context.Users.Update(entity);
 
             _context.SaveChanges();
         }
@@ -179,9 +175,16 @@ namespace BLL.Repositories.Concrete
             _context.SaveChanges();
         }
 
-        public List<AppUser> UserList()
+        public string AreaLogin(AppUser user)
         {
-            return _context.Users.ToList();
+
+            var query = from u in _context.Users
+                        join userRole in _context.UserRoles on u.Id equals userRole.UserId
+                        join role in _context.Roles on userRole.RoleId equals role.Id
+                        where u.UserName == user.UserName
+                        select new { u.UserName, role.Name };
+
+            return query.ToList()[0].Name;
         }
 
     }

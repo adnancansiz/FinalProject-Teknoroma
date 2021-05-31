@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "wb+Z/Zv1T/6Yr9Mh0/Ac3a2OPvFOgUBTxZ5hAo1R2y1HQYh2fDZ4Wp+KJ35T7oXMXM5DH5nszEdTd5riC2Ibhw==",
+  "dgSpecHash": "SE41msF1JjyCMx+vigumTsx0Nn1QklBj/3keGR41tB+tYg72HvjvGLPc1XpFQWLg/z+IJCkV/v6fBk9BqLvFAw==",
   "success": true,
-  "projectFilePath": "C:\\Users\\mstfc\\Desktop\\FinalProject\\TeknoromaProject\\WebUI\\WebUI.csproj",
+  "projectFilePath": "C:\\Users\\mstfc\\Documents\\GitHub\\FinalProject-Teknoroma\\FinalProject\\TeknoromaProject\\WebUI\\WebUI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\mstfc\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",
     "C:\\Users\\mstfc\\.nuget\\packages\\microsoft.aspnetcore.authentication.abstractions\\2.2.0\\microsoft.aspnetcore.authentication.abstractions.2.2.0.nupkg.sha512",

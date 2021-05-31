@@ -16,7 +16,8 @@ namespace BLL.Repositories.Abstract
 
         AppUser Register(AppUser register);
 
-        List<AppUser> UserList();
+        string AreaLogin(AppUser user);
+
 
 
     }
