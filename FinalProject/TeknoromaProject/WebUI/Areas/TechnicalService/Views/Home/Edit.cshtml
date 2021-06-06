@@ -12,17 +12,17 @@
             </div>
             <form asp-action="Edit" method="post" enctype="multipart/form-data">
                 <div class="form-group">
-                    <div class="form-group">
+                    @*<div class="form-group">
                         <label>Kaydı Açan Personel</label>
                         <input asp-for="@Model.AppUserId" value="@Model.AppUser.UserName" type="text" class="form-control" />
-                    </div>
-                    @*<label>Kaydı Açan Personel</label>
+                    </div>*@
+                    <label>Kaydı Açan Personel</label>
                     <select class="form-control" name="AppUserId">
                         @foreach (AppUser appUser in ViewBag.AppUser)
                         {
                             <option value="@appUser.Id">@appUser.UserName</option>
                         }
-                    </select>*@
+                    </select>
                 </div>
                 <div class="form-group">
                     <label>Konu</label>

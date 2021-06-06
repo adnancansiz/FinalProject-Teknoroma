@@ -1,4 +1,11 @@
-Uygulamanýn kontrollerinin yapýlabilmesi için veri tabanýna örnek veriler eklendi. Bilgiler ;
+Projeyi Visual Studio ' da çalýþtýrdýktan sonra , Package Manager Console üzerinden Migration ' ý Kurmanýz/Eklemeniz (add-migration)
+gerekmektedir.
+Migration iþleminden sonra yine Package Manager Console üzerinden veritabaný güncelleme iþlemi (update-database) yapmalýsýnýz.
+
+Bu iþlemleri yaptýktan sonra programý çalýþtýrdýðýnýzda veri tabanýna otomatik olarak eklenecek veriler aþaðýdaki gibidir ;
+
+Uygulamanýn kontrollerinin yapýlabilmesi için eklenen veriler;
+
 Kullanýcý Bilgileri;
 -Admin poziyonu
 Kullanýcý Adý:Admin

@@ -11,6 +11,13 @@
     var Euro = ViewBag.Euro;
     var Dolar = ViewBag.Dolar;
 }
+@if (TempData["Alert"] != null)
+{
+    <div class="alert-danger">
+        <span class="alert-danger">@TempData["Alert"].ToString()</span>
+    </div>
+
+}
 <label><b>Güncel Döviz Kurları</b></label>
 <table class="table table-bordered table-primary">
     <thead>

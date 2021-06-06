@@ -2055,3 +2055,4 @@ C:\Users\mstfc\Documents\GitHub\FinalProject-Teknoroma\FinalProject\TeknoromaPro
 C:\Users\mstfc\Documents\GitHub\FinalProject-Teknoroma\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.pdb
 C:\Users\mstfc\Documents\GitHub\FinalProject-Teknoroma\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\WebUI.genruntimeconfig.cache
 C:\Users\mstfc\Documents\GitHub\FinalProject-Teknoroma\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Report\ProductBuyers.cshtml.g.cs
+C:\Users\AdnanC\Desktop\FinalProject\TeknoromaProject\WebUI\obj\Debug\netcoreapp3.1\Razor\Areas\Admin\Views\Report\ProductBuyers.cshtml.g.cs
